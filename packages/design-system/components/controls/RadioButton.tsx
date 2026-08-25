@@ -1,19 +1,15 @@
 import type { InputHTMLAttributes, ReactNode } from "react";
+import {
+  labelTextClassBySize,
+  type SelectableControlSize,
+} from "./selectableControlSize";
 import styles from "./RadioButton.module.css";
-
-type RadioButtonSize = "lg" | "md" | "sm";
 
 type RadioButtonProps = {
   label?: ReactNode;
-  size?: RadioButtonSize;
+  size?: SelectableControlSize;
   className?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "size" | "className">;
-
-const labelTextClassBySize: Record<RadioButtonSize, string> = {
-  lg: "text-body-md",
-  md: "text-body-sm",
-  sm: "text-caption",
-};
 
 export default function RadioButton({
   label,

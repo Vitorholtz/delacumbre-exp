@@ -1,20 +1,16 @@
 import type { InputHTMLAttributes, ReactNode } from "react";
 import Icon from "../primitives/Icon";
+import {
+  labelTextClassBySize,
+  type SelectableControlSize,
+} from "./selectableControlSize";
 import styles from "./Checkbox.module.css";
-
-type CheckboxSize = "lg" | "md" | "sm";
 
 type CheckboxProps = {
   label?: ReactNode;
-  size?: CheckboxSize;
+  size?: SelectableControlSize;
   className?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "size" | "className">;
-
-const labelTextClassBySize: Record<CheckboxSize, string> = {
-  lg: "text-body-md",
-  md: "text-body-sm",
-  sm: "text-caption",
-};
 
 export default function Checkbox({
   label,

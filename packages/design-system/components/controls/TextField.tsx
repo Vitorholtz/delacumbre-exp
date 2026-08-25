@@ -6,29 +6,20 @@ import {
   type ChangeEvent,
   type InputHTMLAttributes,
 } from "react";
+import FieldShell from "./FieldShell";
+import { fieldInputTextClassBySize, type FieldSize } from "./fieldSize";
 import styles from "./TextField.module.css";
 
-type TextFieldSize = "md" | "sm";
 type TextFieldMask = "phone" | "cpf";
 
 type TextFieldProps = {
   label: string;
   optional?: boolean;
   error?: string;
-  size?: TextFieldSize;
+  size?: FieldSize;
   mask?: TextFieldMask;
   className?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "className">;
-
-const labelTextClassBySize: Record<TextFieldSize, string> = {
-  md: "text-body-md",
-  sm: "text-body-sm",
-};
-
-const inputTextClassBySize: Record<TextFieldSize, string> = {
-  md: "text-body-lg",
-  sm: "text-body-md",
-};
 
 function formatPhone(digits: string): string {
   const d = digits.slice(0, 11);
@@ -84,10 +75,6 @@ export default function TextField({
   const errorId = `${inputId}-error`;
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const classes = [styles.field, styles[size], className]
-    .filter(Boolean)
-    .join(" ");
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (mask) {
       const digits = event.target.value.replace(/\D/g, "");
@@ -97,37 +84,29 @@ export default function TextField({
   };
 
   return (
-    <div className={classes} onClick={() => inputRef.current?.focus()}>
-      <div className={styles.labelRow}>
-        <label
-          htmlFor={inputId}
-          className={`${styles.label} ${labelTextClassBySize[size]}`}
-        >
-          {label}
-        </label>
-        {optional && (
-          <span className={`${styles.optional} ${labelTextClassBySize[size]}`}>
-            Opcional
-          </span>
-        )}
-      </div>
+    <FieldShell
+      label={label}
+      optional={optional}
+      error={error}
+      inputId={inputId}
+      errorId={errorId}
+      size={size}
+      sizeClassName={styles[size]}
+      onWrapperClick={() => inputRef.current?.focus()}
+      className={className}
+    >
       <input
         ref={inputRef}
         id={inputId}
         type={mask === "phone" ? "tel" : type}
         inputMode={inputMode ?? (mask ? maskInputModes[mask] : undefined)}
         placeholder={placeholder ?? (mask ? maskPlaceholders[mask] : undefined)}
-        className={`${styles.input} ${inputTextClassBySize[size]}`}
+        className={`${styles.input} ${fieldInputTextClassBySize[size]}`}
         aria-invalid={!!error}
         aria-describedby={error ? errorId : undefined}
         onChange={handleChange}
         {...rest}
       />
-      {error && (
-        <p id={errorId} className={`${styles.error} ${labelTextClassBySize[size]}`}>
-          {error}
-        </p>
-      )}
-    </div>
+    </FieldShell>
   );
 }

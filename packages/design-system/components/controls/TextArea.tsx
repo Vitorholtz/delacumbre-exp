@@ -7,27 +7,17 @@ import {
   type InputEvent,
   type TextareaHTMLAttributes,
 } from "react";
+import FieldShell from "./FieldShell";
+import { fieldInputTextClassBySize, type FieldSize } from "./fieldSize";
 import styles from "./TextArea.module.css";
-
-type TextAreaSize = "md" | "sm";
 
 type TextAreaProps = {
   label: string;
   optional?: boolean;
   error?: string;
-  size?: TextAreaSize;
+  size?: FieldSize;
   className?: string;
 } & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "className">;
-
-const labelTextClassBySize: Record<TextAreaSize, string> = {
-  md: "text-body-md",
-  sm: "text-body-sm",
-};
-
-const inputTextClassBySize: Record<TextAreaSize, string> = {
-  md: "text-body-lg",
-  sm: "text-body-md",
-};
 
 function autoGrow(el: HTMLTextAreaElement) {
   const { borderTopWidth, borderBottomWidth } = getComputedStyle(el);
@@ -60,40 +50,28 @@ export default function TextArea({
     onInput?.(event);
   };
 
-  const classes = [styles.field, styles[size], className]
-    .filter(Boolean)
-    .join(" ");
-
   return (
-    <div className={classes} onClick={() => textareaRef.current?.focus()}>
-      <div className={styles.labelRow}>
-        <label
-          htmlFor={inputId}
-          className={`${styles.label} ${labelTextClassBySize[size]}`}
-        >
-          {label}
-        </label>
-        {optional && (
-          <span className={`${styles.optional} ${labelTextClassBySize[size]}`}>
-            Opcional
-          </span>
-        )}
-      </div>
+    <FieldShell
+      label={label}
+      optional={optional}
+      error={error}
+      inputId={inputId}
+      errorId={errorId}
+      size={size}
+      sizeClassName={styles[size]}
+      onWrapperClick={() => textareaRef.current?.focus()}
+      className={className}
+    >
       <textarea
         ref={textareaRef}
         id={inputId}
-        className={`${styles.input} ${inputTextClassBySize[size]}`}
+        className={`${styles.input} ${fieldInputTextClassBySize[size]}`}
         aria-invalid={!!error}
         aria-describedby={error ? errorId : undefined}
         value={value}
         onInput={handleInput}
         {...rest}
       />
-      {error && (
-        <p id={errorId} className={`${styles.error} ${labelTextClassBySize[size]}`}>
-          {error}
-        </p>
-      )}
-    </div>
+    </FieldShell>
   );
 }
