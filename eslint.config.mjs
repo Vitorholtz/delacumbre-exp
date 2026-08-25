@@ -18,6 +18,15 @@ const eslintConfig = defineConfig([
       ],
     },
   },
+  {
+    // The design system deliberately renders raw <img> instead of
+    // next/image (components are consumed by two apps with independent
+    // public/ dirs, and images are already served at their final size).
+    files: ["packages/design-system/components/**/*.tsx"],
+    rules: {
+      "@next/next/no-img-element": "off",
+    },
+  },
   // Override default ignores of eslint-config-next.
   // Unprefixed patterns only match at the repo root — in this npm
   // workspaces monorepo, each package under apps/* and packages/* builds

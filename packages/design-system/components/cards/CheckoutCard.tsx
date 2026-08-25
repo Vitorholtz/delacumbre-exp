@@ -53,7 +53,6 @@ export default function CheckoutCard({
   return (
     <div className={classes}>
       <div className={styles.hero}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={image} alt={imageAlt} className={styles.heroImage} />
         <div className={styles.heroVignette} aria-hidden="true" />
       </div>
@@ -68,7 +67,7 @@ export default function CheckoutCard({
               {expeditionName}
             </p>
           </div>
-          <div className={styles.divider} />
+          <div className="divider-dashed" />
 
           <div className={styles.row}>
             <span className={styles.label}>
@@ -76,7 +75,7 @@ export default function CheckoutCard({
             </span>
             <p className={`${styles.value} ${valueTextClass}`}>{dateRange}</p>
           </div>
-          <div className={styles.divider} />
+          <div className="divider-dashed" />
 
           <div className={styles.row}>
             <span className={styles.label}>
@@ -86,7 +85,7 @@ export default function CheckoutCard({
               {destination}
             </p>
           </div>
-          <div className={styles.divider} />
+          <div className="divider-dashed" />
 
           <div className={styles.row}>
             <span className={styles.label}>

@@ -167,7 +167,7 @@ export default function PricingCard({
           </div>
         )}
 
-        <div className={styles.divider} />
+        <div className="divider-dashed" />
 
         {howToItems && howToItems.length > 0 && (
           <div className={styles.itemsBlock}>

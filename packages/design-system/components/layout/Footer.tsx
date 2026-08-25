@@ -73,7 +73,6 @@ export default function Footer({
         <div className={styles.profile}>
           <div className={styles.pictureBlock}>
             <div className={styles.pictureWrap}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={profileImage}
                 alt={profileImageAlt}
@@ -109,7 +108,6 @@ export default function Footer({
       <div className={styles.bottom}>
         {!isSm && (
           <div className={styles.artworkDesktop}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={footerArtworkDesktop}
               alt=""
@@ -136,7 +134,6 @@ export default function Footer({
 
         {isSm && (
           <div className={styles.artworkMobile}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={footerArtworkMobile}
               alt=""

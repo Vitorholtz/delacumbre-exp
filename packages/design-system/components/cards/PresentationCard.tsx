@@ -62,7 +62,6 @@ export default function PresentationCard({
   return (
     <div className={classes}>
       <div className={styles.imageWrap}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={image} alt={imageAlt} className={styles.image} />
       </div>
 

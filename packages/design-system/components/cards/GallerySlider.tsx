@@ -34,7 +34,6 @@ function Media({ item }: { item: GalleryMediaItem }) {
       playsInline
     />
   ) : (
-    // eslint-disable-next-line @next/next/no-img-element
     <img src={item.src} alt={item.alt} className={styles.media} />
   );
 }

@@ -48,7 +48,6 @@ export default function HowToCard({
         </p>
       </div>
       <div className={styles.imageWrap}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={image} alt={imageAlt} className={styles.image} />
       </div>
     </div>

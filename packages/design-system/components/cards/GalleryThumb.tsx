@@ -58,7 +58,6 @@ export default function GalleryThumb({
           preload="metadata"
         />
       ) : (
-        // eslint-disable-next-line @next/next/no-img-element
         <img src={src} alt="" className={styles.media} />
       )}
       <span className={styles.overlay} aria-hidden="true" />
