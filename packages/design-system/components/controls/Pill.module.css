@@ -1,7 +1,7 @@
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem; /* 6px — fora da escala de espaçamento */
+  gap: var(--space-1-5);
   border-radius: var(--radius-full);
   border: 1px solid var(--color-white-20);
   background: var(--color-licorice-60);

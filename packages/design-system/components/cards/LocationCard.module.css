@@ -14,7 +14,7 @@
 
 .sm {
   padding: 1rem 1.5rem; /* 16px 24px */
-  border-radius: 0.75rem; /* 12px — fora da escala de raio */
+  border-radius: var(--radius-12);
 }
 
 .pin {

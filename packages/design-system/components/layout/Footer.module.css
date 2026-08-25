@@ -29,7 +29,7 @@
 .md .content {
   align-items: flex-start;
   justify-content: space-between;
-  padding-inline: 3.5rem; /* 56px — fora da escala de espaçamento */
+  padding-inline: var(--space-14);
 }
 
 .sm .content {
@@ -121,7 +121,7 @@
 }
 
 .sm .social {
-  gap: 3.5rem; /* 56px — fora da escala de espaçamento */
+  gap: var(--space-14);
   align-items: center;
   width: 100%;
 }
@@ -194,7 +194,7 @@
 
 .md .copyrights {
   justify-content: space-between;
-  padding-inline: 3.5rem; /* 56px — fora da escala de espaçamento */
+  padding-inline: var(--space-14);
   white-space: nowrap;
 }
 

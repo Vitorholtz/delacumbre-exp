@@ -1,6 +1,7 @@
 :root {
   /* Spacing scale — cobre os valores observados nos componentes do Figma */
   --space-1: 4px;
+  --space-1-5: 6px; /* fora do grid de 4px, mas repetido em 4+ componentes — ver Pill, Chip, CheckoutCard */
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
@@ -10,5 +11,6 @@
   --space-8: 32px;
   --space-10: 40px;
   --space-12: 48px;
+  --space-14: 56px; /* repetido em 4+ componentes — ver Footer, PresentationCard */
   --space-16: 64px;
 }

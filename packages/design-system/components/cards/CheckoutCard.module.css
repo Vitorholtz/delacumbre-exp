@@ -94,7 +94,7 @@
 }
 
 .sm .table {
-  padding-inline: 0.375rem; /* 6px — fora da escala de espaçamento */
+  padding-inline: var(--space-1-5);
 }
 
 .lg .table {
@@ -150,7 +150,7 @@
   justify-content: center;
   gap: 0.625rem; /* 10px — fora da escala de espaçamento */
   width: 100%;
-  border-radius: 0.75rem; /* 12px — fora da escala de raio */
+  border-radius: var(--radius-12);
   background: var(--color-licorice);
   color: var(--color-licorice-super-light);
   text-align: center;

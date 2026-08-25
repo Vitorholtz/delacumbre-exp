@@ -133,10 +133,25 @@ const typeScale = [
   },
 ];
 
-const spacingSteps = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 16];
+const spacingSteps = [
+  "1",
+  "1-5",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "10",
+  "12",
+  "14",
+  "16",
+];
 
 const radiusSteps = [
   { name: "sm", varName: "--radius-sm" },
+  { name: "12", varName: "--radius-12" },
   { name: "md", varName: "--radius-md" },
   { name: "lg", varName: "--radius-lg" },
   { name: "full", varName: "--radius-full" },
