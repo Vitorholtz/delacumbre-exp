@@ -1,0 +1,86 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2); /* 8px */
+  width: 100%;
+  cursor: text;
+}
+
+.labelRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+
+.label {
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.optional {
+  color: var(--color-white-50);
+}
+
+.input {
+  width: 100%;
+  min-height: 18.5rem; /* 296px */
+  resize: none;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-licorice-light);
+  border: 1px solid var(--color-white-20);
+  color: var(--color-white-50);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.md .input {
+  padding: 1rem 1.25rem; /* 16px 20px */
+}
+
+.sm .input {
+  padding: 0.75rem 1rem; /* 12px 16px */
+}
+
+.input::placeholder {
+  color: var(--color-white-50);
+}
+
+.input:focus {
+  outline: none;
+  border-width: 2px;
+  border-color: var(--color-hunyadi-yellow);
+}
+
+.input:hover:not(:focus):placeholder-shown {
+  border-color: var(--color-white-50);
+}
+
+.input:not(:placeholder-shown) {
+  color: var(--color-white);
+}
+
+.input[aria-invalid="true"] {
+  border-width: 2px;
+  border-color: var(--color-scarlet-rush);
+}
+
+.input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.error {
+  width: 100%;
+  color: var(--color-scarlet-rush);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input {
+    transition: none;
+  }
+}

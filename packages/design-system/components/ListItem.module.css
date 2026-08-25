@@ -1,0 +1,33 @@
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25rem; /* 4px */
+}
+
+.iconWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lg .iconWrap,
+.md .iconWrap {
+  padding: 0.25rem; /* 4px */
+}
+
+.sm .iconWrap,
+.xsm .iconWrap {
+  padding: 0.125rem; /* 2px */
+}
+
+.icon {
+  color: var(--color-hunyadi-yellow);
+}
+
+.label {
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--color-licorice-super-light);
+}

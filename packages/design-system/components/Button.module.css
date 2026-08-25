@@ -1,0 +1,91 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.lg {
+  padding: 0.625rem 1.5rem; /* 10px 24px */
+}
+
+.md {
+  padding: 0.5rem 1.5rem; /* 8px 24px */
+}
+
+.primary {
+  background: var(--color-hunyadi-yellow);
+  border-color: var(--color-hunyadi-yellow);
+  color: var(--color-licorice);
+}
+
+.secondary {
+  background: var(--color-licorice);
+  border-color: var(--color-white-20);
+  color: var(--color-dune);
+}
+
+.secondary:hover {
+  background: var(--color-licorice-light);
+  border-color: var(--color-white-50);
+}
+
+/* Texto: sobe e desaparece; a cópia entra de baixo pra cima no lugar */
+
+.textWrap {
+  display: inline-grid;
+  overflow: hidden;
+}
+
+.textDefault,
+.textHover {
+  grid-area: 1 / 1;
+  transition: transform 0.3s ease;
+}
+
+.textDefault {
+  transform: translateY(0%);
+}
+
+.textHover {
+  transform: translateY(130%);
+}
+
+.button:hover .textDefault {
+  transform: translateY(-130%);
+}
+
+.button:hover .textHover {
+  transform: translateY(0%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .textDefault,
+  .textHover {
+    transition: none;
+  }
+}

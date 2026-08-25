@@ -1,0 +1,22 @@
+:root {
+  /* Cores — nomes espelham exatamente as variáveis do Figma (Delacumbre EXP) */
+  --color-licorice: #1b1717;
+  --color-licorice-dark: #181414;
+  --color-licorice-light: #211d1d;
+  --color-licorice-super-light: #c3b8b8;
+  --color-licorice-60: rgba(27, 23, 23, 0.6);
+  --color-licorice-80: rgba(27, 23, 23, 0.8);
+
+  --color-hunyadi-yellow: #d9a441;
+  --color-dune: #e4d1af;
+  --color-dune-40: rgba(228, 209, 175, 0.4);
+
+  --color-white: #ffffff;
+  --color-white-20: rgba(255, 255, 255, 0.2);
+  --color-white-50: rgba(255, 255, 255, 0.5);
+
+  --color-scarlet-rush: #d93f42;
+  --color-russet: #934f2b;
+  --color-backdrop: #1b1717;
+  --color-olive-muted: #5a5a3f;
+}

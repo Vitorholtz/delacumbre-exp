@@ -1,0 +1,38 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem; /* 6px — fora da escala de espaçamento */
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-white-20);
+  background: var(--color-licorice-60);
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+.lg.withIcon {
+  padding: 0.75rem 1.125rem 0.75rem 0.875rem; /* 12px 18px 12px 14px */
+}
+
+.lg.noIcon {
+  padding: 0.75rem 0.875rem; /* 12px 14px */
+}
+
+.md.withIcon {
+  padding: 0.5rem 1rem 0.5rem 0.75rem; /* 8px 16px 8px 12px */
+}
+
+.md.noIcon {
+  padding: 0.5rem 0.75rem; /* 8px 12px */
+}
+
+.sm.withIcon {
+  padding: 0.375rem 0.75rem 0.375rem 0.5rem; /* 6px 12px 6px 8px */
+}
+
+.sm.noIcon {
+  padding: 0.375rem 0.75rem; /* 6px 12px */
+}
+
+.icon {
+  color: var(--color-hunyadi-yellow);
+}

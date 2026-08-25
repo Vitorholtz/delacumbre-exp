@@ -1,0 +1,48 @@
+.card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem; /* 8px */
+  background: var(--color-licorice-60);
+  backdrop-filter: blur(6px);
+}
+
+.md {
+  padding: 1.5rem 2rem; /* 24px 32px */
+  border-radius: var(--radius-md);
+}
+
+.sm {
+  padding: 1rem 1.5rem; /* 16px 24px */
+  border-radius: 0.75rem; /* 12px — fora da escala de raio */
+}
+
+.pin {
+  flex-shrink: 0;
+  color: var(--color-hunyadi-yellow);
+}
+
+.md .pin {
+  width: 1.5625rem; /* 25px */
+  height: 1.5rem; /* 24px */
+}
+
+.sm .pin {
+  width: 1.3125rem; /* 21px */
+  height: 1.25rem; /* 20px */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+.country {
+  color: var(--color-licorice-super-light);
+  white-space: nowrap;
+}

@@ -1,0 +1,11 @@
+:root {
+  /* Material Symbols Sharp — carregada via next/font/local em app/layout.tsx. */
+  --font-icons: var(--font-material-symbols-sharp);
+
+  /* Eixos variáveis da fonte (FILL, wght, GRAD, opsz). Valores default do
+     Figma: preenchimento off, peso regular, grade neutro. */
+  --icon-fill: 0;
+  --icon-weight: 400;
+  --icon-grade: 0;
+  --icon-optical-size: 24;
+}

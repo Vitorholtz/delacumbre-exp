@@ -1,0 +1,35 @@
+.page {
+  width: 100%;
+}
+
+.textWrap {
+  max-width: 95rem; /* 1520px */
+}
+
+.pageHeader {
+  padding-block: 0 var(--space-10);
+}
+
+.section {
+  padding-bottom: var(--space-12);
+  margin-bottom: var(--space-12);
+  border-bottom: 1px solid var(--color-white-20);
+}
+
+.lastSection {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.full {
+  margin-top: var(--space-8);
+}
+
+.mobileFrame {
+  width: 24.375rem; /* 390px, largura do frame mobile do Figma */
+  max-width: 100%;
+  margin-top: var(--space-8);
+  border: 1px solid var(--color-white-20);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}

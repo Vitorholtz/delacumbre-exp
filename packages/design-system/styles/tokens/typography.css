@@ -1,0 +1,47 @@
+:root {
+  /* Font families — carregadas via next/font em app/layout.tsx. */
+  --font-display: var(--font-berringer), "Arial Narrow", sans-serif;
+  --font-body: var(--font-kanit), Arial, Helvetica, sans-serif;
+
+  /* Type scale — extraída do Figma (Delacumbre EXP).
+     font-size em rem (base 16px) para respeitar o tamanho de fonte
+     configurado pelo usuário no navegador. line-height unitless (proporção)
+     em vez de px/rem, para não "vazar" um valor fixo quando um elemento
+     aninhado usa uma fonte maior. */
+  --text-display-xl: 4.5rem; /* 72px */
+  --leading-display-xl: 1.056; /* 76px */
+
+  --text-display-lg: 3.5rem; /* 56px */
+  --leading-display-lg: 1.071; /* 60px */
+
+  --text-heading-xl: 2.75rem; /* 44px */
+  --leading-heading-xl: 1.091; /* 48px */
+
+  --text-heading-lg: 2.25rem; /* 36px */
+  --leading-heading-lg: 1.111; /* 40px */
+
+  --text-heading-md: 1.75rem; /* 28px */
+  --leading-heading-md: 1.143; /* 32px */
+
+  --text-heading-sm: 1.375rem; /* 22px */
+  --leading-heading-sm: 1.273; /* 28px */
+
+  --text-body-lg: 1.375rem; /* 22px */
+  --leading-body-lg: 1.455; /* 32px */
+
+  --text-body-md: 1.125rem; /* 18px */
+  --leading-body-md: 1.556; /* 28px */
+
+  --text-body-sm: 1rem; /* 16px */
+  --leading-body-sm: 1.5; /* 24px */
+
+  --text-caption: 0.875rem; /* 14px */
+  --leading-caption: 1.429; /* 20px */
+
+  --text-caption-xs: 0.75rem; /* 12px */
+  --leading-caption-xs: 1.333; /* 16px */
+
+  --weight-display: 400;
+  --weight-body-light: 300;
+  --weight-body-medium: 500;
+}

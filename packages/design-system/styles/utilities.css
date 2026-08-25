@@ -1,0 +1,241 @@
+/* Layout */
+
+.container {
+  width: 100%;
+  max-width: 1520px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Spacing: gap + padding, na escala de tokens/spacing.css */
+
+.gap-1 {
+  gap: var(--space-1);
+}
+.gap-2 {
+  gap: var(--space-2);
+}
+.gap-3 {
+  gap: var(--space-3);
+}
+.gap-4 {
+  gap: var(--space-4);
+}
+.gap-5 {
+  gap: var(--space-5);
+}
+.gap-6 {
+  gap: var(--space-6);
+}
+.gap-7 {
+  gap: var(--space-7);
+}
+.gap-8 {
+  gap: var(--space-8);
+}
+.gap-10 {
+  gap: var(--space-10);
+}
+.gap-12 {
+  gap: var(--space-12);
+}
+.gap-16 {
+  gap: var(--space-16);
+}
+
+.p-1 {
+  padding: var(--space-1);
+}
+.p-2 {
+  padding: var(--space-2);
+}
+.p-3 {
+  padding: var(--space-3);
+}
+.p-4 {
+  padding: var(--space-4);
+}
+.p-6 {
+  padding: var(--space-6);
+}
+.p-8 {
+  padding: var(--space-8);
+}
+
+.px-2 {
+  padding-inline: var(--space-2);
+}
+.px-3 {
+  padding-inline: var(--space-3);
+}
+.px-4 {
+  padding-inline: var(--space-4);
+}
+.px-6 {
+  padding-inline: var(--space-6);
+}
+
+.py-2 {
+  padding-block: var(--space-2);
+}
+.py-3 {
+  padding-block: var(--space-3);
+}
+.py-4 {
+  padding-block: var(--space-4);
+}
+
+/* Radius */
+
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+.rounded-md {
+  border-radius: var(--radius-md);
+}
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
+.rounded-full {
+  border-radius: var(--radius-full);
+}
+
+/* Tipografia — mapeiam para a escala em tokens/typography.css */
+
+.text-display-xl {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-display-xl);
+  line-height: var(--leading-display-xl);
+}
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-display-lg);
+  line-height: var(--leading-display-lg);
+}
+
+.text-heading-xl {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-heading-xl);
+  line-height: var(--leading-heading-xl);
+}
+
+.text-heading-lg {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-heading-lg);
+  line-height: var(--leading-heading-lg);
+}
+
+.text-heading-md {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-heading-md);
+  line-height: var(--leading-heading-md);
+}
+
+.text-heading-sm {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
+}
+
+.text-body-lg {
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-light);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+}
+
+.text-body-md {
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-light);
+  font-size: var(--text-body-md);
+  line-height: var(--leading-body-md);
+}
+
+.text-body-sm {
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-light);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+}
+
+.text-caption {
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-light);
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+}
+
+.text-caption-xs {
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-medium);
+  font-size: var(--text-caption-xs);
+  line-height: var(--leading-caption-xs);
+}
+
+/* Ícones — Material Symbols Sharp (ver tokens/icons.css) */
+
+.icon {
+  font-family: var(--font-icons);
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.5rem; /* 24px, tamanho ótico default */
+  line-height: 1;
+  display: inline-block;
+  user-select: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings:
+    "FILL" var(--icon-fill),
+    "wght" var(--icon-weight),
+    "GRAD" var(--icon-grade),
+    "opsz" var(--icon-optical-size);
+}

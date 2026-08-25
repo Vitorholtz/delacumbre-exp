@@ -1,0 +1,94 @@
+.wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-3); /* 12px */
+  cursor: pointer;
+}
+
+.wrapper:has(.input:disabled) {
+  cursor: not-allowed;
+}
+
+.spacer {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Alinha o topo do círculo (20px) com a primeira linha do texto:
+   padding = (line-height do tamanho - 20px) / 2 */
+.lg .spacer {
+  padding-block: 0.25rem; /* 4px */
+}
+
+.md .spacer {
+  padding-block: 0.125rem; /* 2px */
+}
+
+.sm .spacer {
+  padding-block: 0;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem; /* 20px */
+  height: 1.25rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-white-20);
+  background: var(--color-licorice-light);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.wrapper:hover .circle {
+  border-color: var(--color-white-50);
+}
+
+.wrapper:active .circle {
+  transform: scale(0.96);
+}
+
+.input:focus-visible ~ .spacer .circle {
+  box-shadow: var(--shadow-focus);
+}
+
+.input:checked ~ .spacer .circle {
+  background: var(--color-hunyadi-yellow);
+  border-color: var(--color-white-20);
+}
+
+.input:disabled ~ .spacer .circle {
+  opacity: 0.4;
+}
+
+.dot {
+  width: 0.5rem; /* 8px */
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--color-licorice);
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.input:checked ~ .spacer .dot {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circle,
+  .dot {
+    transition: none;
+  }
+}
+
+.label {
+  color: var(--color-licorice-super-light);
+}
+
+.input:disabled ~ .label {
+  opacity: 0.4;
+}

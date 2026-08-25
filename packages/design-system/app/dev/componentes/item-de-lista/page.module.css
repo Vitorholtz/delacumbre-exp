@@ -1,0 +1,38 @@
+.main {
+  max-width: 95rem; /* 1520px */
+  margin-inline: auto;
+}
+
+.pageHeader {
+  padding-block: 0 var(--space-10);
+}
+
+.section {
+  padding-bottom: var(--space-12);
+  margin-bottom: var(--space-12);
+  border-bottom: 1px solid var(--color-white-20);
+}
+
+.lastSection {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.code {
+  background: var(--color-licorice-light);
+  border: 1px solid var(--color-white-20);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
+  overflow-x: auto;
+  color: var(--color-dune);
+  font-size: var(--text-caption);
+}

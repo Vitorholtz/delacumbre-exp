@@ -1,0 +1,12 @@
+/*
+  Breakpoints — mesmos 4 usados no Figma (Delacumbre EXP).
+  CSS custom properties não funcionam dentro de @media, então os valores
+  abaixo são só referência: escreva `@media (min-width: 768px)` etc.
+  diretamente, mantendo estes números como fonte da verdade.
+  Espelhado em lib/breakpoints.ts para uso em JS/TS.
+
+  --breakpoint-sm: 390px;   (mobile)
+  --breakpoint-md: 768px;   (tablet)
+  --breakpoint-lg: 1440px;  (desktop)
+  --breakpoint-xl: 1920px;  (desktop grande)
+*/

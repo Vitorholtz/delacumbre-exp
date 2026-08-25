@@ -1,0 +1,74 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-licorice-light);
+  border: 1px solid var(--color-white-20);
+}
+
+.lg,
+.md {
+  gap: var(--space-8); /* 32px */
+  padding: var(--space-8); /* 32px */
+  border-radius: var(--radius-lg);
+}
+
+.lg {
+  min-width: 19.125rem; /* 306px */
+}
+
+.md {
+  min-width: 17.5rem; /* 280px */
+}
+
+.sm {
+  gap: var(--space-4); /* 16px */
+  padding: var(--space-5); /* 20px */
+  border-radius: var(--radius-md);
+  min-width: 8.75rem; /* 140px */
+}
+
+.imageWrap {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background: var(--color-licorice);
+}
+
+.lg .imageWrap,
+.md .imageWrap {
+  width: 10.75rem; /* 172px */
+  height: 10.75rem; /* 172px */
+}
+
+.sm .imageWrap {
+  width: 6rem; /* 96px */
+  height: 6rem; /* 96px */
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  width: 100%;
+  color: var(--color-dune);
+  text-align: center;
+}
+
+.highlight {
+  color: var(--color-hunyadi-yellow);
+}
+
+.sm .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

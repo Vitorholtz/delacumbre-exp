@@ -1,0 +1,41 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 100%;
+}
+
+.lg,
+.md {
+  gap: var(--space-6); /* 24px */
+}
+
+.sm {
+  gap: var(--space-5); /* 20px */
+}
+
+.lg {
+  width: 30.75rem; /* 492px */
+}
+
+.md {
+  width: 24rem; /* 384px */
+}
+
+.sm {
+  width: 21.375rem; /* 342px */
+}
+
+.media {
+  flex-shrink: 0;
+}
+
+.title {
+  width: 100%;
+  color: var(--color-white);
+}
+
+.description {
+  width: 100%;
+  color: var(--color-licorice-super-light);
+}

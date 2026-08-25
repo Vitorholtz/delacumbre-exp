@@ -1,0 +1,5 @@
+:root {
+  /* Anel de foco visto nos inputs do Figma (Outline Focus): gap escuro de
+     2px seguido de um anel de 4px na cor Dune. */
+  --shadow-focus: 0 0 0 2px var(--color-licorice), 0 0 0 4px var(--color-dune);
+}

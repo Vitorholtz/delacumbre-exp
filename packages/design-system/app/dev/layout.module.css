@@ -1,0 +1,5 @@
+.content {
+  margin-left: 280px;
+  min-height: 100vh;
+  padding: var(--space-12) var(--space-16);
+}

@@ -1,0 +1,71 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 0.75rem; /* 12px — específico deste botão, fora da escala de radius.css */
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.button:hover {
+  background: var(--color-licorice-60);
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.md {
+  width: 3.5rem; /* 56px */
+  height: 3.5rem;
+  --bar-width: 1.5rem; /* 24px */
+  --bar-width-short: 0.75rem; /* 12px */
+  --bars-gap: 0.375rem; /* 6px */
+}
+
+.sm {
+  width: 2.5rem; /* 40px */
+  height: 2.5rem;
+  --bar-width: 1rem; /* 16px */
+  --bar-width-short: 0.5rem; /* 8px */
+  --bars-gap: 0.25rem; /* 4px */
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--bars-gap);
+}
+
+.bar {
+  height: 2px;
+  width: var(--bar-width);
+  background: var(--color-white);
+  border-radius: var(--radius-full);
+}
+
+.barShort {
+  width: var(--bar-width-short);
+  transition: width 0.15s ease;
+}
+
+.button:hover .barShort {
+  width: var(--bar-width);
+}

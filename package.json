@@ -2,16 +2,14 @@
   "name": "delacumbre-exp",
   "version": "0.1.0",
   "private": true,
+  "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "next": "16.3.2",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "dev": "npm run dev -w apps/web",
+    "dev:ds": "npm run dev -w packages/design-system",
+    "build": "npm run build -w apps/web",
+    "build:ds": "npm run build -w packages/design-system",
+    "lint": "eslint",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -19,6 +17,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.6",
     "typescript": "^5"
   }
 }
