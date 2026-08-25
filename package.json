@@ -4,8 +4,8 @@
   "private": true,
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "dev": "npm run dev -w apps/web",
-    "dev:ds": "npm run dev -w packages/design-system",
+    "dev": "npm run dev -w apps/web -- -p 3000",
+    "dev:ds": "npm run dev -w packages/design-system -- -p 3001",
     "build": "npm run build -w apps/web",
     "build:ds": "npm run build -w packages/design-system",
     "lint": "eslint",
