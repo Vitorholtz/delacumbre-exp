@@ -1,4 +1,5 @@
 @AGENTS.md
+@docs/BRAND.md
 
 # Regras do projeto Delacumbre EXP
 
