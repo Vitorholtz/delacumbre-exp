@@ -1,4 +1,4 @@
-import ListItem from "@/components/ListItem";
+import ListItem from "@/components/navigation/ListItem";
 import styles from "./page.module.css";
 
 export default function ListItemPage() {
@@ -34,7 +34,7 @@ export default function ListItemPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import ListItem from "@/components/ListItem";\n\n<ListItem icon="hiking" label="Trilhas guiadas" />\n<ListItem icon="explore" label="Roteiro contraturístico" size="sm" />`}
+          {`import ListItem from "@/components/navigation/ListItem";\n\n<ListItem icon="hiking" label="Trilhas guiadas" />\n<ListItem icon="explore" label="Roteiro contraturístico" size="sm" />`}
         </pre>
       </section>
     </main>

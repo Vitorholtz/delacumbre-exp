@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "../primitives/Button";
 import styles from "./PresentationCard.module.css";
 
 type PresentationCardSize = "sm" | "md" | "lg";

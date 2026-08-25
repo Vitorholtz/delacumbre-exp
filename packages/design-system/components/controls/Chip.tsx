@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from "react";
-import Icon from "./Icon";
+import Icon from "../primitives/Icon";
 import styles from "./Chip.module.css";
 
 type ChipProps = {

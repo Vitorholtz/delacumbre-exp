@@ -1,4 +1,4 @@
-import HowToCard from "@/components/HowToCard";
+import HowToCard from "@/components/cards/HowToCard";
 import styles from "./page.module.css";
 
 const description =

@@ -1,4 +1,4 @@
-import Icon from "./Icon";
+import Icon from "../primitives/Icon";
 import styles from "./Pill.module.css";
 
 type PillSize = "lg" | "md" | "sm";

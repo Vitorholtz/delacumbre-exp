@@ -1,4 +1,4 @@
-import CheckoutCard from "@/components/CheckoutCard";
+import CheckoutCard from "@/components/cards/CheckoutCard";
 import styles from "./page.module.css";
 
 export default function CheckoutCardPage() {

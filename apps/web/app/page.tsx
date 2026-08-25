@@ -1,4 +1,4 @@
-import Button from "@delacumbre/design-system/components/Button";
+import Button from "@delacumbre/design-system/components/primitives/Button";
 
 export default function Home() {
   return (

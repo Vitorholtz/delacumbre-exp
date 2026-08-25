@@ -1,4 +1,4 @@
-import LocationCard from "@/components/LocationCard";
+import LocationCard from "@/components/cards/LocationCard";
 import styles from "./page.module.css";
 
 export default function LocationCardPage() {
@@ -33,7 +33,7 @@ export default function LocationCardPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import LocationCard from "@/components/LocationCard";\n\n<LocationCard name="Atar" country="Mauritânia" />\n<LocationCard name="Siem Reap" country="Camboja" size="sm" />`}
+          {`import LocationCard from "@/components/cards/LocationCard";\n\n<LocationCard name="Atar" country="Mauritânia" />\n<LocationCard name="Siem Reap" country="Camboja" size="sm" />`}
         </pre>
       </section>
     </main>

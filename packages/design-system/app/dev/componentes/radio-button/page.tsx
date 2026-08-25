@@ -1,4 +1,4 @@
-import RadioButton from "@/components/RadioButton";
+import RadioButton from "@/components/controls/RadioButton";
 import styles from "./page.module.css";
 
 export default function RadioButtonPage() {
@@ -82,7 +82,7 @@ export default function RadioButtonPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import RadioButton from "@/components/RadioButton";\n\n<RadioButton name="destino" label="Mauritânia" />\n<RadioButton name="destino" label="Camboja & Bangkok" defaultChecked />\n<RadioButton name="opcao" aria-label="Selecionar item" />`}
+          {`import RadioButton from "@/components/controls/RadioButton";\n\n<RadioButton name="destino" label="Mauritânia" />\n<RadioButton name="destino" label="Camboja & Bangkok" defaultChecked />\n<RadioButton name="opcao" aria-label="Selecionar item" />`}
         </pre>
       </section>
     </main>

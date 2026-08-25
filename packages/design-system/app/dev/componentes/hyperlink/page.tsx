@@ -1,4 +1,4 @@
-import Hyperlink from "@/components/Hyperlink";
+import Hyperlink from "@/components/primitives/Hyperlink";
 import styles from "./page.module.css";
 
 export default function HyperlinkPage() {
@@ -58,7 +58,7 @@ export default function HyperlinkPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import Hyperlink from "@/components/Hyperlink";\n\n<Hyperlink href="/expedicoes">Ver todas</Hyperlink>\n<Hyperlink href="https://instagram.com/delacumbre">Instagram</Hyperlink>\n<Hyperlink href="/sobre" size="sm" showIcon={false}>Sobre nós</Hyperlink>`}
+          {`import Hyperlink from "@/components/primitives/Hyperlink";\n\n<Hyperlink href="/expedicoes">Ver todas</Hyperlink>\n<Hyperlink href="https://instagram.com/delacumbre">Instagram</Hyperlink>\n<Hyperlink href="/sobre" size="sm" showIcon={false}>Sobre nós</Hyperlink>`}
         </pre>
       </section>
     </main>

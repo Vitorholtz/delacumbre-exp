@@ -4,7 +4,7 @@ import {
   useEffect,
   useId,
   useRef,
-  type FormEvent,
+  type InputEvent,
   type TextareaHTMLAttributes,
 } from "react";
 import styles from "./TextArea.module.css";
@@ -55,7 +55,7 @@ export default function TextArea({
     if (textareaRef.current) autoGrow(textareaRef.current);
   }, [value]);
 
-  const handleInput = (event: FormEvent<HTMLTextAreaElement>) => {
+  const handleInput = (event: InputEvent<HTMLTextAreaElement>) => {
     autoGrow(event.currentTarget);
     onInput?.(event);
   };

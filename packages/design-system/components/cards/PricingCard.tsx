@@ -1,6 +1,6 @@
 import { Fragment } from "react";
-import Button from "./Button";
-import ListItem from "./ListItem";
+import Button from "../primitives/Button";
+import ListItem from "../navigation/ListItem";
 import styles from "./PricingCard.module.css";
 
 type PricingCardSize = "sm" | "md" | "lg";

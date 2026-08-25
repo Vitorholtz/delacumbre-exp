@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type { CSSProperties, MouseEvent } from "react";
-import Icon from "./Icon";
+import Icon from "../primitives/Icon";
 import styles from "./GalleryThumb.module.css";
 
 type GalleryThumbProps = {

@@ -1,4 +1,4 @@
-import TextArea from "@/components/TextArea";
+import TextArea from "@/components/controls/TextArea";
 import styles from "./page.module.css";
 
 const longText =
@@ -71,7 +71,7 @@ export default function TextAreaPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import TextArea from "@/components/TextArea";\n\n<TextArea label="Sua mensagem" placeholder="Conta pra gente..." />\n<TextArea label="Comentário" optional size="sm" />\n<TextArea label="Sua mensagem" error="Campo obrigatório" />`}
+          {`import TextArea from "@/components/controls/TextArea";\n\n<TextArea label="Sua mensagem" placeholder="Conta pra gente..." />\n<TextArea label="Comentário" optional size="sm" />\n<TextArea label="Sua mensagem" error="Campo obrigatório" />`}
         </pre>
       </section>
     </main>

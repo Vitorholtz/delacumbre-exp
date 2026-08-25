@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import FloatingButton from "./FloatingButton";
+import FloatingButton from "../primitives/FloatingButton";
 import styles from "./GallerySlider.module.css";
 
 export type GalleryMediaItem = {

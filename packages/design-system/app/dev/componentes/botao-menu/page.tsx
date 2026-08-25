@@ -1,4 +1,4 @@
-import MenuButton from "@/components/MenuButton";
+import MenuButton from "@/components/primitives/MenuButton";
 import styles from "./page.module.css";
 
 export default function MenuButtonPage() {
@@ -31,7 +31,7 @@ export default function MenuButtonPage() {
           Passe o mouse ou navegue com Tab para ver hover e foco.
         </p>
         <pre className={styles.code}>
-          {`import MenuButton from "@/components/MenuButton";\n\n<MenuButton label="Abrir menu" />\n<MenuButton label="Abrir menu" size="sm" aria-expanded={isOpen} />`}
+          {`import MenuButton from "@/components/primitives/MenuButton";\n\n<MenuButton label="Abrir menu" />\n<MenuButton label="Abrir menu" size="sm" aria-expanded={isOpen} />`}
         </pre>
       </section>
     </main>

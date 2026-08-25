@@ -1,4 +1,4 @@
-import AccordionItem from "@/components/AccordionItem";
+import AccordionItem from "@/components/navigation/AccordionItem";
 import FaqList from "./FaqList";
 import styles from "./page.module.css";
 

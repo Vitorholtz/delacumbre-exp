@@ -1,4 +1,4 @@
-import PresentationCard from "@/components/PresentationCard";
+import PresentationCard from "@/components/cards/PresentationCard";
 import styles from "./page.module.css";
 
 const bio =

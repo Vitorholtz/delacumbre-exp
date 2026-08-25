@@ -1,4 +1,4 @@
-import ThingsToDoCard from "@/components/ThingsToDoCard";
+import ThingsToDoCard from "@/components/cards/ThingsToDoCard";
 import styles from "./page.module.css";
 
 export default function ThingsToDoCardPage() {
@@ -99,7 +99,7 @@ export default function ThingsToDoCardPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import ThingsToDoCard from "@/components/ThingsToDoCard";\n\n<ThingsToDoCard\n  image="/ideograms/Scorpion.svg"\n  imageAlt="Escorpião"\n  title="Comidas"\n  highlight="exóticas"\n  size="lg"\n/>`}
+          {`import ThingsToDoCard from "@/components/cards/ThingsToDoCard";\n\n<ThingsToDoCard\n  image="/ideograms/Scorpion.svg"\n  imageAlt="Escorpião"\n  title="Comidas"\n  highlight="exóticas"\n  size="lg"\n/>`}
         </pre>
       </section>
     </main>

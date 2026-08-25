@@ -1,4 +1,4 @@
-import Pill from "@/components/Pill";
+import Pill from "@/components/controls/Pill";
 import styles from "./page.module.css";
 
 export default function PillPage() {
@@ -33,7 +33,7 @@ export default function PillPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import Pill from "@/components/Pill";\n\n<Pill icon="hiking" label="+1.000 km" />\n<Pill label="12 dias" showIcon={false} size="sm" />`}
+          {`import Pill from "@/components/controls/Pill";\n\n<Pill icon="hiking" label="+1.000 km" />\n<Pill label="12 dias" showIcon={false} size="sm" />`}
         </pre>
       </section>
     </main>

@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import Button from "@/components/primitives/Button";
 import styles from "./page.module.css";
 
 export default function ButtonsPage() {
@@ -71,7 +71,7 @@ export default function ButtonsPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import Button from "@/components/Button";\n\n<Button variant="primary">Reservar</Button>\n<Button variant="secondary" size="md">Sobre nós</Button>\n<Button variant="primary" href="/expedicoes">Destinos</Button>`}
+          {`import Button from "@/components/primitives/Button";\n\n<Button variant="primary">Reservar</Button>\n<Button variant="secondary" size="md">Sobre nós</Button>\n<Button variant="primary" href="/expedicoes">Destinos</Button>`}
         </pre>
       </section>
     </main>

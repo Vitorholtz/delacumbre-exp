@@ -1,4 +1,4 @@
-import FloatingButton from "@/components/FloatingButton";
+import FloatingButton from "@/components/primitives/FloatingButton";
 import styles from "./page.module.css";
 
 export default function FloatingButtonPage() {
@@ -42,7 +42,7 @@ export default function FloatingButtonPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import FloatingButton from "@/components/FloatingButton";\n\n<FloatingButton icon="arrow_forward" label="Próximo" />\n<FloatingButton icon="close" label="Fechar" size="sm" />\n<FloatingButton icon="arrow_forward" label="Ver expedição" href="/expedicoes" />`}
+          {`import FloatingButton from "@/components/primitives/FloatingButton";\n\n<FloatingButton icon="arrow_forward" label="Próximo" />\n<FloatingButton icon="close" label="Fechar" size="sm" />\n<FloatingButton icon="arrow_forward" label="Ver expedição" href="/expedicoes" />`}
         </pre>
         <p className="text-body-sm">
           <code>label</code> é obrigatório: o botão não tem texto visível, então

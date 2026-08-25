@@ -1,5 +1,5 @@
-import Gallery from "@/components/Gallery";
-import type { GalleryMediaItem } from "@/components/Gallery";
+import Gallery from "@/components/cards/Gallery";
+import type { GalleryMediaItem } from "@/components/cards/Gallery";
 import styles from "./page.module.css";
 
 const items: GalleryMediaItem[] = [

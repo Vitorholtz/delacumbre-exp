@@ -1,4 +1,4 @@
-import PricingCard from "@/components/PricingCard";
+import PricingCard from "@/components/cards/PricingCard";
 import styles from "./page.module.css";
 
 const includedItems = [

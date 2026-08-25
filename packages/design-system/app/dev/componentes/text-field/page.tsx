@@ -1,4 +1,4 @@
-import TextField from "@/components/TextField";
+import TextField from "@/components/controls/TextField";
 import styles from "./page.module.css";
 
 export default function TextFieldPage() {
@@ -73,7 +73,7 @@ export default function TextFieldPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import TextField from "@/components/TextField";\n\n<TextField label="Nome" placeholder="Seu nome" />\n<TextField label="Sobrenome" optional />\n<TextField label="E-mail" error="E-mail inválido" size="sm" />\n<TextField label="WhatsApp" mask="phone" />\n<TextField label="CPF" mask="cpf" />`}
+          {`import TextField from "@/components/controls/TextField";\n\n<TextField label="Nome" placeholder="Seu nome" />\n<TextField label="Sobrenome" optional />\n<TextField label="E-mail" error="E-mail inválido" size="sm" />\n<TextField label="WhatsApp" mask="phone" />\n<TextField label="CPF" mask="cpf" />`}
         </pre>
       </section>
     </main>

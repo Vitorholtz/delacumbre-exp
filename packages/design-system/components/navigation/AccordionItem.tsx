@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState, type ReactNode } from "react";
-import Icon from "./Icon";
+import Icon from "../primitives/Icon";
 import styles from "./AccordionItem.module.css";
 
 type AccordionSize = "lg" | "md" | "sm";

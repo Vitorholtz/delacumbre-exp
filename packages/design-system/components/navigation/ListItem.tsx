@@ -1,4 +1,4 @@
-import Icon from "./Icon";
+import Icon from "../primitives/Icon";
 import styles from "./ListItem.module.css";
 
 type ListItemSize = "lg" | "md" | "sm" | "xsm";

@@ -1,4 +1,4 @@
-import Icon from "@/components/Icon";
+import Icon from "@/components/primitives/Icon";
 import styles from "./page.module.css";
 
 const icons = [
@@ -55,7 +55,7 @@ export default function IconsPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import Icon from "@/components/Icon";\n\n<Icon name="hiking" />\n<Icon name="check" size={20} />\n<Icon name="close" label="Fechar" />`}
+          {`import Icon from "@/components/primitives/Icon";\n\n<Icon name="hiking" />\n<Icon name="check" size={20} />\n<Icon name="close" label="Fechar" />`}
         </pre>
         <p className="text-body-sm">
           Por padrão o ícone é decorativo (<code>aria-hidden</code>). Passe{" "}

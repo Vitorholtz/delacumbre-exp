@@ -1,4 +1,4 @@
-import ExpeditionImageCard from "@/components/ExpeditionImageCard";
+import ExpeditionImageCard from "@/components/cards/ExpeditionImageCard";
 import styles from "./page.module.css";
 
 const image = "/expedition-images/expedition-thumb.jpg";

@@ -1,7 +1,7 @@
 "use client";
 
-import FloatingButton from "./FloatingButton";
-import Hyperlink from "./Hyperlink";
+import FloatingButton from "../primitives/FloatingButton";
+import Hyperlink from "../primitives/Hyperlink";
 import styles from "./Footer.module.css";
 
 type FooterSize = "md" | "sm";

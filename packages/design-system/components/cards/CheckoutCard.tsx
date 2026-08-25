@@ -1,5 +1,5 @@
-import ListItem from "./ListItem";
-import Hyperlink from "./Hyperlink";
+import ListItem from "../navigation/ListItem";
+import Hyperlink from "../primitives/Hyperlink";
 import styles from "./CheckoutCard.module.css";
 
 type CheckoutCardSize = "lg" | "md" | "sm";

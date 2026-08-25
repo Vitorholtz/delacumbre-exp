@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes, ReactNode } from "react";
-import Icon from "./Icon";
+import Icon from "../primitives/Icon";
 import styles from "./Checkbox.module.css";
 
 type CheckboxSize = "lg" | "md" | "sm";

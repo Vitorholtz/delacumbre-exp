@@ -1,4 +1,4 @@
-import Checkbox from "@/components/Checkbox";
+import Checkbox from "@/components/controls/Checkbox";
 import styles from "./page.module.css";
 
 export default function CheckboxPage() {
@@ -56,7 +56,7 @@ export default function CheckboxPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import Checkbox from "@/components/Checkbox";\n\n<Checkbox label="Autorizo o compartilhamento dos meus dados." />\n<Checkbox aria-label="Selecionar item" />\n<Checkbox size="sm" label="Termos de uso" disabled />`}
+          {`import Checkbox from "@/components/controls/Checkbox";\n\n<Checkbox label="Autorizo o compartilhamento dos meus dados." />\n<Checkbox aria-label="Selecionar item" />\n<Checkbox size="sm" label="Termos de uso" disabled />`}
         </pre>
       </section>
     </main>

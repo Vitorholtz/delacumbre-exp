@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Chip from "@/components/Chip";
+import Chip from "@/components/controls/Chip";
 import styles from "./page.module.css";
 
 export default function ChipPage() {
@@ -59,7 +59,7 @@ export default function ChipPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import Chip from "@/components/Chip";\n\n<Chip label="Camboja & Bangkok 2026" icon="hiking" />\n<Chip label="Camboja & Bangkok 2026" selected onClick={...} />\n<Chip label="Camboja & Bangkok 2026" showIcon={false} miniPill />`}
+          {`import Chip from "@/components/controls/Chip";\n\n<Chip label="Camboja & Bangkok 2026" icon="hiking" />\n<Chip label="Camboja & Bangkok 2026" selected onClick={...} />\n<Chip label="Camboja & Bangkok 2026" showIcon={false} miniPill />`}
         </pre>
       </section>
     </main>

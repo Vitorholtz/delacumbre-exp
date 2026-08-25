@@ -1,4 +1,4 @@
-import ProductDisplayCard from "@/components/ProductDisplayCard";
+import ProductDisplayCard from "@/components/cards/ProductDisplayCard";
 import styles from "./page.module.css";
 
 const description =
