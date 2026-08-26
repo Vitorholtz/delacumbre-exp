@@ -3,8 +3,9 @@ import styles from "./HowToCard.module.css";
 type HowToCardSize = "lg" | "md" | "sm";
 
 type HowToCardProps = {
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
+  mediaColor?: string;
   title: string;
   description: string;
   size?: HowToCardSize;
@@ -26,6 +27,7 @@ const descriptionTextClassBySize: Record<HowToCardSize, string> = {
 export default function HowToCard({
   image,
   imageAlt,
+  mediaColor,
   title,
   description,
   size = "lg",
@@ -47,8 +49,13 @@ export default function HowToCard({
           {description}
         </p>
       </div>
-      <div className={styles.imageWrap}>
-        <img src={image} alt={imageAlt} className={styles.image} />
+      <div
+        className={styles.imageWrap}
+        style={mediaColor ? { background: mediaColor } : undefined}
+      >
+        {image ? (
+          <img src={image} alt={imageAlt ?? ""} className={styles.image} />
+        ) : null}
       </div>
     </div>
   );

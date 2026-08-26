@@ -1,0 +1,362 @@
+.wrapper {
+  /* Peek dos cards vizinhos, contínuo em qualquer largura — sem isso, o
+     antigo padding-inline: calc(50vw - 498px) do .track cravava em 0
+     abaixo de ~996px de viewport, escondendo o vizinho por completo. O
+     piso (primeiro argumento do max()) acompanha o padding lateral de
+     cada tier (24px SM mobile, 48px SM tablet, 40px na faixa 810–1076
+     sem protótipo dedicado — ver overrides abaixo) pra bater com o resto
+     da seção; a partir de ~1076px de viewport a fórmula calc assume
+     sozinha e reproduz, sem descontinuidade, o mesmo peek já validado em
+     1440/1920px. */
+  --carousel-peek: max(var(--space-6), calc((100vw - 996px) / 2)); /* 24px — SM mobile */
+  /* Espelha o padding interno do .slide (onde o título do card começa) —
+     usado por .actions pra alinhar descrição/botões/controles com o
+     título em qualquer largura, em vez de paddings fixos por breakpoint
+     que só batiam por coincidência num tamanho de tela específico. */
+  --carousel-slide-padding: var(--space-4); /* 16px — SM */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-10); /* 40px */
+  width: 100%;
+  padding-block: var(--space-16); /* 64px */
+}
+
+/* Section-title */
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px */
+}
+
+.titleRow {
+  display: none;
+}
+
+.titleStack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4); /* 16px */
+}
+
+.logo {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.heading {
+  composes: text-heading-md from global;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.headingAccent {
+  color: var(--color-dune);
+}
+
+.ampersand {
+  font-family: "Times New Roman", serif;
+  font-size: 1.14em;
+}
+
+/* Carousel */
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6); /* 24px */
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  gap: var(--space-4); /* 16px */
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-inline: var(--carousel-peek);
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  position: relative;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  width: 100%; /* preenche a janela entre os paddings do .track; o peek dos vizinhos vem de lá */
+  max-width: 996px;
+  height: 380px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4); /* 16px */
+  padding: var(--carousel-slide-padding);
+  border-radius: var(--radius-lg); /* 24px */
+  border: 1px solid transparent;
+  overflow: hidden;
+  opacity: 0.55;
+  transition:
+    opacity 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.slideActive {
+  opacity: 1;
+  border-color: var(--color-white-20);
+}
+
+.slide:hover {
+  border-color: var(--color-white-50);
+}
+
+.slideImage {
+  z-index: -2;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.slide:hover .slideImage {
+  transform: scale(1.05);
+}
+
+.slide:active .slideImage {
+  transform: scale(1.02);
+}
+
+.slideScrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Gradiente radial (elipse), não linear — replica a máscara do Figma
+     (node 1359:1941), que não existia aqui antes. Mesma forma relativa
+     do scrim do Hero (85.5% / 63% a partir de 50% / 36.7%), reaplicada
+     no card do carrossel — porcentagem, então funciona em qualquer
+     tamanho de card (SM 380px vs. desktop 540px de altura). */
+  background: radial-gradient(
+    85.5% 63% at 50% 36.7%,
+    transparent 0%,
+    var(--color-licorice) 100%
+  );
+}
+
+.slideTitle {
+  composes: text-heading-md from global;
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--color-white);
+}
+
+.slidePill {
+  flex-shrink: 0;
+}
+
+/* Actions */
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-12); /* 48px */
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile, consistente com o resto do site */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8); /* 32px */
+  width: 100%;
+}
+
+.description {
+  composes: text-body-sm from global;
+  color: var(--color-licorice-super-light);
+  width: 100%;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.descriptionVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.descriptionHidden {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.buttons {
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4); /* 16px */
+  width: 100%;
+}
+
+.buttonsDesktop {
+  display: none;
+}
+
+.buttonsCompact {
+  display: flex;
+}
+
+.ctaButtonCompact {
+  flex: 1 0 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2); /* 8px */
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-licorice-light);
+  cursor: pointer;
+  transition:
+    width 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.dotActive {
+  width: 24px;
+  background: var(--color-hunyadi-yellow);
+}
+
+.arrows {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6); /* 24px */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    scroll-behavior: auto;
+  }
+
+  .slide,
+  .slideImage,
+  .dot,
+  .description {
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .sectionTitle {
+    padding-inline: var(--space-12); /* 48px */
+  }
+
+  .actions {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+
+  .wrapper {
+    --carousel-peek: max(var(--space-12), calc((100vw - 996px) / 2)); /* 48px — SM tablet */
+  }
+}
+
+/* MD (810px+) reaproveita a composição "desktop" (card maior, título em
+   linha, botões desktop) sem um protótipo dedicado para 810–1439px —
+   mesma lógica aplicada ao Hero. A largura do slide e o peek dos vizinhos
+   já não dependem desse breakpoint — ver --carousel-peek em .wrapper. */
+@media (min-width: 810px) {
+  .wrapper {
+    gap: var(--space-16); /* 64px */
+    --carousel-slide-padding: var(--space-8); /* 32px — MD e LG */
+    --carousel-peek: max(var(--space-10), calc((100vw - 996px) / 2)); /* 40px — piso na faixa 810–1076 sem protótipo dedicado */
+  }
+
+  .sectionTitle {
+    flex-direction: row;
+    padding-inline: var(--layout-inset-md); /* fluido 48px→120px — ver utilities.css */
+  }
+
+  .titleStack {
+    display: none;
+  }
+
+  .titleRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6); /* 24px */
+  }
+
+  .carousel {
+    gap: var(--space-8); /* 32px */
+  }
+
+  .track {
+    gap: var(--space-6); /* 24px */
+  }
+
+  .slide {
+    height: 540px;
+    padding: var(--carousel-slide-padding);
+  }
+
+  .slideTitle {
+    font-size: var(--text-heading-xl);
+    line-height: var(--leading-heading-xl);
+  }
+
+  .description {
+    font-size: var(--text-body-md); /* 18px */
+    line-height: var(--leading-body-md);
+  }
+
+  /* Sem max-width: esse cálculo já reproduz a mesma largura de conteúdo
+     do slide (996px no teto) — ver --carousel-peek/-slide-padding em
+     .wrapper. Alinha a descrição/botões/controles com o título do card
+     em qualquer largura a partir daqui, sem paddings fixos por tier. */
+  .actions {
+    padding-inline: calc(var(--carousel-peek) + var(--carousel-slide-padding));
+  }
+
+  .buttonsDesktop {
+    display: flex;
+  }
+
+  .buttonsCompact {
+    display: none;
+  }
+
+  .ctaButton {
+    flex: 1 0 0;
+  }
+}
+
+@media (min-width: 1536px) {
+  .description {
+    font-size: var(--text-body-lg); /* 22px */
+    line-height: var(--leading-body-lg);
+  }
+}

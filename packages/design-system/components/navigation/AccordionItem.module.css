@@ -25,7 +25,7 @@
 
 .lg,
 .md {
-  padding: 2.5rem; /* 40px */
+  padding: var(--space-8); /* 32px */
 }
 
 .sm {

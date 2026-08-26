@@ -1,0 +1,197 @@
+/* Full-bleed: seção foge da regra de content container/padding (como Hero e
+   Carousel) — só os marquees de título e imagem são edge-to-edge, o resto
+   (botão) fica centralizado normalmente. */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16); /* 64px */
+  width: 100%;
+  padding-block: var(--space-16); /* 64px */
+  /* .titleMarquee não tem overflow próprio (ver comentário lá) — quem
+     contém o vazamento horizontal dos dois tracks (bem mais largos que a
+     viewport) é a seção inteira. overflow-y explícito porque, por spec,
+     definir só overflow-x faz overflow-y (que ficaria "visible" por
+     padrão) virar "auto" sozinho — mesma pegadinha já documentada pro
+     par html/body em globals.css. */
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6); /* 24px */
+  width: 100%;
+}
+
+/* Título — marquee infinito da direita pra esquerda */
+
+.titleMarquee {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.titleTrack {
+  display: flex;
+  width: max-content;
+  /* Velocidade igual à do .imageTrack (~120px/s) — durações diferentes
+     porque os tracks têm larguras bem diferentes (medido: SM 12796.5px
+     título / 8793px imagens; MD e LG 21594px / 11316px). */
+  animation: marquee-left 106.6s linear infinite;
+}
+
+.titleTrackHalf {
+  display: flex;
+  flex-shrink: 0;
+  /* px direto, não em — .titleTrackHalf não tem font-size próprio (herda
+     16px do body), então um valor em "em" aqui resolveria contra 16px, não
+     contra o tamanho de 128/216px do texto (bug já visto: 0.6em virava
+     9.6px). Mesmo valor como margin-right — sem isso a emenda entre as
+     duas metades do loop (não coberta por um "gap" comum, que só existe
+     *entre* itens) fica sem espaço nenhum. Aplicado nas duas metades pra
+     manter as duas com a mesma largura (senão o -50% do translateX não
+     cairia exatamente na emenda, e o loop perderia a costura). */
+  gap: 64px; /* SM */
+  margin-right: 64px; /* SM */
+}
+
+.titlePhrase {
+  /* Fonte grande o bastante (e usada só aqui) pra não valer a pena virar
+     utility class de tipografia; exceção deliberada à regra de "sempre
+     usar token de texto". */
+  font-family: var(--font-display-aged);
+  font-size: 128px; /* SM */
+  line-height: 1;
+  color: var(--color-hunyadi-yellow);
+  white-space: nowrap;
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+/* Imagens — marquee infinito da esquerda pra direita (sentido contrário ao título) */
+
+.imageMarquee {
+  position: relative;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.imageTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 73.3s linear infinite; /* mesma velocidade do título, ver comentário lá */
+}
+
+.imageTrackHalf {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--space-6); /* 24px */
+}
+
+.imageItem {
+  position: relative;
+  flex-shrink: 0;
+  height: 320px; /* SM */
+  border-radius: var(--radius-md); /* 16px */
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Esmaece as bordas dos dois marquees (título e imagens) contra o fundo —
+   classes compartilhadas entre os dois; largura fixa por tier, igual ao
+   resto do site (não é um valor fluido). */
+.edgeFade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 96px; /* SM */
+  pointer-events: none;
+}
+
+.edgeFadeLeft {
+  left: 0;
+  background: linear-gradient(to right, var(--color-licorice), transparent);
+}
+
+.edgeFadeRight {
+  right: 0;
+  background: linear-gradient(to left, var(--color-licorice), transparent);
+}
+
+/* CTA — reaproveita o Button do design system nos dois tamanhos, trocando
+   por CSS (mesmo padrão do Hero), sem prop de tamanho responsiva no próprio
+   Button. */
+
+.ctaDesktop {
+  display: none;
+}
+
+.ctaCompact {
+  display: inline-flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .titleTrack,
+  .imageTrack {
+    animation: none;
+  }
+}
+
+@media (min-width: 810px) {
+  .titlePhrase {
+    font-size: 216px; /* MD e LG */
+  }
+
+  .titleTrackHalf {
+    gap: 108px; /* MD e LG */
+    margin-right: 108px; /* MD e LG */
+  }
+
+  .titleTrack {
+    animation-duration: 180s; /* MD e LG — mesma velocidade (~120px/s), track mais largo (216px de fonte) */
+  }
+
+  .imageTrack {
+    animation-duration: 94.3s; /* MD e LG — mesma velocidade (~120px/s), track mais largo (420px de altura) */
+  }
+
+  .imageItem {
+    height: 420px; /* MD e LG */
+  }
+
+  .edgeFade {
+    width: 320px; /* MD e LG */
+  }
+
+  .ctaDesktop {
+    display: inline-flex;
+  }
+
+  .ctaCompact {
+    display: none;
+  }
+}

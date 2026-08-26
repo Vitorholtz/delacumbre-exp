@@ -9,15 +9,16 @@
 
 html {
   height: 100%;
-}
-
-html,
-body {
   max-width: 100vw;
   overflow-x: hidden;
 }
 
 body {
+  /* overflow-x: hidden só no html — repetir aqui força overflow-y do body
+     a virar "auto" (regra da spec de acoplamento overflow-x/overflow-y),
+     o que quebra position: sticky (o body vira um scroll container que
+     nunca rola de verdade, e o sticky gruda nele em vez do viewport). */
+  max-width: 100vw;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -26,6 +27,12 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 360px; /* fora da escala de espaçamento — distância padrão entre seções do site */
 }
 
 a {

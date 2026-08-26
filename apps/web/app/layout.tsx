@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   berringer,
+  berringerAged,
   kanit,
   materialSymbolsSharp,
 } from "@delacumbre/design-system/lib/fonts";
@@ -15,7 +16,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${kanit.variable} ${berringer.variable} ${materialSymbolsSharp.variable}`}
+      className={`${kanit.variable} ${berringer.variable} ${berringerAged.variable} ${materialSymbolsSharp.variable}`}
     >
       <body>{children}</body>
     </html>

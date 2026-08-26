@@ -1,0 +1,61 @@
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.slot {
+  display: none;
+  width: 100%;
+}
+
+.slotSm {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+
+  .content {
+    max-width: 75rem; /* 1200px */
+    margin-inline: auto;
+  }
+
+  .slotSm {
+    display: none;
+  }
+
+  .slotMd {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 95rem; /* 1520px */
+  }
+
+  .slotMd {
+    display: none;
+  }
+
+  .slotLg {
+    display: flex;
+    justify-content: center;
+  }
+}

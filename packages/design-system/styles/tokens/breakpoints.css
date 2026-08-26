@@ -1,12 +1,27 @@
 /*
-  Breakpoints — mesmos 4 usados no Figma (Delacumbre EXP).
+  Breakpoints — estratégia de responsividade do projeto (Delacumbre EXP).
   CSS custom properties não funcionam dentro de @media, então os valores
-  abaixo são só referência: escreva `@media (min-width: 768px)` etc.
+  abaixo são só referência: escreva `@media (min-width: 810px)` etc.
   diretamente, mantendo estes números como fonte da verdade.
   Espelhado em lib/breakpoints.ts para uso em JS/TS.
+  Racional completo em docs/BREAKPOINTS.md.
 
-  --breakpoint-sm: 390px;   (mobile)
-  --breakpoint-md: 768px;   (tablet)
-  --breakpoint-lg: 1440px;  (desktop)
-  --breakpoint-xl: 1920px;  (desktop grande)
+  Referências de design (Figma) — resolução × altura testada em cada tier.
+  SM cobre duas dimensões (mobile e tablet) da MESMA experiência fluida,
+  não dois layouts diferentes:
+
+  smMobile: 390×844   (SM — mobile)
+  smTablet: 768×1024  (SM — tablet)
+  md:      1440×1024  (MD)
+  lg:      1920×1080  (LG)
+
+  Breakpoints técnicos (código) — os min-width reais usados em @media.
+  Têm margem em relação às referências acima: cada um fica um pouco ACIMA
+  da referência do tier menor, pra dispositivos reais perto dessa
+  referência não caírem prematuramente no layout do tier maior (que foi
+  desenhado assumindo mais espaço disponível):
+
+  smToMd: 810px   (~5.5% acima da referência tablet de 768px)
+  mdToLg: 1536px  (~6.7% acima da referência MD de 1440px; também é o
+                   breakpoint "2xl" já consagrado na indústria)
 */

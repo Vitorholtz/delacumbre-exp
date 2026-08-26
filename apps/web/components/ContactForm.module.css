@@ -1,0 +1,164 @@
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+  padding-block: var(--space-16); /* 64px — respiro, seção não tem isso no protótipo estático do Figma */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px */
+  width: 100%;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-4); /* 16px */
+  width: 100%;
+}
+
+.heading {
+  composes: text-heading-lg from global;
+  color: var(--color-white);
+  width: 100%;
+}
+
+.description {
+  composes: text-body-sm from global;
+  color: var(--color-licorice-super-light);
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8); /* 32px */
+  width: 100%;
+  max-width: 49.5rem; /* 792px */
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6); /* 24px */
+  width: 100%;
+}
+
+.inputsRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6); /* 24px */
+  width: 100%;
+}
+
+.field {
+  width: 100%;
+}
+
+.submitDesktop {
+  display: none;
+}
+
+.submitCompact {
+  width: 100%;
+}
+
+.confirmation {
+  composes: text-body-sm from global;
+  min-height: 1.5em;
+  color: var(--color-hunyadi-yellow);
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+
+  .content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 75rem; /* 1200px */
+    margin-inline: auto;
+  }
+
+  .title {
+    flex: 1 1 0;
+    max-width: 384px;
+    padding-right: var(--space-6); /* 24px */
+  }
+
+  .heading {
+    font-size: var(--text-heading-xl);
+    line-height: var(--leading-heading-xl);
+  }
+
+  .description {
+    font-size: var(--text-body-md);
+    line-height: var(--leading-body-md);
+  }
+
+  .form {
+    flex: 1 1 0;
+    max-width: 49.5rem; /* 792px */
+    gap: var(--space-8); /* 32px */
+  }
+
+  .fields {
+    gap: var(--space-10); /* 40px */
+  }
+
+  .inputsRow {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4); /* 16px */
+  }
+
+  .field {
+    flex: 1 0 0;
+  }
+
+  .submitDesktop {
+    display: flex;
+    width: 280px;
+  }
+
+  .submitCompact {
+    display: none;
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 95rem; /* 1520px */
+  }
+
+  .title {
+    max-width: 490px;
+  }
+
+  .heading {
+    font-size: var(--text-display-lg);
+    line-height: var(--leading-display-lg);
+  }
+
+  .description {
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-body-lg);
+  }
+
+  .form {
+    max-width: 54.75rem; /* 876px */
+  }
+}

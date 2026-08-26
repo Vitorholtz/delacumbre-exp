@@ -1,0 +1,199 @@
+.wrapper {
+  width: 100%;
+}
+
+.track {
+  position: relative;
+}
+
+.sticky {
+  display: flex;
+  align-items: center;
+}
+
+.pinned .sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.inner {
+  width: 100%;
+  padding-block: var(--space-16); /* 64px — respiro no fallback estático */
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+.pinned .inner {
+  padding-top: 96px; /* fora da escala de espaçamento — mais respiro que o fallback (64px) porque aqui a seção ocupa a tela inteira */
+  padding-bottom: 0;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px */
+  width: 100%;
+}
+
+.pinned .content {
+  height: 100%;
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4); /* 16px */
+  width: 100%;
+}
+
+.heading {
+  composes: text-heading-xl from global;
+  color: var(--color-white);
+  width: 100%;
+}
+
+.description {
+  composes: text-body-sm from global;
+  color: var(--color-licorice-super-light);
+  width: 100%;
+}
+
+/* Card stack — fluxo normal empilhado (fallback) por padrão; vira grid com
+   os cards sobrepostos assim que o modo "pinned" liga via JS (classe
+   `_pinned` extra, mesma especificidade das regras de visibilidade abaixo —
+   nunca ".pinned .stack_x", que venceria o display:none dos outros tiers
+   nos breakpoints maiores por especificidade, não por ordem). */
+
+.stack_md,
+.stack_lg {
+  display: none;
+}
+
+.stack_sm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16); /* 64px */
+  width: 100%;
+  /* HowToCard(sm) tem 342px fixo por padrão — aqui o card precisa ocupar
+     100% do container em qualquer largura SM (mobile e tablet). */
+  --how-to-card-sm-width: 100%;
+}
+
+.stack_sm_pinned {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* sem isso, o grid usa o max-content do card mais largo e estoura o container */
+  gap: 0;
+  /* Clipa o card que está saindo/entrando na própria caixa da pilha, sem
+     vazar por cima do título (mobile é coluna: título vem antes da pilha). */
+  overflow: hidden;
+  flex: 1 1 0;
+  align-content: start; /* card colado perto do título, não centralizado no corredor inteiro */
+}
+
+.cardSlot {
+  width: 100%;
+}
+
+.pinned .cardSlot {
+  grid-area: 1 / 1;
+  height: 100%;
+}
+
+
+@media (min-width: 768px) {
+  .inner {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .inner {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+
+  .content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 75rem; /* 1200px */
+    margin-inline: auto;
+  }
+
+  .textCol {
+    flex: 1 1 0;
+    max-width: 486px;
+    gap: var(--space-8); /* 32px */
+  }
+
+  .heading,
+  .description {
+    width: auto;
+  }
+
+  .heading {
+    font-size: var(--text-display-lg);
+    line-height: var(--leading-display-lg);
+  }
+
+  .description {
+    font-size: var(--text-body-md);
+    line-height: var(--leading-body-md);
+  }
+
+  .stack_sm,
+  .stack_sm_pinned {
+    display: none;
+  }
+
+  .stack_md {
+    display: flex;
+    flex-direction: column;
+    gap: 120px; /* fora da escala de espaçamento */
+    width: auto;
+  }
+
+  .stack_md_pinned {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    overflow: hidden;
+    align-self: stretch; /* .content é row aqui, a pilha estica pra bater a altura inteira */
+    align-content: start; /* card alinhado ao topo, junto com o título */
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 95rem; /* 1520px */
+  }
+
+  .description {
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-body-lg);
+  }
+
+  .stack_md,
+  .stack_md_pinned {
+    display: none;
+  }
+
+  .stack_lg {
+    display: flex;
+    flex-direction: column;
+    gap: 120px; /* fora da escala de espaçamento */
+    width: auto;
+  }
+
+  .stack_lg_pinned {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    overflow: hidden;
+    align-self: stretch;
+    align-content: start; /* card alinhado ao topo, junto com o título */
+  }
+}

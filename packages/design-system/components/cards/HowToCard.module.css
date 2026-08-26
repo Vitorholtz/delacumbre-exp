@@ -29,7 +29,11 @@
 }
 
 .sm {
-  width: 21.375rem; /* 342px */
+  /* 342px por padrão (referência SM mobile do Figma) — consumidores que
+     precisam do card fluido dentro de um container mais largo (ex.:
+     HowToBook em telas SM tablet) sobrescrevem essa custom property,
+     em vez de brigar com a largura via especificidade/!important. */
+  width: var(--how-to-card-sm-width, 21.375rem);
   border-radius: var(--radius-lg);
 }
 

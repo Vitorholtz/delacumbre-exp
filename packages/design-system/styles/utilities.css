@@ -1,10 +1,60 @@
 /* Layout */
 
+:root {
+  /* Padding lateral fluido — usado hoje só pelo .sectionTitle do
+     Carousel, que (junto do Hero) é exceção à regra padrão de wrapper
+     abaixo: os dois são propositalmente full-bleed (vídeo / track de
+     cards ocupando 100% da tela) e não recebem max-width. Piso de 48px
+     (SM tablet) crescendo até os 120px do protótipo, batendo exato em
+     1440px (72px de diferença ao longo dos 630px entre 810 e 1440). */
+  --layout-inset-md: clamp(
+    var(--space-12),
+    calc(var(--space-12) + (100vw - 810px) * 72 / 630),
+    120px
+  );
+}
+
+/* .container (padding) + .container-inner (max-width) são duas caixas
+   separadas de propósito — combinar as duas num só elemento faz o padding
+   somar com a margem de centralização assim que o max-width "pega",
+   estourando o valor do protótipo (ex.: 152px em vez de 120px em 1440px)
+   e criando um salto visível bem no breakpoint MD→LG. Como duas caixas,
+   o padding fica sempre fixo e a centralização cresce por fora dele —
+   ver docs/BREAKPOINTS.md. Uso: <div class="container"><div
+   class="container-inner">...</div></div>. */
+
 .container {
   width: 100%;
-  max-width: 1520px;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .container {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.container-inner {
+  width: 100%;
   margin-inline: auto;
-  padding-inline: var(--space-6);
+}
+
+@media (min-width: 810px) {
+  .container-inner {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-inner {
+    max-width: 1520px;
+  }
 }
 
 .flex {

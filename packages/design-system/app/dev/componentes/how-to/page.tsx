@@ -15,7 +15,7 @@ export default function HowToCardPage() {
         </p>
       </header>
 
-      <section className={`${styles.section} ${styles.lastSection}`}>
+      <section className={styles.section}>
         <h2 className="text-heading-md">Tamanhos</h2>
         <div className={styles.column}>
           <HowToCard
@@ -38,6 +38,23 @@ export default function HowToCardPage() {
             title="encontre seu destino"
             description={description}
             size="sm"
+          />
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.lastSection}`}>
+        <h2 className="text-heading-md">Sem imagem</h2>
+        <p className="text-body-sm">
+          image/imageAlt são opcionais — sem eles, o bloco de mídia vira uma
+          cor sólida (mediaColor, com fallback para o amarelo padrão). Usado
+          no card &quot;Fale com a gente&quot; da seção Como reservar.
+        </p>
+        <div className={styles.column}>
+          <HowToCard
+            mediaColor="var(--color-russet)"
+            title="fale com a gente"
+            description={description}
+            size="lg"
           />
         </div>
       </section>

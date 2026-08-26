@@ -1,5 +1,6 @@
 @AGENTS.md
 @docs/BRAND.md
+@docs/BREAKPOINTS.md
 
 # Regras do projeto Delacumbre EXP
 
@@ -78,3 +79,20 @@ para o desenvolvimento de `apps/web`.
 - Copy/conteúdo de marca (nomes, textos padrão, links) não deve virar default
   hardcoded dentro de um componente do DS — passe como prop, mesmo que o
   valor "óbvio" se repita nas páginas de demo.
+
+## 7. Breakpoints e responsividade
+
+- Quatro tiers: **SM** (mobile 390×844 + tablet 768×1024 — mesma
+  experiência fluida, nunca dois layouts), **MD** (1440×1024), **LG**
+  (1920×1080). Nem todo componente precisa dos três; siga o protótipo do
+  Figma daquele componente.
+- Breakpoints técnicos (os `min-width` reais no código, com margem sobre
+  as resoluções do Figma — ver racional em `docs/BREAKPOINTS.md`):
+  **SM→MD em 810px**, **MD→LG em 1536px**. Fonte da verdade:
+  `packages/design-system/styles/tokens/breakpoints.css` e
+  `packages/design-system/lib/breakpoints.ts`.
+- O protótipo do Figma de cada componente é sempre a referência final de
+  comportamento — os breakpoints acima são só o andaime técnico
+  compartilhado. Um componente só foge deles com justificativa visual ou
+  funcional clara (ver exceção documentada do Carousel/Hero em
+  `docs/BREAKPOINTS.md`).

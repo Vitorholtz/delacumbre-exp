@@ -1,6 +1,7 @@
 :root {
   /* Font families — carregadas via next/font em app/layout.tsx. */
   --font-display: var(--font-berringer), "Arial Narrow", sans-serif;
+  --font-display-aged: var(--font-berringer-aged), "Arial Narrow", sans-serif;
   --font-body: var(--font-kanit), Arial, Helvetica, sans-serif;
 
   /* Type scale — extraída do Figma (Delacumbre EXP).

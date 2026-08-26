@@ -16,6 +16,15 @@ export const berringer = localFont({
   display: "swap",
 });
 
+// Berringer Aged (variante desgastada, usada no título "Cenas lamentáveis")
+export const berringerAged = localFont({
+  src: "../fonts/Berringer Aged.ttf",
+  variable: "--font-berringer-aged",
+  weight: "400",
+  style: "normal",
+  display: "swap",
+});
+
 // Auto-hospedada: Material Symbols Sharp não está disponível via
 // next/font/google. Fonte variável completa (~3.5MB) — candidata a subset
 // futuro quando o conjunto de ícones do site estiver definido.

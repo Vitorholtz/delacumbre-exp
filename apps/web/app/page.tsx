@@ -1,12 +1,21 @@
-import Button from "@delacumbre/design-system/components/primitives/Button";
+import Hero from "@/components/Hero";
+import Carousel from "@/components/Carousel";
+import GuidePresentation from "@/components/GuidePresentation";
+import HowToBook from "@/components/HowToBook";
+import Faq from "@/components/Faq";
+import ContactForm from "@/components/ContactForm";
+import CenasLamentaveis from "@/components/CenasLamentaveis";
 
 export default function Home() {
   return (
     <main>
-      <h1>Delacumbre EXP</h1>
-      <Button href="https://design-system.delacumbre.local/dev">
-        Ver Design System
-      </Button>
+      <Hero />
+      <Carousel />
+      <GuidePresentation />
+      <HowToBook />
+      <Faq />
+      <ContactForm />
+      <CenasLamentaveis />
     </main>
   );
 }
