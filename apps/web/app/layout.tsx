@@ -5,6 +5,7 @@ import {
   kanit,
   materialSymbolsSharp,
 } from "@delacumbre/design-system/lib/fonts";
+import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,7 +19,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="pt-BR"
       className={`${kanit.variable} ${berringer.variable} ${berringerAged.variable} ${materialSymbolsSharp.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }

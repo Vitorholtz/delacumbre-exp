@@ -1,0 +1,145 @@
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px — SM */
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4); /* 16px */
+  width: 100%;
+}
+
+.title {
+  composes: text-heading-lg from global;
+  color: var(--color-white);
+  width: 100%;
+}
+
+.subtitleRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4); /* 16px */
+  width: 100%;
+}
+
+.subtitle {
+  composes: text-heading-sm from global;
+  flex: 1 0 0;
+  min-width: 0;
+  color: var(--color-dune);
+}
+
+.subtitleAccent {
+  color: var(--color-olive-muted);
+}
+
+.pillSlot {
+  flex-shrink: 0;
+}
+
+.pillSlotSm {
+  display: inline-flex;
+}
+
+.pillSlotMd {
+  display: none;
+}
+
+.grid {
+  display: none;
+  width: 100%;
+}
+
+.grid_sm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-14); /* 56px */
+}
+
+/* Cards SM têm largura fixa no próprio componente (ProductDisplayCard) —
+   o mock do Figma sobrescreve pra largura total do grid; combinar duas
+   classes próprias garante especificidade maior que a regra de largura
+   fixa do componente, sem depender da ordem de import dos CSS modules. */
+div.gridCardStack {
+  width: 100%;
+}
+
+.gridCardRow {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+
+  .content {
+    gap: var(--space-14); /* 56px */
+    max-width: 75rem; /* 1200px */
+    margin-inline: auto;
+  }
+
+  .title {
+    font-size: var(--text-display-lg);
+    line-height: var(--leading-display-lg);
+  }
+
+  .subtitle {
+    font-size: var(--text-heading-md);
+    line-height: var(--leading-heading-md);
+    flex: initial;
+    white-space: nowrap;
+  }
+
+  .pillSlotSm {
+    display: none;
+  }
+
+  .pillSlotMd {
+    display: inline-flex;
+  }
+
+  .grid_sm {
+    display: none;
+  }
+
+  .grid_md {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6); /* 24px */
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 95rem; /* 1520px */
+  }
+
+  .grid_md {
+    display: none;
+  }
+
+  .grid_lg {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6); /* 24px */
+  }
+}

@@ -1,0 +1,18 @@
+.slot {
+  display: none;
+  width: 100%;
+}
+
+.slotSm {
+  display: flex;
+}
+
+@media (min-width: 810px) {
+  .slotSm {
+    display: none;
+  }
+
+  .slotMd {
+    display: flex;
+  }
+}
