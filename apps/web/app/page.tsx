@@ -1,3 +1,4 @@
+import SiteHeader from "@/components/SiteHeader";
 import Hero from "@/components/Hero";
 import Carousel from "@/components/Carousel";
 import GuidePresentation from "@/components/GuidePresentation";
@@ -12,6 +13,7 @@ import SiteFooter from "@/components/SiteFooter";
 export default function Home() {
   return (
     <main>
+      <SiteHeader />
       <Hero />
       <Carousel />
       <GuidePresentation />

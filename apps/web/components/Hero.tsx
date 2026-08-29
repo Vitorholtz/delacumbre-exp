@@ -48,17 +48,17 @@ function QuoteMark() {
   return (
     <svg
       className={styles.quoteIcon}
-      viewBox="0 0 40 31.613"
+      viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
       <path
-        d="M37.0223 3.40145e-05H23.871V12.294L34.2928 31.613H40L37.0223 16.3083V3.40145e-05Z"
+        d="M15.4113 32.5L10.5037 20.8587H16.0961V6.25L0.117803 6.25V20.8587L7.76457 32.5H15.4113Z"
         fill="currentColor"
       />
       <path
-        d="M13.1514 2.57995e-05H6.44496e-05V12.294L10.4219 31.613H16.1291L13.1514 16.3083V2.57995e-05Z"
+        d="M39.3152 32.5L34.4076 20.8587H40V6.25L24.0217 6.25V20.8587L31.6685 32.5H39.3152Z"
         fill="currentColor"
       />
     </svg>
@@ -86,7 +86,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className={styles.hero}>
+    <section id="hero" className={styles.hero}>
       <video
         className={styles.video}
         src="/hero/hero-bg.mp4"
@@ -107,7 +107,7 @@ export default function Hero() {
             >
               <p className={styles.phrase}>{TESTIMONIALS[index].quote}</p>
               <p className={styles.attribution}>
-                {TESTIMONIALS[index].name} — {TESTIMONIALS[index].context}
+                {TESTIMONIALS[index].name} | {TESTIMONIALS[index].context}
               </p>
             </div>
           </div>

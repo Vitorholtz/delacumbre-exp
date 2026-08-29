@@ -11,6 +11,20 @@ html {
   height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
+  scrollbar-color: var(--color-white-50) var(--color-licorice); /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  width: var(--space-2);
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--color-licorice);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--color-white-50);
+  border-radius: var(--radius-full);
 }
 
 body {

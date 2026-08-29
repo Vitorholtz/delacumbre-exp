@@ -1,0 +1,148 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  padding: var(--space-6) var(--space-6) var(--space-2); /* 24px 24px 8px — SM */
+  transition: padding-block 0.2s ease;
+}
+
+/* O blur do estado scrolled fica numa camada própria (não em .header
+   direto) porque o mask-image do fade abaixo, se aplicado no header
+   inteiro, apagaria também a logo e o botão de menu perto da borda de
+   baixo — aqui ele afeta só essa camada, atrás do conteúdo.
+   A caixa estende 64px abaixo do header (em vez de terminar junto com
+   ele) pra dar mais distância física ao gradiente — confinado à altura
+   curta do header, o fade parecia um corte duro em vez de um degradê;
+   os stops intermediários (em vez de só preto→transparente) suavizam
+   ainda mais a curva, evitando uma borda perceptível onde o fade começa. */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -4rem 0; /* 64px extras abaixo */
+  z-index: -1;
+  pointer-events: none;
+  backdrop-filter: none;
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 45%,
+    rgba(0, 0, 0, 0.65) 65%,
+    rgba(0, 0, 0, 0.25) 85%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 45%,
+    rgba(0, 0, 0, 0.65) 65%,
+    rgba(0, 0, 0, 0.25) 85%,
+    transparent 100%
+  );
+  transition: backdrop-filter 0.2s ease;
+}
+
+@media (min-width: 810px) {
+  .header {
+    padding: var(--space-14) var(--space-14) var(--space-2); /* 56px 56px 8px — MD/LG */
+  }
+}
+
+.scrolled {
+  /* padding-block simétrico (topo = base) — declarada depois do @media
+     de cima pra sempre vencer o padding-bottom de 8px do estado sem
+     scroll, mesmo em telas MD/LG. */
+  padding-block: var(--space-6); /* 24px 24px — SM */
+}
+
+.scrolled::before {
+  backdrop-filter: blur(6px);
+}
+
+@media (min-width: 810px) {
+  .scrolled {
+    padding-block: var(--space-8); /* 32px 32px — MD/LG */
+  }
+}
+
+.start {
+  display: flex;
+  justify-self: start;
+}
+
+.end {
+  display: flex;
+  justify-self: end;
+}
+
+.logo {
+  display: flex;
+  justify-self: center;
+  /* Mesmo efeito de aparição do Menu (ver Menu.module.css): fade saindo
+     de um leve desfoque até ficar nítido, em vez de simplesmente
+     montar/desmontar sem transição. */
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+  transition:
+    opacity 0.5s ease-out,
+    filter 0.5s ease-out,
+    transform 0.2s ease;
+}
+
+.logoHidden {
+  opacity: 0;
+  filter: blur(16px);
+  pointer-events: none;
+}
+
+.scrolled .logo {
+  /* Reduz um pouco, proporcionalmente (escala, não um novo tamanho fixo),
+     acompanhando o header mais compacto do estado com fundo. */
+  transform: scale(0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    transition: none;
+  }
+}
+
+.logoLink {
+  display: block;
+}
+
+.logoImage {
+  display: block;
+  height: var(--space-10); /* 40px — SM */
+  width: auto;
+  aspect-ratio: 159.031 / 56;
+  object-fit: contain;
+}
+
+@media (min-width: 810px) {
+  .logoImage {
+    height: var(--space-14); /* 56px — MD/LG */
+  }
+}
+
+.sizeSm {
+  display: inline-flex;
+}
+
+.sizeMd {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .sizeSm {
+    display: none;
+  }
+
+  .sizeMd {
+    display: inline-flex;
+  }
+}

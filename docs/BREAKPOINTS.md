@@ -181,7 +181,7 @@ porque um protótipo novo tenha surgido. Um efeito colateral dessa decisão,
 sem risco de quebra visual (overflow/corte), só de acabamento nessa faixa
 estreita:
 
-- **Hero:** o texto do depoimento usa 16px em SM e 18px a partir de
+- **Hero:** o texto do depoimento usa 14px em SM e 16px a partir de
   810px — MD e LG compartilham o mesmo tamanho (não há uma variação
   própria de LG).
 

@@ -32,7 +32,12 @@ export default function SmoothScroll() {
       if (!document.getElementById(href.slice(1))) return;
 
       event.preventDefault();
-      lenis.scrollTo(href);
+      // force: true porque overlays em tela cheia (ex: Menu do design
+      // system) marcam sua raiz com data-lenis-prevent, o que faz o Lenis
+      // ignorar os eventos por conta própria — sem precisar de
+      // lenis.stop()/start() (que cancelaria essa própria chamada via
+      // reset interno, já que "start" reseta qualquer scrollTo em curso).
+      lenis.scrollTo(href, { force: true });
     };
     document.addEventListener("click", handleAnchorClick, { capture: true });
 

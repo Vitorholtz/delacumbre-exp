@@ -40,7 +40,7 @@
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: var(--space-8); /* 32px */
+  padding: var(--space-6); /* 24px */
 }
 
 .heading {
@@ -55,12 +55,12 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-2); /* 8px */
-  max-width: 280px;
+  max-width: 240px;
 }
 
 .quoteIcon {
   width: 24px;
-  height: 18.968px;
+  height: 24px;
   color: var(--color-hunyadi-yellow);
   flex-shrink: 0;
 }
@@ -75,7 +75,8 @@
 }
 
 .phrase {
-  composes: text-body-sm from global; /* 16px — SM */
+  composes: text-caption from global; /* 14px — SM */
+  font-style: italic; /* exceção deliberada — ver instrução do Figma, sem utility de itálico no DS */
   color: var(--color-white);
 }
 
@@ -141,8 +142,8 @@
 }
 
 /* MD (810px+) e LG (1536px+) compartilham o mesmo layout "desktop" e o
-   mesmo tamanho de texto do depoimento (18px — ver docs/BREAKPOINTS.md).
-   Sem um frame de Figma dedicado a 810–1535px, reaproveita-se aqui a
+   mesmo tamanho de texto do depoimento (16px). Sem um frame de Figma
+   dedicado a 810–1535px, reaproveita-se aqui a
    mesma composição já validada para o desktop, só migrando o gatilho de
    1440px (valor antigo, fora do padrão) para o breakpoint técnico SM→MD
    do projeto. */
@@ -152,18 +153,23 @@
   }
 
   .socialProof {
-    gap: var(--space-4); /* 16px */
-    max-width: 480px;
+    max-width: 400px;
   }
 
   .quoteIcon {
     width: 40px;
-    height: 31.613px;
+    height: 40px;
   }
 
   .phrase {
-    font-size: var(--text-body-md); /* 18px — MD e LG */
-    line-height: var(--leading-body-md);
+    font-size: var(--text-body-sm); /* 16px — MD e LG */
+    line-height: var(--leading-body-sm);
+  }
+
+  .attribution {
+    font-size: var(--text-caption); /* 14px — MD e LG */
+    line-height: var(--leading-caption);
+    font-weight: var(--weight-body-light);
   }
 
   .bottom {
@@ -172,7 +178,7 @@
 
   .logoWrap {
     width: 100%;
-    max-width: 460px;
+    max-width: 320px;
     height: auto;
     aspect-ratio: 460 / 161.981;
   }

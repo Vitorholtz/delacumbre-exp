@@ -1,0 +1,271 @@
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 200; /* acima do Header (100) — cobre ele por completo quando aberto */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  /* Sem isso, ao chegar no topo/fim do próprio scroll do menu, o restante
+     do gesto de rolagem "vaza" e rola a página por trás dele. */
+  overscroll-behavior: contain;
+  gap: var(--space-8); /* 32px — SM: respiro entre header e o bloco de idiomas/itens */
+  background: var(--color-licorice-96);
+  backdrop-filter: blur(6px);
+  /* Efeito de aparição: fade suave saindo de um leve desfoque até ficar
+     nítido — filter (o próprio menu borrado), não backdrop-filter (que já
+     borra o que está atrás, sempre ativo, ver acima). */
+  opacity: 0;
+  filter: blur(16px);
+  transition:
+    opacity 0.5s ease-out,
+    filter 0.5s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    transition: none;
+  }
+}
+
+@media (min-width: 810px) {
+  .menu {
+    gap: var(--space-10); /* 40px — MD/LG */
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-shrink: 0;
+  padding: var(--space-6) var(--space-6) var(--space-2); /* 24px 24px 8px — SM */
+}
+
+@media (min-width: 810px) {
+  .header {
+    padding: var(--space-8) var(--space-8) var(--space-2); /* 32px 32px 8px — MD/LG */
+  }
+}
+
+.watermark {
+  color: var(--color-white-20);
+}
+
+.sizeSm {
+  display: inline-flex;
+}
+
+.sizeMd {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .sizeSm {
+    display: none;
+  }
+
+  .sizeMd {
+    display: inline-flex;
+  }
+}
+
+/* Chips de idioma e itens de navegação agrupados num único bloco — fica
+   perto do header (o respiro vem do gap do .menu), e o espaço sobrando
+   da tela se acumula só depois dele, antes do footer (ver .footer). */
+.middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+  gap: var(--space-8); /* 32px — SM */
+}
+
+@media (min-width: 810px) {
+  .middle {
+    gap: var(--space-16); /* 64px — MD/LG */
+  }
+}
+
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4); /* 16px */
+  width: 100%;
+  flex-shrink: 0;
+  padding-inline: var(--space-6); /* 24px */
+}
+
+/* Exceção documentada (ver docs/BREAKPOINTS.md): o protótipo do Figma
+   centraliza os chips a partir da referência de tablet (768px) — só o
+   mobile (390px) fica alinhado à esquerda. */
+@media (min-width: 768px) {
+  .languages {
+    justify-content: center;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  flex-shrink: 0;
+  gap: var(--space-6); /* 24px — SM */
+  padding-inline: var(--space-6); /* 24px */
+  text-align: left;
+}
+
+@media (min-width: 810px) {
+  .nav {
+    gap: var(--space-10); /* 40px — MD/LG */
+  }
+}
+
+/* Mesma exceção mobile-vs-tablet do bloco de idiomas acima. */
+@media (min-width: 768px) {
+  .nav {
+    text-align: center;
+  }
+}
+
+.navItem {
+  display: block;
+  width: 100%;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-heading-lg); /* 36px — SM */
+  line-height: var(--leading-heading-lg); /* 40px — SM */
+  color: var(--color-white);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(1.5rem); /* 24px */
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+@media (min-width: 810px) {
+  .navItem {
+    font-size: var(--text-heading-xl); /* 44px — MD/LG */
+    line-height: var(--leading-heading-xl); /* 48px — MD/LG */
+  }
+}
+
+.visible .navItem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navItem:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navItem {
+    transition: none;
+  }
+}
+
+/* Troca de texto no hover — mesma técnica do Button (ver Button.module.css):
+   o texto de cima sai por cima, a cópia de baixo entra no lugar. */
+
+.textWrap {
+  display: inline-grid;
+  overflow: hidden;
+}
+
+.textDefault,
+.textHover {
+  grid-area: 1 / 1;
+  transition: transform 0.3s ease;
+}
+
+.textDefault {
+  transform: translateY(0%);
+}
+
+.textHover {
+  transform: translateY(130%);
+  color: var(--color-hunyadi-yellow);
+}
+
+.navItem:hover .textDefault {
+  transform: translateY(-130%);
+}
+
+.navItem:hover .textHover {
+  transform: translateY(0%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .textDefault,
+  .textHover {
+    transition: none;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+  margin-top: auto; /* empurra o footer pro fim, absorvendo o espaço que sobra na tela */
+  gap: var(--space-10); /* 40px — SM */
+  padding: var(--space-10) var(--space-6); /* 40px 24px */
+  /* Contorno em degradê (transparente → white-20 → transparente) em vez de
+     uma linha sólida — border-image em vez de border-color porque
+     gradiente não é um valor válido de border-color. */
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      var(--color-white-20) 50%,
+      rgba(255, 255, 255, 0) 100%
+    )
+    1;
+}
+
+@media (min-width: 810px) {
+  .footer {
+    gap: var(--space-14); /* 56px — MD/LG */
+  }
+}
+
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8); /* 32px */
+  width: 100%;
+}
+
+.socialLink {
+  color: var(--color-white);
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  max-width: 25rem; /* 400px */
+  aspect-ratio: 460 / 161.981;
+  object-fit: contain;
+  /* O arquivo é só branco/transparente (sem outras cores), então opacity
+     0.2 aqui equivale exatamente a --color-white-20. */
+  opacity: 0.2;
+}

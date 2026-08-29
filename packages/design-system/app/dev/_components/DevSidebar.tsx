@@ -67,7 +67,11 @@ const navSections: NavSection[] = [
   },
   {
     title: "Estrutura de página",
-    items: [{ label: "Footer", href: "/dev/componentes/footer" }],
+    items: [
+      { label: "Header", href: "/dev/componentes/header" },
+      { label: "Menu", href: "/dev/componentes/menu" },
+      { label: "Footer", href: "/dev/componentes/footer" },
+    ],
   },
 ];
 
