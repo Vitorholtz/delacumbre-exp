@@ -3,12 +3,18 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  background: linear-gradient(
-    to bottom,
-    var(--color-licorice-light),
-    var(--color-licorice)
-  );
-  border-top: 1px solid var(--color-white-20);
+  background: var(--color-licorice-dark);
+  /* Contorno em degradê (transparente → white-20 → transparente) em vez de
+     uma linha sólida — border-image em vez de border-color porque
+     gradiente não é um valor válido de border-color. */
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      var(--color-white-20) 50%,
+      rgba(255, 255, 255, 0) 100%
+    )
+    1;
 }
 
 .md {
