@@ -26,11 +26,12 @@
 
 .input:focus {
   outline: none;
-  border-width: 2px;
+  border-width: 1px;
   border-color: var(--color-hunyadi-yellow);
+  box-shadow: 0 0 0 1px var(--color-hunyadi-yellow);
 }
 
-.input:hover:not(:focus):placeholder-shown {
+.input:hover:not(:focus) {
   border-color: var(--color-white-50);
 }
 
