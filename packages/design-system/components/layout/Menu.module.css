@@ -262,7 +262,7 @@
 .logo {
   display: block;
   width: 100%;
-  max-width: 25rem; /* 400px */
+  max-width: 20rem; /* 320px */
   aspect-ratio: 460 / 161.981;
   object-fit: contain;
   /* O arquivo é só branco/transparente (sem outras cores), então opacity

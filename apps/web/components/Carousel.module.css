@@ -103,7 +103,7 @@
   gap: var(--space-4); /* 16px */
   padding: var(--carousel-slide-padding);
   border-radius: var(--radius-lg); /* 24px */
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   overflow: hidden;
   opacity: 0.55;
   transition:
