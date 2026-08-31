@@ -73,7 +73,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.125rem var(--space-1-5); /* 2px — fora da escala de espaçamento */
+  padding: var(--space-0-5) var(--space-1-5);
   border-radius: var(--radius-full);
   background: var(--color-hunyadi-yellow);
   color: var(--color-licorice-dark);

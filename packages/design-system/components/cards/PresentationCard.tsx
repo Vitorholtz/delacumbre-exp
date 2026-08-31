@@ -20,7 +20,13 @@ type PresentationCardProps = {
   className?: string;
 };
 
-const titleClassBySize: Record<PresentationCardSize, string> = {
+const titleLine1ClassBySize: Record<PresentationCardSize, string> = {
+  sm: "text-heading-lg",
+  md: "text-heading-xl",
+  lg: "text-heading-xl",
+};
+
+const titleNameClassBySize: Record<PresentationCardSize, string> = {
   sm: "text-heading-lg",
   md: "text-display-lg",
   lg: "text-display-lg",
@@ -68,12 +74,18 @@ export default function PresentationCard({
       <div className={styles.content}>
         <div className={styles.textBlock}>
           <div className={styles.titleBlock}>
-            <span className={styles.tag}>{tagLabel}</span>
-            <p className={`${styles.title} ${titleClassBySize[size]}`}>
-              {titleLine1}
-              <br />
-              <span className={styles.highlight}>{highlightName}</span>,
-            </p>
+            <span className={`${styles.tag} text-caption-xs`}>{tagLabel}</span>
+            <div className={styles.title}>
+              <p className={titleLine1ClassBySize[size]}>{titleLine1}</p>
+              <p className={`${styles.highlight} ${titleNameClassBySize[size]}`}>
+                {highlightName}
+                {size === "sm" ? (
+                  <span className={styles.commaNeutral}>,</span>
+                ) : (
+                  ","
+                )}
+              </p>
+            </div>
           </div>
           <p className={`${styles.bio} ${bioClassBySize[size]}`}>{bio}</p>
         </div>

@@ -19,22 +19,22 @@ export default function HowToCardPage() {
         <h2 className="text-heading-md">Tamanhos</h2>
         <div className={styles.column}>
           <HowToCard
-            image="/how-to-thumbs/Thumb1.png"
+            image="/how-to-thumbs/Thumb.png"
             imageAlt="Cartaz da expedição Egito"
             title="encontre seu destino"
             description={description}
             size="lg"
           />
           <HowToCard
-            image="/how-to-thumbs/Thumb1.png"
-            imageAlt="Cartaz da expedição Egito"
+            image="/how-to-thumbs/Thumb-1.png"
+            imageAlt="Formulário de dúvida para o guia, com botão de confirmar inscrição"
             title="encontre seu destino"
             description={description}
             size="md"
           />
           <HowToCard
-            image="/how-to-thumbs/Thumb1.png"
-            imageAlt="Cartaz da expedição Egito"
+            image="/how-to-thumbs/Thumb-2.png"
+            imageAlt="Simulação de parcelamento no cartão de crédito, 12x de R$665 sem juros"
             title="encontre seu destino"
             description={description}
             size="sm"
