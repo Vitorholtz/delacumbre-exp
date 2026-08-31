@@ -31,7 +31,8 @@ const STEPS: Step[] = [
     title: "Fale com a gente",
     description:
       "Ficou alguma dúvida? Chama no direct do Instagram. Sem formulário, sem robô — quem responde é gente de verdade.",
-    mediaColor: "var(--color-russet)",
+    image: "/how-to/duvida.png",
+    imageAlt: "Formulário de dúvida para o guia, com botão de confirmar inscrição",
   },
 ];
 
@@ -149,9 +150,8 @@ export default function HowToBook() {
               <div className={styles.textCol}>
                 <p className={styles.heading}>Como reservar?</p>
                 <p className={styles.description}>
-                  Três passos entre você e a próxima expedição: escolher o
-                  destino, fechar o pagamento do seu jeito e falar direto
-                  comigo se sobrar alguma dúvida.
+                  Três passos: escolha o destino, pague do seu jeito e fale
+                  comigo se sobrar dúvida.
                 </p>
               </div>
 

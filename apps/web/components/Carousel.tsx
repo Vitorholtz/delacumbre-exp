@@ -197,7 +197,7 @@ export default function Carousel() {
         <div
           className={styles.track}
           ref={trackRef}
-          data-lenis-prevent
+          data-lenis-prevent-horizontal
         >
           {EXPEDITIONS.map((item, index) => (
             <Link
