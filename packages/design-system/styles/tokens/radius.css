@@ -3,5 +3,6 @@
   --radius-12: 12px; /* repetido em 3+ componentes — ver MenuButton, CheckoutCard, LocationCard sm */
   --radius-md: 16px;
   --radius-lg: 24px;
+  --radius-32: 32px; /* repetido em 2+ componentes — ver HowToCard lg, expedition Hero */
   --radius-full: 999px;
 }

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Button from "@delacumbre/design-system/components/primitives/Button";
+import SocialProof from "@delacumbre/design-system/components/primitives/SocialProof";
 import styles from "./Hero.module.css";
 
 // Depoimentos fictícios — placeholders no tom de docs/BRAND.md, para dar
@@ -44,27 +45,6 @@ const TESTIMONIALS: Testimonial[] = [
 const ROTATION_INTERVAL_MS = 5000;
 const TRANSITION_MS = 350;
 
-function QuoteMark() {
-  return (
-    <svg
-      className={styles.quoteIcon}
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        d="M15.4113 32.5L10.5037 20.8587H16.0961V6.25L0.117803 6.25V20.8587L7.76457 32.5H15.4113Z"
-        fill="currentColor"
-      />
-      <path
-        d="M39.3152 32.5L34.4076 20.8587H40V6.25L24.0217 6.25V20.8587L31.6685 32.5H39.3152Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
 export default function Hero() {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -101,14 +81,16 @@ export default function Hero() {
       <div className={styles.content}>
         <div className={styles.heading}>
           <div className={styles.socialProof}>
-            <QuoteMark />
             <div
               className={`${styles.testimonial} ${visible ? styles.phraseVisible : styles.phraseHidden}`}
             >
-              <p className={styles.phrase}>{TESTIMONIALS[index].quote}</p>
-              <p className={styles.attribution}>
-                {TESTIMONIALS[index].name} | {TESTIMONIALS[index].context}
-              </p>
+              <SocialProof
+                quote={TESTIMONIALS[index].quote}
+                author={{
+                  name: TESTIMONIALS[index].name,
+                  context: TESTIMONIALS[index].context,
+                }}
+              />
             </div>
           </div>
         </div>

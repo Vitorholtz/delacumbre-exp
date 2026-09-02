@@ -51,38 +51,13 @@
 }
 
 .socialProof {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-2); /* 8px */
   max-width: 240px;
 }
 
-.quoteIcon {
-  width: 24px;
-  height: 24px;
-  color: var(--color-hunyadi-yellow);
-  flex-shrink: 0;
-}
-
 .testimonial {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2); /* 8px */
   transition:
     opacity 0.35s ease,
     transform 0.35s ease;
-}
-
-.phrase {
-  composes: text-caption from global; /* 14px — SM */
-  font-style: italic; /* exceção deliberada — ver instrução do Figma, sem utility de itálico no DS */
-  color: var(--color-white);
-}
-
-.attribution {
-  composes: text-caption-xs from global;
-  color: var(--color-dune);
 }
 
 .phraseVisible {
@@ -154,22 +129,6 @@
 
   .socialProof {
     max-width: 400px;
-  }
-
-  .quoteIcon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .phrase {
-    font-size: var(--text-body-sm); /* 16px — MD e LG */
-    line-height: var(--leading-body-sm);
-  }
-
-  .attribution {
-    font-size: var(--text-caption); /* 14px — MD e LG */
-    line-height: var(--leading-caption);
-    font-weight: var(--weight-body-light);
   }
 
   .bottom {

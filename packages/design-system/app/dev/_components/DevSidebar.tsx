@@ -49,6 +49,7 @@ const navSections: NavSection[] = [
     title: "Cards & mídia",
     items: [
       { label: "Localização", href: "/dev/componentes/localizacao" },
+      { label: "Prova social", href: "/dev/componentes/social-proof" },
       { label: "Things to do", href: "/dev/componentes/things-to-do" },
       { label: "How to", href: "/dev/componentes/how-to" },
       { label: "Checkout", href: "/dev/componentes/checkout" },

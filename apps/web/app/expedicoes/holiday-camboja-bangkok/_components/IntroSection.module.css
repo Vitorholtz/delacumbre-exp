@@ -1,0 +1,279 @@
+.section {
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10); /* 40px — SM */
+}
+
+@media (min-width: 810px) {
+  .content {
+    max-width: 1200px;
+    gap: var(--space-14); /* 56px — MD e LG */
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 1520px;
+  }
+}
+
+.heading {
+  composes: text-heading-lg from global; /* 36px — SM */
+  color: var(--color-white);
+  text-align: center;
+}
+
+@media (min-width: 810px) {
+  .heading {
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+.highlight {
+  color: var(--color-hunyadi-yellow);
+}
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6); /* 24px */
+  width: 100%;
+}
+
+/* Citação estática acima da foto — só SM. Nos tamanhos maiores a mesma
+   citação vira .quoteOverlay, sobreposta à própria imagem. Centralizada via
+   herança de text-align/align-items no SocialProof (sem overrides internos:
+   ver docs sobre reuso do componente). */
+.quoteStatic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 810px) {
+  .quoteStatic {
+    display: none;
+  }
+}
+
+/* Transição de troca de slide — mesma receita (350ms) do rotator de
+   depoimentos da Hero da home. */
+.fadeVisible,
+.fadeHidden {
+  transition: opacity 0.35s ease;
+}
+
+.fadeVisible {
+  opacity: 1;
+}
+
+.fadeHidden {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fadeVisible,
+  .fadeHidden {
+    transition: none;
+  }
+}
+
+/* Caixa externa sem overflow — o LocationCard precisa vazar por baixo da
+   foto (metade dentro, metade fora), então não pode estar dentro da caixa
+   com overflow:hidden que arredonda a imagem (.imageWrap). */
+.imageOuter {
+  position: relative;
+  width: 100%;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg); /* 24px — igual nos 3 tamanhos */
+  aspect-ratio: 342 / 360; /* node 1352:1074 */
+}
+
+@media (min-width: 810px) {
+  .imageWrap {
+    aspect-ratio: 1200 / 680; /* node 1175:106 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageWrap {
+    aspect-ratio: 1520 / 780; /* node 1280:353 */
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Mesma receita do scrim do Hero (elipse do centro transparente até a
+     borda em --color-licorice-60) — ver nodes 1280:353 / 1175:106 /
+     1352:1074. */
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    transparent 0%,
+    var(--color-licorice-60) 100%
+  );
+}
+
+/* Citação sobreposta à foto — só MD/LG (ver .quoteStatic acima). */
+.quoteOverlay {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .quoteOverlay {
+    display: flex;
+    position: absolute;
+    left: var(--space-8); /* 32px */
+    bottom: var(--space-8); /* 32px */
+    max-width: 380px;
+    z-index: 1;
+  }
+}
+
+.locationWrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 1;
+}
+
+@media (min-width: 810px) {
+  .locationWrap {
+    left: auto;
+    right: var(--space-8); /* 32px */
+    transform: translateY(50%);
+  }
+}
+
+.locationSm {
+  display: block;
+}
+
+.locationMd {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .locationSm {
+    display: none;
+  }
+
+  .locationMd {
+    display: block;
+  }
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .controls {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 36px; /* fora da escala de espaçamento — nodes 1198:131/1257:199 (LG), 1198:131/1257:199 (MD) */
+  }
+}
+
+.arrows {
+  order: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6); /* 24px */
+}
+
+@media (min-width: 810px) {
+  .arrows {
+    order: 2;
+    align-self: flex-start;
+  }
+}
+
+.sizeSm {
+  display: inline-flex;
+}
+
+.sizeMd {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .sizeSm {
+    display: none;
+  }
+
+  .sizeMd {
+    display: inline-flex;
+  }
+}
+
+.indicator {
+  order: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2); /* 8px */
+}
+
+@media (min-width: 810px) {
+  .indicator {
+    order: 1;
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-licorice-light);
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition:
+    width 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.dotActive {
+  width: 24px;
+  background: var(--color-hunyadi-yellow);
+}

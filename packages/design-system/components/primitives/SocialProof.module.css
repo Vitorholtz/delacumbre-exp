@@ -1,0 +1,52 @@
+.socialProof {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2); /* 8px */
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-hunyadi-yellow);
+  flex-shrink: 0;
+}
+
+@media (min-width: 810px) {
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2); /* 8px */
+}
+
+.quote {
+  composes: text-caption from global; /* 14px — SM */
+  font-style: italic; /* exceção deliberada — sem utility de itálico no DS */
+  color: var(--color-white);
+}
+
+@media (min-width: 810px) {
+  .quote {
+    font-size: var(--text-body-sm); /* 16px — MD e LG */
+    line-height: var(--leading-body-sm);
+  }
+}
+
+.attribution {
+  composes: text-caption-xs from global;
+  color: var(--color-dune);
+}
+
+@media (min-width: 810px) {
+  .attribution {
+    font-size: var(--text-caption); /* 14px — MD e LG */
+    line-height: var(--leading-caption);
+    font-weight: var(--weight-body-light);
+  }
+}

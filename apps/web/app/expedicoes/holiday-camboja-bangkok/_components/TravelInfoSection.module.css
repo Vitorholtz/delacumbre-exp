@@ -1,0 +1,362 @@
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16); /* 64px — SM, respiro entre a imagem e o bloco de texto */
+}
+
+@media (min-width: 810px) {
+  .section {
+    gap: 96px; /* fora da escala de espaçamento — MD e LG, ver .imageLocationWrapper */
+  }
+}
+
+/* Full-bleed, como Hero/Carousel/CenasLamentaveis (docs/BREAKPOINTS.md) — a
+   foto de Angkor Thom não segue o max-width de conteúdo padrão. padding-top
+   reserva espaço pra faixa (.ticker) sobrar dentro da própria seção, sem
+   vazar pra cima da seção anterior.
+   O valor é bem maior que a metade da altura da faixa: rotacionar um
+   elemento tão largo quanto a viewport (não só a própria faixa) cresce a
+   bounding box verticalmente em largura×sen(2°) — ~67px a mais em 1920px,
+   ~50px em 1440px — então a reserva precisa cobrir isso, não só a altura
+   "de repouso" da faixa. */
+.imageLocationWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: var(--space-14); /* 56px — SM */
+  /* overflow-y explícito: por spec, só declarar overflow-x vira overflow-y
+     "auto" sozinho (mesma pegadinha documentada no CenasLamentaveis) — sem
+     isso a faixa rotacionada (.ticker) fica sujeita a scroll/clip vertical
+     por pouco espaço sobrando. */
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+@media (min-width: 810px) {
+  .imageLocationWrapper {
+    padding-top: 96px; /* fora da escala de espaçamento — MD e LG, ver nota acima */
+  }
+}
+
+/* Card de localização — sobrepõe o canto inferior da imagem (mesma técnica
+   do Figma: margin-bottom negativo na imagem "puxa" a linha seguinte). */
+.imageBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 768 / 620; /* SM — node 1352:1089 */
+  margin-bottom: -52px; /* fora da escala de espaçamento — SM, ~metade do LocationCard */
+}
+
+@media (min-width: 810px) {
+  .imageBox {
+    aspect-ratio: 1440 / 760; /* MD — node 1198:113 */
+    margin-bottom: -68px; /* fora da escala de espaçamento — MD e LG */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageBox {
+    aspect-ratio: 1920 / 880; /* LG — node 1280:372 */
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Faixa amarela — título da seção, looping infinito à la CenasLamentaveis
+   (duas metades idênticas, translateX de 0 a -50%). Centralizada sobre a
+   borda superior da imagem, levemente rotacionada. */
+.ticker {
+  position: absolute;
+  top: var(--space-14); /* 56px — SM, acompanha o padding-top do wrapper */
+  left: 50%;
+  /* width:100% é essencial aqui: sem ela, o box shrink-wrap pro conteúdo
+     do marquee (milhares de px de largura) e o translate(-50%) vira um
+     valor gigante — que, combinado ao rotate, produz um deslocamento
+     vertical enorme (seno do ângulo × metade da largura) e empurra a
+     faixa inteira pra fora da viewport. */
+  width: 100%;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (min-width: 810px) {
+  .ticker {
+    top: 96px; /* fora da escala de espaçamento — MD e LG, ver nota do .imageLocationWrapper */
+  }
+}
+
+.tickerTrack {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  background: var(--color-hunyadi-yellow);
+  padding-block: var(--space-3); /* 12px — SM */
+  animation: ticker-loop 24s linear infinite;
+}
+
+@media (min-width: 810px) {
+  .tickerTrack {
+    padding-block: var(--space-4); /* 16px — MD e LG */
+    animation-duration: 36s;
+  }
+}
+
+.tickerTrackHalf {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-6); /* 24px — SM, entre repetições da frase */
+  margin-right: var(--space-6); /* 24px — SM, costura entre as duas metades */
+}
+
+@media (min-width: 810px) {
+  .tickerTrackHalf {
+    gap: var(--space-14); /* 56px — MD e LG */
+    margin-right: var(--space-14); /* 56px — MD e LG */
+  }
+}
+
+.tickerPhrase {
+  composes: text-heading-lg from global; /* 36px — SM */
+  font-family: var(--font-display-aged);
+  color: var(--color-licorice);
+  white-space: nowrap;
+  margin: 0;
+}
+
+@media (min-width: 810px) {
+  .tickerPhrase {
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+.tickerDot {
+  color: var(--color-licorice-light);
+}
+
+@keyframes ticker-loop {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tickerTrack {
+    animation: none;
+  }
+}
+
+.locationRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .locationRow {
+    justify-content: flex-end;
+    padding-right: 120px; /* fora da escala de espaçamento — nodes 1280:373/1257:214 */
+  }
+}
+
+.locationSm {
+  display: block;
+}
+
+.locationMd {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .locationSm {
+    display: none;
+  }
+
+  .locationMd {
+    display: block;
+  }
+}
+
+/* Conteúdo — mesmo par wrapper/content reproduzido no resto do projeto
+   (docs/BREAKPOINTS.md). */
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16); /* 64px — SM, mesmo respiro do .section acima */
+}
+
+@media (min-width: 810px) {
+  .content {
+    max-width: 1200px;
+    gap: 96px; /* fora da escala de espaçamento — MD e LG, ver .imageLocationWrapper */
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 1520px;
+  }
+}
+
+.textRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10); /* 40px — SM */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .textRow {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.heading {
+  composes: text-heading-lg from global; /* 36px — SM */
+  color: var(--color-white);
+}
+
+@media (min-width: 810px) {
+  .heading {
+    flex: 1 0 0;
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+.description {
+  composes: text-body-sm from global; /* 16px — SM */
+  color: var(--color-licorice-super-light);
+}
+
+@media (min-width: 810px) {
+  .description {
+    flex: 1 0 0;
+    font-size: var(--text-body-md); /* 18px — MD */
+    line-height: var(--leading-body-md);
+  }
+}
+
+@media (min-width: 1536px) {
+  .description {
+    font-size: var(--text-body-lg); /* 22px — LG */
+    line-height: var(--leading-body-lg);
+  }
+}
+
+/* Grade de cards — dual-render por tamanho (sm/md/lg do ThingsToDoCard),
+   trocado via CSS nos breakpoints técnicos (mesmo padrão do Faq/HowToBook). */
+.cardsGrid {
+  display: none;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4); /* 16px — SM */
+}
+
+.cardsGrid_sm {
+  display: flex;
+}
+
+@media (min-width: 810px) {
+  .cardsGrid_sm {
+    display: none;
+  }
+
+  .cardsGrid_md {
+    display: flex;
+    gap: var(--space-6); /* 24px — MD */
+  }
+}
+
+@media (min-width: 1536px) {
+  .cardsGrid_md {
+    display: none;
+  }
+
+  .cardsGrid_lg {
+    display: flex;
+    gap: var(--space-6); /* 24px — LG */
+  }
+}
+
+.card {
+  flex: 1 0 0;
+}
+
+/* CTA — reaproveita o Button do design system nos dois tamanhos, trocando
+   por CSS (mesmo padrão do Hero). */
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4); /* 16px */
+  max-width: 36.75rem; /* 588px */
+  width: 100%;
+}
+
+.buttonsDesktop {
+  display: none;
+}
+
+.buttonsCompact {
+  display: flex;
+  flex-direction: column;
+}
+
+.ctaButtonCompact {
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .buttons {
+    gap: var(--space-6); /* 24px */
+  }
+
+  .buttonsDesktop {
+    display: flex;
+  }
+
+  .buttonsCompact {
+    display: none;
+  }
+
+  .ctaButton {
+    flex: 1 0 0;
+  }
+}

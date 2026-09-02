@@ -20,7 +20,7 @@
 
 .lg {
   width: 46.75rem; /* 748px */
-  border-radius: 2rem; /* 32px — fora da escala de raio */
+  border-radius: var(--radius-32);
 }
 
 .md {

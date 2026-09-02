@@ -1,0 +1,199 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6); /* 24px — SM */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .hero {
+    gap: var(--space-10); /* 40px — MD e LG */
+  }
+}
+
+/* Full-bleed, como Hero/Carousel da landing (docs/BREAKPOINTS.md) — a foto
+   de capa não segue o max-width de conteúdo padrão. */
+.imageWrapper {
+  width: 100%;
+  padding: var(--space-4); /* 16px — SM */
+}
+
+@media (min-width: 810px) {
+  .imageWrapper {
+    padding: var(--space-6); /* 24px — MD e LG */
+  }
+}
+
+.imageBox {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg); /* 24px — SM */
+  aspect-ratio: 358 / 420; /* node 1352:1057 */
+}
+
+@media (min-width: 810px) {
+  .imageBox {
+    border-radius: var(--radius-32); /* 32px — MD e LG */
+    aspect-ratio: 1392 / 740; /* node 1278:297 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageBox {
+    aspect-ratio: 1872 / 780; /* node 1280:340 */
+  }
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Elipse cobrindo a caixa inteira, do centro (transparente) até a borda
+     (--color-licorice-60) — replica a máscara radial do Figma (nodes
+     1280:340 / 1278:297 / 1352:1057), mesma proporção nos três tamanhos. */
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    transparent 0%,
+    var(--color-licorice-60) 100%
+  );
+}
+
+.badge {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5); /* 20px — SM, node 1352:1058/1059 */
+}
+
+@media (min-width: 810px) {
+  .badge {
+    gap: 88px; /* fora da escala de espaçamento — nodes 1278:299/301, 1280:341/342 */
+  }
+}
+
+.presents {
+  composes: text-heading-sm from global;
+  color: var(--color-white);
+}
+
+.stamp {
+  width: 280px;
+  height: 112px;
+}
+
+@media (min-width: 810px) {
+  .stamp {
+    width: 548px;
+    height: 219px;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-10); /* 40px */
+}
+
+@media (min-width: 810px) {
+  .content {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 1520px;
+  }
+}
+
+.description {
+  composes: text-body-sm from global; /* 16px — SM */
+  color: var(--color-dune);
+  text-align: center;
+  max-width: 49.5rem; /* 792px */
+}
+
+@media (min-width: 810px) {
+  .description {
+    font-size: var(--text-body-md); /* 18px — MD e LG */
+    line-height: var(--leading-body-md);
+  }
+}
+
+@media (min-width: 1536px) {
+  .description {
+    font-size: var(--text-body-lg); /* 22px — LG */
+    line-height: var(--leading-body-lg);
+  }
+}
+
+.buttons {
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4); /* 16px */
+  max-width: 36.75rem; /* 588px */
+  width: 100%;
+}
+
+.buttonsDesktop {
+  display: none;
+}
+
+.buttonsCompact {
+  display: flex;
+}
+
+.ctaButtonCompact {
+  flex: 1 0 0;
+}
+
+@media (min-width: 810px) {
+  .buttons {
+    gap: var(--space-6); /* 24px */
+  }
+
+  .buttonsDesktop {
+    display: flex;
+  }
+
+  .buttonsCompact {
+    display: none;
+  }
+
+  .ctaButton {
+    flex: 1 0 0;
+  }
+}
