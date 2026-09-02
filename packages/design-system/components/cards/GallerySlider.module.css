@@ -2,15 +2,30 @@
   position: fixed;
   inset: 0;
   z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "close"
+    "media"
+    "navrow";
+  padding: 15px var(--space-4); /* 15px vertical — fora da escala de espaçamento, ver Figma SM Expanded-image */
   background: var(--color-licorice-80);
   opacity: 0;
   transform: scale(0.97);
   transition:
     opacity 250ms ease,
     transform 250ms ease;
+}
+
+@media (min-width: 810px) {
+  .backdrop {
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr;
+    grid-template-areas: "navprev media navnext";
+    align-items: center;
+    padding: 0;
+  }
 }
 
 .backdropVisible {
@@ -24,25 +39,56 @@
   }
 }
 
+.navRow {
+  grid-area: navrow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6); /* 24px */
+  padding-top: var(--space-4); /* 16px */
+}
+
+@media (min-width: 810px) {
+  .navRow {
+    display: contents;
+  }
+}
+
 .navContainer {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  padding-left: var(--space-8); /* 32px */
-  padding-right: var(--space-6); /* 24px */
 }
 
-.navContainerEnd {
-  padding-left: var(--space-6); /* 24px */
-  padding-right: var(--space-8); /* 32px */
+@media (min-width: 810px) {
+  .navContainer {
+    grid-area: navprev;
+    padding-left: var(--space-8); /* 32px */
+    padding-right: var(--space-6); /* 24px */
+  }
+
+  .navContainerEnd {
+    grid-area: navnext;
+    padding-left: var(--space-6); /* 24px */
+    padding-right: var(--space-8); /* 32px */
+  }
 }
 
 .mediaWrap {
+  grid-area: media;
   position: relative;
-  flex: 1 0 0;
+  width: 100%;
   min-width: 0;
-  height: 100%;
+  min-height: 0;
   overflow: hidden;
+  touch-action: pan-y;
+}
+
+@media (min-width: 810px) {
+  .mediaWrap {
+    width: auto;
+    height: 100%;
+  }
 }
 
 .slide {
@@ -116,7 +162,7 @@
 
 .media {
   max-width: 100%;
-  max-height: 90vh;
+  max-height: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -124,12 +170,27 @@
   background: var(--color-hunyadi-yellow);
 }
 
+@media (min-width: 810px) {
+  .media {
+    max-height: 90vh;
+  }
+}
+
 video.media {
   background: var(--color-licorice);
 }
 
 .closeContainer {
-  position: absolute;
-  top: 2.5rem; /* 40px */
-  right: 2.5rem; /* 40px */
+  grid-area: close;
+  justify-self: end;
+}
+
+@media (min-width: 810px) {
+  .closeContainer {
+    position: absolute;
+    top: 2.5rem; /* 40px */
+    right: 2.5rem; /* 40px */
+    z-index: 1; /* fica acima do mediaWrap, que pode se estender sob o canto
+      quando não há setas de navegação (galeria de item único) */
+  }
 }

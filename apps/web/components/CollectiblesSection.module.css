@@ -35,6 +35,9 @@
 
 .subtitle {
   composes: text-heading-sm from global;
+  /* Berringer Aged em vez do --font-display padrão — pedido explícito pro
+     nome da expedição neste bloco. */
+  font-family: var(--font-display-aged);
   flex: 1 0 0;
   min-width: 0;
   color: var(--color-dune);
