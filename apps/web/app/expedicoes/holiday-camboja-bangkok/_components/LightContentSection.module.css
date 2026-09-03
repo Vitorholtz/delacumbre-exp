@@ -1,0 +1,389 @@
+.section {
+  width: 100%;
+}
+
+/* Rasgo de borda — full-bleed como Hero/Carousel (docs/BREAKPOINTS.md). Um
+   único SVG (fill dune) com preserveAspectRatio="none": object-fit:fill faz
+   ele esticar pra largura de qualquer viewport sem perder o efeito de papel
+   rasgado, já que a altura fica sempre fixa (mesmo truque do próprio Figma).
+   A metade de baixo reaproveita o mesmo arquivo espelhado via rotate. */
+.tornEdge {
+  position: relative;
+  width: 100%;
+  height: 67.2px; /* mesma altura nas 3 referências — nodes 1352:1126/1179:503/1280:437 */
+}
+
+/* O viewBox do SVG (68.55px) é ~1px mais alto que a parte sólida do rasgo
+   (~67.5px) — sobra uma margem transparente que o object-fit:fill espalha
+   pro fundo da caixa, abrindo uma linha fina onde o bg escuro da página
+   aparece entre o rasgo e o container dune. Cobrindo com 2px de overlap
+   (mesma cor dune do .sectionContainer, pintado por cima por vir depois no
+   DOM) fecha essa linha sem precisar editar o SVG. */
+.tornEdgeBottom {
+  margin-top: -2px;
+  transform: rotate(180deg);
+}
+
+.tornEdgeImage {
+  object-fit: fill;
+}
+
+.sectionContainer {
+  width: 100%;
+  margin-top: -2px;
+  background: var(--color-dune);
+  padding-block: var(--space-14); /* 56px — SM, node 1352:1127 */
+}
+
+@media (min-width: 810px) {
+  .sectionContainer {
+    padding-block: 96px; /* fora da escala de espaçamento — MD, node 1259:306 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .sectionContainer {
+    padding-block: 120px; /* fora da escala de espaçamento — LG, node 1280:438 */
+  }
+}
+
+/* wrapper/content — mesmo par documentado em docs/BREAKPOINTS.md */
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 160px; /* fora da escala de espaçamento — SM, node 1352:1127 */
+}
+
+@media (min-width: 810px) {
+  .content {
+    max-width: 1200px;
+    gap: 200px; /* fora da escala de espaçamento — MD e LG, nodes 1259:306/1280:438 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 1520px;
+  }
+}
+
+/* Heading + destaque — mesma composição de text-heading-lg/display-lg usada
+   no resto do projeto (Hero, IntroSection, TravelInfoSection). */
+.heading {
+  composes: text-heading-lg from global; /* 36px — SM */
+  color: var(--color-licorice);
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .heading {
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+.highlight {
+  color: var(--color-russet);
+}
+
+.paragraph {
+  composes: text-body-sm from global; /* 16px — SM */
+  color: var(--color-licorice);
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .paragraph {
+    font-size: var(--text-body-md); /* 18px — MD */
+    line-height: var(--leading-body-md);
+  }
+}
+
+@media (min-width: 1536px) {
+  .paragraph {
+    font-size: var(--text-body-lg); /* 22px — LG */
+    line-height: var(--leading-body-lg);
+  }
+}
+
+/* Bloco 1 — texto ao lado da imagem (node 1352:1128 / 1259:244 / 1280:439) */
+.textAndImageBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8); /* 32px — SM */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .textAndImageBlock {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8); /* piso mínimo entre as duas colunas */
+  }
+}
+
+.textColumnInline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px — SM, node 1352:1129 */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .textColumnInline {
+    flex: 1 0 0;
+    max-width: 486px; /* MD — node 1259:243 */
+    gap: var(--space-14); /* 56px — MD e LG, node 1280:440 */
+    padding-right: var(--space-12); /* 48px — node 1280:440 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .textColumnInline {
+    max-width: 620px; /* LG — node 1280:440 */
+  }
+}
+
+.imageColumnInline {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .imageColumnInline {
+    width: 588px; /* MD — node 1337:2410 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageColumnInline {
+    width: 748px; /* LG — node 1337:2440 */
+  }
+}
+
+/* Imagem com Location-card sobreposto — reaproveita a mesma técnica de
+   margin-bottom negativo do TravelInfoSection (mesmos valores -52/-68px). */
+.imageBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.imageBox {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg); /* 24px */
+  overflow: hidden;
+  margin-bottom: -52px; /* fora da escala de espaçamento — SM */
+}
+
+@media (min-width: 810px) {
+  .imageBox {
+    margin-bottom: -68px; /* fora da escala de espaçamento — MD e LG */
+  }
+}
+
+.imageBox_inline {
+  aspect-ratio: 342 / 360; /* SM — node 1352:1132 */
+}
+
+@media (min-width: 810px) {
+  .imageBox_inline {
+    aspect-ratio: 588 / 560; /* MD — node 1337:2410 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageBox_inline {
+    aspect-ratio: 748 / 560; /* LG — node 1337:2440 */
+  }
+}
+
+.imageBox_full {
+  aspect-ratio: 342 / 360; /* SM — node 1352:1132/1133 */
+}
+
+@media (min-width: 810px) {
+  .imageBox_full {
+    aspect-ratio: 1200 / 680; /* MD — node 1337:2462 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageBox_full {
+    aspect-ratio: 1520 / 780; /* LG — node 1337:2486 */
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.locationRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .locationRow {
+    justify-content: flex-end;
+    padding-right: var(--space-8); /* 32px */
+  }
+}
+
+.locationSm {
+  display: block;
+}
+
+.locationMd {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .locationSm {
+    display: none;
+  }
+
+  .locationMd {
+    display: block;
+  }
+}
+
+/* Blocos 3 e 5 — heading numa coluna, parágrafo (+ CTA no último) na outra
+   (nodes 1280:448/1335:933, 1259:278/1259:295, 1352:1134/1352:1138). */
+.textOnlyBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px — SM */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .textOnlyBlock {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--space-8); /* piso mínimo entre as duas colunas */
+  }
+}
+
+.textOnlyBlock > .heading {
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .textOnlyBlock > .heading {
+    flex: 1 0 0;
+    max-width: 486px; /* MD */
+  }
+}
+
+@media (min-width: 1536px) {
+  .textOnlyBlock > .heading {
+    max-width: 620px; /* LG */
+  }
+}
+
+.textOnlyBlock > .paragraph {
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .textOnlyBlock > .paragraph {
+    flex: 1 0 0;
+    max-width: 486px; /* MD */
+  }
+}
+
+@media (min-width: 1536px) {
+  .textOnlyBlock > .paragraph {
+    max-width: 620px; /* LG */
+  }
+}
+
+.paragraphButtonsGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6); /* 24px — SM, node 1352:1140 */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .paragraphButtonsGroup {
+    flex: 1 0 0;
+    max-width: 486px; /* MD */
+    gap: var(--space-10); /* 40px — MD e LG, node 1335:935 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .paragraphButtonsGroup {
+    max-width: 620px; /* LG */
+  }
+}
+
+/* CTA — empilhado (SM e MD) até 1536px; só vira linha na referência LG,
+   fugindo do breakpoint técnico padrão (810px) porque o próprio protótipo
+   do Figma mostra os botões empilhados também em 1440px (docs/BREAKPOINTS.md
+   permite exceção quando o protótipo pede). */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4); /* 16px — SM */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .buttons {
+    gap: var(--space-6); /* 24px — MD */
+  }
+}
+
+@media (min-width: 1536px) {
+  .buttons {
+    flex-direction: row;
+  }
+}
+
+.ctaButton {
+  width: 100%;
+}
+
+@media (min-width: 1536px) {
+  .ctaButton {
+    width: auto;
+    flex: 1 0 0;
+  }
+}

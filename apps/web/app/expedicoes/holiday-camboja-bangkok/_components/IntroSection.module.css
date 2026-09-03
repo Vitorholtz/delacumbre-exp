@@ -103,6 +103,45 @@
   }
 }
 
+/* Transição da foto do slider: desliza pro lado + desfoca, em vez do fade
+   simples usado em .fadeVisible/.fadeHidden acima — .slideNext/.slidePrev
+   dão a direção (a foto sai e entra do mesmo lado pra onde o usuário está
+   navegando, já que é o mesmo nó reaproveitado, não duas fotos empilhadas). */
+.slideVisible,
+.slideHidden {
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.4s ease-out,
+    filter 0.4s ease-out;
+}
+
+.slideVisible {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+.slideHidden.slideNext {
+  opacity: 0;
+  transform: translateX(-2.5rem); /* 40px — fora da escala de espaçamento */
+  filter: blur(12px);
+}
+
+.slideHidden.slidePrev {
+  opacity: 0;
+  transform: translateX(2.5rem); /* 40px — fora da escala de espaçamento */
+  filter: blur(12px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slideVisible,
+  .slideHidden {
+    transition: none;
+    transform: none;
+    filter: none;
+  }
+}
+
 /* Caixa externa sem overflow — o LocationCard precisa vazar por baixo da
    foto (metade dentro, metade fora), então não pode estar dentro da caixa
    com overflow:hidden que arredonda a imagem (.imageWrap). */
@@ -181,20 +220,26 @@
   }
 }
 
-.locationSm {
+/* Escopado a `.locationWrap` (em vez de `.locationSm`/`.locationMd`
+   soltas) de propósito: o LocationCard já define `display: inline-flex`
+   na própria classe raiz (mesma especificidade de seletor único), e qual
+   das duas vence dependeria da ordem de concatenação dos dois CSS Modules
+   no bundle — não confiável. Com o pai no seletor, a especificidade fica
+   maior e sempre vence, independente da ordem. */
+.locationWrap .locationSm {
   display: block;
 }
 
-.locationMd {
+.locationWrap .locationMd {
   display: none;
 }
 
 @media (min-width: 810px) {
-  .locationSm {
+  .locationWrap .locationSm {
     display: none;
   }
 
-  .locationMd {
+  .locationWrap .locationMd {
     display: block;
   }
 }
@@ -229,20 +274,23 @@
   }
 }
 
-.sizeSm {
+/* Mesmo motivo do .locationWrap acima: escopado a `.arrows` pra vencer
+   com segurança o `display: inline-flex` da própria classe raiz do
+   FloatingButton, que tem a mesma especificidade de seletor único. */
+.arrows .sizeSm {
   display: inline-flex;
 }
 
-.sizeMd {
+.arrows .sizeMd {
   display: none;
 }
 
 @media (min-width: 810px) {
-  .sizeSm {
+  .arrows .sizeSm {
     display: none;
   }
 
-  .sizeMd {
+  .arrows .sizeMd {
     display: inline-flex;
   }
 }
@@ -269,8 +317,8 @@
   border: none;
   cursor: pointer;
   transition:
-    width 0.2s ease,
-    background-color 0.2s ease;
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.5s ease-out;
 }
 
 .dotActive {

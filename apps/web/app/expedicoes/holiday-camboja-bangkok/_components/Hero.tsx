@@ -17,7 +17,6 @@ export default function Hero() {
           />
           <div className={styles.scrim} aria-hidden="true" />
           <div className={styles.badge}>
-            <p className={styles.presents}>Apresenta</p>
             <Image
               src="/expedicoes/holiday-camboja-bangkok/hero/stamp.png"
               alt="Expedição Holiday in Camboja & Bangkok — Ásia, abril de 2027"

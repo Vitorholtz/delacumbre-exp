@@ -6,8 +6,11 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   width: 100%;
-  padding: var(--space-6) var(--space-6) var(--space-2); /* 24px 24px 8px — SM */
-  transition: padding-block 0.2s ease;
+  padding: var(--space-8) var(--space-8) var(--space-2); /* 32px 32px 8px — SM */
+  /* `padding` (não só padding-block) porque o lateral também muda no
+     scroll em SM (32px → 24px) — precisa animar junto, senão dá um salto
+     seco no eixo horizontal enquanto o vertical desliza suave. */
+  transition: padding 0.3s ease-out;
 }
 
 /* O blur do estado scrolled fica numa camada própria (não em .header
@@ -42,7 +45,7 @@
     rgba(0, 0, 0, 0.25) 85%,
     transparent 100%
   );
-  transition: backdrop-filter 0.2s ease;
+  transition: backdrop-filter 0.3s ease-out;
 }
 
 @media (min-width: 810px) {
@@ -52,10 +55,12 @@
 }
 
 .scrolled {
-  /* padding-block simétrico (topo = base) — declarada depois do @media
+  /* padding simétrico (topo = base) — declarada depois do @media
      de cima pra sempre vencer o padding-bottom de 8px do estado sem
-     scroll, mesmo em telas MD/LG. */
-  padding-block: var(--space-6); /* 24px 24px — SM */
+     scroll, mesmo em telas MD/LG. Padding lateral também volta a 24px em
+     SM (a base subiu pra 32px), diferente do padding lateral de MD/LG,
+     que não muda no scroll. */
+  padding: var(--space-6); /* 24px — SM */
 }
 
 .scrolled::before {
@@ -64,7 +69,9 @@
 
 @media (min-width: 810px) {
   .scrolled {
-    padding-block: var(--space-8); /* 32px 32px — MD/LG */
+    /* padding-inline reafirmado aqui pra vencer o shorthand `padding` da
+       regra base (24px), que senão vazaria pro lateral de MD/LG também. */
+    padding: var(--space-8) var(--space-14); /* 32px 56px — MD/LG */
   }
 }
 
@@ -90,7 +97,7 @@
   transition:
     opacity 0.5s ease-out,
     filter 0.5s ease-out,
-    transform 0.2s ease;
+    transform 0.3s ease-out;
 }
 
 .logoHidden {

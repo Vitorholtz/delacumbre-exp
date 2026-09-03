@@ -1,0 +1,206 @@
+/* Respiro entre seções — medido a partir do gap real entre este bloco e a
+   Light-content-section anterior no Figma (nodes 1280:436/1280:463):
+   360px de distância em LG e MD, 200px em SM. Nenhum dos dois lados tem
+   padding próprio hoje, então a seção assume o respiro inteiro nas duas
+   pontas. */
+.section {
+  width: 100%;
+  padding-block: 200px; /* fora da escala de espaçamento — SM */
+}
+
+@media (min-width: 810px) {
+  .section {
+    padding-block: 360px; /* fora da escala de espaçamento — MD e LG */
+  }
+}
+
+/* wrapper/content — mesmo par documentado em docs/BREAKPOINTS.md */
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8); /* 32px — SM, node 1352:1146 */
+}
+
+@media (min-width: 810px) {
+  .content {
+    max-width: 1200px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8); /* piso mínimo entre as duas colunas */
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 1520px;
+  }
+}
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px — SM, node 1352:1147 */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .textColumn {
+    flex: 1 0 0;
+    max-width: 486px; /* MD — node 1259:318 */
+    gap: var(--space-14); /* 56px — MD e LG, node 1280:464 */
+    padding-right: var(--space-12); /* 48px — node 1280:464 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .textColumn {
+    max-width: 620px; /* LG — node 1280:464 */
+  }
+}
+
+.heading {
+  composes: text-heading-lg from global; /* 36px — SM */
+  color: var(--color-white);
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .heading {
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+.highlight {
+  color: var(--color-hunyadi-yellow);
+}
+
+.paragraph {
+  composes: text-body-sm from global; /* 16px — SM */
+  color: var(--color-licorice-super-light);
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .paragraph {
+    font-size: var(--text-body-md); /* 18px — MD */
+    line-height: var(--leading-body-md);
+  }
+}
+
+@media (min-width: 1536px) {
+  .paragraph {
+    font-size: var(--text-body-lg); /* 22px — LG */
+    line-height: var(--leading-body-lg);
+  }
+}
+
+.imageColumn {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .imageColumn {
+    width: 588px; /* MD — node 1337:2628 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageColumn {
+    width: 748px; /* LG — node 1337:2643 */
+  }
+}
+
+/* Imagem com Location-card sobreposto — mesma técnica de margin-bottom
+   negativo já usada em TravelInfoSection/LightContentSection, mas aqui o
+   próprio Figma usa -68px também em SM (não -52px como nos outros blocos),
+   então o valor fica fixo, sem variação por breakpoint. */
+.imageBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.imageBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 342 / 360; /* SM — node 1352:1150 */
+  border-radius: var(--radius-lg); /* 24px */
+  overflow: hidden;
+  margin-bottom: -68px; /* fora da escala de espaçamento — todos os breakpoints, node 1352:1150 */
+}
+
+@media (min-width: 810px) {
+  .imageBox {
+    aspect-ratio: 588 / 560; /* MD — node 1337:2628 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageBox {
+    aspect-ratio: 748 / 560; /* LG — node 1337:2643 */
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.locationRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .locationRow {
+    justify-content: flex-end;
+    padding-right: var(--space-8); /* 32px */
+  }
+}
+
+.locationSm {
+  display: block;
+}
+
+.locationMd {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .locationSm {
+    display: none;
+  }
+
+  .locationMd {
+    display: block;
+  }
+}

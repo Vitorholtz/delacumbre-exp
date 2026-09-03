@@ -28,21 +28,15 @@
 .imageBox {
   position: relative;
   width: 100%;
+  height: 50vh; /* SM */
   overflow: hidden;
   border-radius: var(--radius-lg); /* 24px — SM */
-  aspect-ratio: 358 / 420; /* node 1352:1057 */
 }
 
 @media (min-width: 810px) {
   .imageBox {
+    height: 75vh; /* MD e LG */
     border-radius: var(--radius-32); /* 32px — MD e LG */
-    aspect-ratio: 1392 / 740; /* node 1278:297 */
-  }
-}
-
-@media (min-width: 1536px) {
-  .imageBox {
-    aspect-ratio: 1872 / 780; /* node 1280:340 */
   }
 }
 
@@ -84,14 +78,9 @@
   }
 }
 
-.presents {
-  composes: text-heading-sm from global;
-  color: var(--color-white);
-}
-
 .stamp {
-  width: 280px;
-  height: 112px;
+  width: 75%;
+  height: auto;
 }
 
 @media (min-width: 810px) {

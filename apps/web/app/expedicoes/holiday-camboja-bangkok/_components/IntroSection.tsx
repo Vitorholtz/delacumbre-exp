@@ -44,15 +44,22 @@ const TRANSITION_MS = 350;
 export default function IntroSection() {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
+  // Direção de onde a foto "entra"/"sai" no slide+blur do .imageWrap — ver
+  // .slideNext/.slidePrev no CSS.
+  const [direction, setDirection] = useState<"next" | "prev">("next");
   const swapTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Ref (não state) porque o setInterval do auto-rotate é criado uma única
   // vez (deps []) e fecha sobre esta função — precisa sempre ler o estado
   // mais recente, não o valor congelado do primeiro render.
   const transitioningRef = useRef(false);
 
-  const swapTo = (nextIndex: number | ((current: number) => number)) => {
+  const swapTo = (
+    nextIndex: number | ((current: number) => number),
+    dir: "next" | "prev" = "next",
+  ) => {
     if (transitioningRef.current) return;
     transitioningRef.current = true;
+    setDirection(dir);
     setVisible(false);
     swapTimeoutRef.current = setTimeout(() => {
       setIndex((current) => {
@@ -67,7 +74,7 @@ export default function IntroSection() {
 
   useEffect(() => {
     const cycle = setInterval(() => {
-      swapTo((current) => current + 1);
+      swapTo((current) => current + 1, "next");
     }, ROTATION_INTERVAL_MS);
 
     return () => {
@@ -78,6 +85,10 @@ export default function IntroSection() {
 
   const slide = SLIDES[index];
   const fadeClass = visible ? styles.fadeVisible : styles.fadeHidden;
+  const slideClass = [
+    visible ? styles.slideVisible : styles.slideHidden,
+    direction === "next" ? styles.slideNext : styles.slidePrev,
+  ].join(" ");
 
   return (
     <section className={styles.section}>
@@ -93,7 +104,7 @@ export default function IntroSection() {
             </div>
 
             <div className={styles.imageOuter}>
-              <div className={`${styles.imageWrap} ${fadeClass}`}>
+              <div className={`${styles.imageWrap} ${slideClass}`}>
                 <Image
                   src={slide.image}
                   alt={slide.alt}
@@ -129,28 +140,28 @@ export default function IntroSection() {
                 <FloatingButton
                   icon="arrow_back"
                   label="Foto anterior"
-                  onClick={() => swapTo((current) => current - 1)}
+                  onClick={() => swapTo((current) => current - 1, "prev")}
                   size="sm"
                   className={styles.sizeSm}
                 />
                 <FloatingButton
                   icon="arrow_forward"
                   label="Próxima foto"
-                  onClick={() => swapTo((current) => current + 1)}
+                  onClick={() => swapTo((current) => current + 1, "next")}
                   size="sm"
                   className={styles.sizeSm}
                 />
                 <FloatingButton
                   icon="arrow_back"
                   label="Foto anterior"
-                  onClick={() => swapTo((current) => current - 1)}
+                  onClick={() => swapTo((current) => current - 1, "prev")}
                   size="md"
                   className={styles.sizeMd}
                 />
                 <FloatingButton
                   icon="arrow_forward"
                   label="Próxima foto"
-                  onClick={() => swapTo((current) => current + 1)}
+                  onClick={() => swapTo((current) => current + 1, "next")}
                   size="md"
                   className={styles.sizeMd}
                 />
@@ -163,7 +174,7 @@ export default function IntroSection() {
                     type="button"
                     aria-label={`Ver foto ${i + 1} de ${SLIDES.length}`}
                     aria-current={i === index}
-                    onClick={() => swapTo(i)}
+                    onClick={() => swapTo(i, i > index ? "next" : "prev")}
                     className={`${styles.dot} ${i === index ? styles.dotActive : ""}`}
                   />
                 ))}

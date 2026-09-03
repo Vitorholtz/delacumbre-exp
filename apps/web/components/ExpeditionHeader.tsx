@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "@delacumbre/design-system/components/layout/Header";
 import Menu from "@delacumbre/design-system/components/layout/Menu";
 
@@ -21,25 +21,12 @@ const socialLinks = [
 ];
 
 export default function ExpeditionHeader() {
-  const [pastHero, setPastHero] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const hero = document.getElementById("hero");
-    if (!hero) return;
-
-    const observer = new IntersectionObserver(([entry]) => {
-      setPastHero(!entry.isIntersecting);
-    });
-    observer.observe(hero);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
       <Header
         backButton={{ label: "Voltar", href: "/" }}
-        scrolled={pastHero}
         logo={{ src: "/hero/delacumbre-logo.svg", alt: "Delacumbre EXP" }}
         menuLabel="Menu"
         onMenuClick={() => setMenuOpen(true)}
