@@ -1,0 +1,64 @@
+.section {
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6); /* 24px — LG, node 1259:239 */
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+/* Sem protótipo dedicado pra SM/MD (só a referência LG, 220px) — escala
+   proporcional na mesma lógica de exceção documentada em docs/BREAKPOINTS.md. */
+.logo {
+  width: 120px;
+  height: 120px;
+}
+
+@media (min-width: 810px) {
+  .logo {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .logo {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+.heading {
+  composes: text-heading-lg from global; /* 36px — SM */
+  font-family: var(--font-display);
+  color: var(--color-white);
+  text-align: center;
+  margin: 0;
+}
+
+@media (min-width: 810px) {
+  .heading {
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+.highlight {
+  color: var(--color-hunyadi-yellow);
+}

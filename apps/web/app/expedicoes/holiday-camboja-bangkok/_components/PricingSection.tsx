@@ -83,7 +83,7 @@ function PricingRow({
 
 export default function PricingSection() {
   return (
-    <section className={styles.section}>
+    <section id="precos" className={styles.section}>
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <p className={styles.heading}>

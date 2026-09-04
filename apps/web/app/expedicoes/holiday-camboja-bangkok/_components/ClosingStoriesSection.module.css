@@ -1,0 +1,328 @@
+/* Sequência de blocos (imagem, texto+imagem, imagem, texto+CTA) entre o
+   Form-section e a Collectibles-section — mesmo respiro de 360px (LG/MD) /
+   200px (SM) entre cada um, medido no Figma (nodes 1337:2712/1276:260/
+   1337:2828/1335:943), reaproveitando o padrão já usado em TextBlockSection
+   pra esse tipo de intervalo entre seções. */
+.section {
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 200px; /* fora da escala de espaçamento — SM */
+}
+
+@media (min-width: 810px) {
+  .content {
+    max-width: 1200px;
+    gap: 360px; /* fora da escala de espaçamento — MD e LG */
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 1520px;
+  }
+}
+
+.heading {
+  composes: text-heading-lg from global; /* 36px — SM */
+  color: var(--color-white);
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .heading {
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+.highlight {
+  color: var(--color-hunyadi-yellow);
+}
+
+.paragraph {
+  composes: text-body-sm from global; /* 16px — SM */
+  color: var(--color-licorice-super-light);
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .paragraph {
+    font-size: var(--text-body-md); /* 18px — MD */
+    line-height: var(--leading-body-md);
+  }
+}
+
+@media (min-width: 1536px) {
+  .paragraph {
+    font-size: var(--text-body-lg); /* 22px — LG */
+    line-height: var(--leading-body-lg);
+  }
+}
+
+/* Bloco de imagem cheia com Location-card sobreposto (nodes 1337:2712/
+   1337:2828) — mesma técnica de margin-bottom negativo já usada em
+   TravelInfoSection/LightContentSection. */
+.imageBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.imageBox {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg); /* 24px */
+  overflow: hidden;
+  margin-bottom: -52px; /* fora da escala de espaçamento — SM */
+}
+
+@media (min-width: 810px) {
+  .imageBox {
+    margin-bottom: -68px; /* fora da escala de espaçamento — MD e LG */
+  }
+}
+
+.imageBox_full {
+  aspect-ratio: 342 / 360; /* SM — sem protótipo dedicado, reaproveita LightContentSection */
+}
+
+@media (min-width: 810px) {
+  .imageBox_full {
+    aspect-ratio: 1200 / 680; /* MD — nodes 1337:2712/1337:2828 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageBox_full {
+    aspect-ratio: 1520 / 780; /* LG — mesma proporção de LightContentSection */
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.locationRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .locationRow {
+    justify-content: flex-end;
+    padding-right: var(--space-8); /* 32px */
+  }
+}
+
+.locationSm {
+  display: block;
+}
+
+.locationMd {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .locationSm {
+    display: none;
+  }
+
+  .locationMd {
+    display: block;
+  }
+}
+
+/* Bloco texto + imagem (node 1276:260) — mesma exceção de breakpoint
+   (1264px) documentada em docs/BREAKPOINTS.md pra coluna de imagem com
+   largura fixa. */
+.textAndImageBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8); /* 32px — SM */
+  width: 100%;
+}
+
+@media (min-width: 1264px) {
+  .textAndImageBlock {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8); /* piso mínimo entre as duas colunas */
+  }
+}
+
+.textColumnInline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px — SM */
+  width: 100%;
+}
+
+@media (min-width: 1264px) {
+  .textColumnInline {
+    flex: 1 0 0;
+    max-width: 486px; /* MD — node 1276:261 */
+    gap: var(--space-14); /* 56px — MD e LG */
+    padding-right: var(--space-12); /* 48px */
+  }
+}
+
+@media (min-width: 1536px) {
+  .textColumnInline {
+    max-width: 620px; /* LG */
+  }
+}
+
+.imageColumnInline {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+@media (min-width: 1264px) {
+  .imageColumnInline {
+    width: 588px; /* MD — node 1337:2770 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageColumnInline {
+    width: 748px; /* LG */
+  }
+}
+
+.imageBox_inline {
+  aspect-ratio: 342 / 360; /* SM — sem protótipo dedicado, reaproveita LightContentSection */
+}
+
+@media (min-width: 1264px) {
+  .imageBox_inline {
+    aspect-ratio: 588 / 560; /* MD — node 1337:2770 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageBox_inline {
+    aspect-ratio: 748 / 560; /* LG */
+  }
+}
+
+/* Bloco texto + CTA (node 1335:943) — mesma composição de duas colunas
+   (heading / parágrafo+botões) já usada no último bloco de LightContentSection. */
+.textOnlyBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px — SM */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .textOnlyBlock {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--space-8); /* piso mínimo entre as duas colunas */
+  }
+}
+
+.textOnlyBlock > .heading {
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .textOnlyBlock > .heading {
+    flex: 1 0 0;
+    max-width: 486px; /* MD */
+  }
+}
+
+@media (min-width: 1536px) {
+  .textOnlyBlock > .heading {
+    max-width: 620px; /* LG */
+  }
+}
+
+.paragraphButtonsGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6); /* 24px — SM */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .paragraphButtonsGroup {
+    flex: 1 0 0;
+    max-width: 486px; /* MD */
+    gap: var(--space-10); /* 40px — MD e LG */
+  }
+}
+
+@media (min-width: 1536px) {
+  .paragraphButtonsGroup {
+    max-width: 620px; /* LG */
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4); /* 16px — SM */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .buttons {
+    gap: var(--space-6); /* 24px — MD */
+  }
+}
+
+@media (min-width: 1536px) {
+  .buttons {
+    flex-direction: row;
+  }
+}
+
+.ctaButton {
+  width: 100%;
+}
+
+@media (min-width: 1536px) {
+  .ctaButton {
+    width: auto;
+    flex: 1 0 0;
+  }
+}

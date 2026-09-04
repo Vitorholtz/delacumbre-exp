@@ -1,17 +1,5 @@
-/* Respiro entre seções — medido a partir do gap real entre este bloco e a
-   Light-content-section anterior no Figma (nodes 1280:436/1280:463):
-   360px de distância em LG e MD, 200px em SM. Nenhum dos dois lados tem
-   padding próprio hoje, então a seção assume o respiro inteiro nas duas
-   pontas. */
 .section {
   width: 100%;
-  padding-block: 200px; /* fora da escala de espaçamento — SM */
-}
-
-@media (min-width: 810px) {
-  .section {
-    padding-block: 360px; /* fora da escala de espaçamento — MD e LG */
-  }
 }
 
 /* wrapper/content — mesmo par documentado em docs/BREAKPOINTS.md */

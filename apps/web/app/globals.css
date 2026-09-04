@@ -46,7 +46,13 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  gap: 360px; /* fora da escala de espaçamento — distância padrão entre seções do site */
+  gap: 200px; /* fora da escala de espaçamento — distância padrão entre seções do site, SM */
+}
+
+@media (min-width: 810px) {
+  main {
+    gap: 360px; /* fora da escala de espaçamento — distância padrão entre seções do site, MD e LG */
+  }
 }
 
 a {

@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import CenasLamentaveis from "@/components/CenasLamentaveis";
+import CollectiblesSection from "@/components/CollectiblesSection";
+import ContactForm from "@/components/ContactForm";
 import ExpeditionHeader from "@/components/ExpeditionHeader";
 import GuidePresentation from "@/components/GuidePresentation";
+import SiteFooter from "@/components/SiteFooter";
+import UltimaChamada from "@/components/UltimaChamada";
 import ChecklistSection from "./_components/ChecklistSection";
+import ClosingStoriesSection from "./_components/ClosingStoriesSection";
 import Hero from "./_components/Hero";
 import IntroSection from "./_components/IntroSection";
 import ItinerarySection from "./_components/ItinerarySection";
@@ -10,6 +15,7 @@ import LightContentSection from "./_components/LightContentSection";
 import MapSection from "./_components/MapSection";
 import PricingSection from "./_components/PricingSection";
 import TextBlockSection from "./_components/TextBlockSection";
+import TransitionSection from "./_components/TransitionSection";
 import TravelInfoSection from "./_components/TravelInfoSection";
 
 const INCLUDED_COLUMNS: [string[], string[]] = [
@@ -57,6 +63,7 @@ export default function HolidayCambojaBangkok() {
       <IntroSection />
       <TravelInfoSection />
       <MapSection />
+      <TransitionSection />
       <LightContentSection />
       <TextBlockSection />
       <CenasLamentaveis />
@@ -77,6 +84,11 @@ export default function HolidayCambojaBangkok() {
         columns={NOT_INCLUDED_COLUMNS}
       />
       <PricingSection />
+      <ContactForm />
+      <ClosingStoriesSection />
+      <CollectiblesSection />
+      <UltimaChamada />
+      <SiteFooter />
     </main>
   );
 }

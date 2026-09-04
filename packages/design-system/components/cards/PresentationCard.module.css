@@ -121,6 +121,10 @@
   color: var(--color-licorice);
 }
 
+.title p {
+  font-family: var(--font-display-aged);
+}
+
 .highlight {
   color: var(--color-russet);
 }
