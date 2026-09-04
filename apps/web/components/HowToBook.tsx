@@ -17,7 +17,7 @@ const STEPS: Step[] = [
     title: "Encontre seu destino",
     description:
       "Veja os próximos destinos contraturísticos abertos, o roteiro dia a dia e quantas vagas ainda restam antes de decidir pra onde vai.",
-    image: "/how-to/destino.png",
+    image: "/how-to/destino.jpg",
     imageAlt: "Cartaz da expedição ao Egito, exemplo de destino contraturístico",
   },
   {

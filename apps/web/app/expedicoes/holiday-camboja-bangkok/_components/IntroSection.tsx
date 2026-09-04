@@ -16,7 +16,7 @@ type Slide = {
 
 const SLIDES: Slide[] = [
   {
-    image: "/expedicoes/holiday-camboja-bangkok/intro/rajadamnern-stadium.png",
+    image: "/expedicoes/holiday-camboja-bangkok/intro/rajadamnern-stadium.jpg",
     alt: "Luta de muay thai no ringue do Rajadamnern Stadium, em Bangkok",
     quote:
       "Soco, cotovelada, joelhada — e uma plateia gritando em tailandês que só faz sentido depois da terceira Chang.",

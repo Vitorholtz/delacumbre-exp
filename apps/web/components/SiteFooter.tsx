@@ -18,7 +18,7 @@ export default function SiteFooter() {
     <>
       <div className={`${styles.slot} ${styles.slotSm}`}>
         <Footer
-          profileImage="/footer/profile-photo.png"
+          profileImage="/footer/profile-photo.jpg"
           profileImageAlt="Foto de perfil de Marcos DeLacumbre, guia da Delacumbre EXP"
           handle="@delacumbre"
           message={message}
@@ -32,7 +32,7 @@ export default function SiteFooter() {
       </div>
       <div className={`${styles.slot} ${styles.slotMd}`}>
         <Footer
-          profileImage="/footer/profile-photo.png"
+          profileImage="/footer/profile-photo.jpg"
           profileImageAlt="Foto de perfil de Marcos DeLacumbre, guia da Delacumbre EXP"
           handle="@delacumbre"
           message={message}

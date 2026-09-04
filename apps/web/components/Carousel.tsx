@@ -30,7 +30,7 @@ type Expedition = {
 const EXPEDITIONS: Expedition[] = [
   {
     slug: "holiday-camboja-bangkok",
-    image: "/carousel/camboja-bangkok.png",
+    image: "/carousel/camboja-bangkok.jpg",
     imageAlt:
       "Monges em trajes laranjas diante do templo de Angkor Wat, refletido na água",
     title: "Holiday in Camboja & Bangkok",
@@ -42,7 +42,7 @@ const EXPEDITIONS: Expedition[] = [
   },
   {
     slug: "egito",
-    image: "/carousel/egito.png",
+    image: "/carousel/egito.jpg",
     imageAlt: "Marcos DeLacumbre caminhando pelas pirâmides de Gizé, no Egito",
     title: "Egito",
     vagasLabel: "5/10 vagas",
@@ -53,7 +53,7 @@ const EXPEDITIONS: Expedition[] = [
   },
   {
     slug: "mauritania",
-    image: "/carousel/mauritania.png",
+    image: "/carousel/mauritania.jpg",
     imageAlt:
       "Viajantes deitados sobre um vagão de minério cruzando o deserto do Saara, na Mauritânia",
     title: "Mauritânia",
@@ -65,7 +65,7 @@ const EXPEDITIONS: Expedition[] = [
   },
   {
     slug: "grande-muralha",
-    image: "/carousel/china.png",
+    image: "/carousel/china.jpg",
     imageAlt: "Trecho da Grande Muralha da China entre montanhas",
     title: "A Grande Muralha",
     vagasLabel: "5/10 vagas",

@@ -8,7 +8,7 @@ export default function Hero() {
       <div className={styles.imageWrapper}>
         <div className={styles.imageBox}>
           <Image
-            src="/expedicoes/holiday-camboja-bangkok/hero/hero-bg.png"
+            src="/expedicoes/holiday-camboja-bangkok/hero/hero-bg.jpg"
             alt=""
             fill
             priority

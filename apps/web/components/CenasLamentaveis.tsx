@@ -18,7 +18,7 @@ const TITLE_REPEATS = 6; // largura de sobra pra cobrir monitores ultra-wide sem
 
 const IMAGES: MarqueeImage[] = [
   {
-    src: "/cenas-lamentaveis/img-3576.png",
+    src: "/cenas-lamentaveis/img-3576.jpg",
     alt: "Grupo reunido numa festa à luz de ventilador de teto",
     ratio: 680 / 420,
     // Crop customizado do Figma (não é o center-crop padrão) — mantém o
@@ -26,32 +26,32 @@ const IMAGES: MarqueeImage[] = [
     objectPosition: "36% 84%",
   },
   {
-    src: "/cenas-lamentaveis/img-9358.png",
+    src: "/cenas-lamentaveis/img-9358.jpg",
     alt: "Cena noturna da expedição",
     ratio: 237 / 420,
   },
   {
-    src: "/cenas-lamentaveis/tuk-tuk.png",
+    src: "/cenas-lamentaveis/tuk-tuk.jpg",
     alt: "Grupo se divertindo em cima de um tuk-tuk à noite",
     ratio: 315 / 420,
   },
   {
-    src: "/cenas-lamentaveis/abraco.png",
+    src: "/cenas-lamentaveis/abraco.jpg",
     alt: "Dupla dançando animada num bar com banda ao vivo",
     ratio: 315 / 420,
   },
   {
-    src: "/cenas-lamentaveis/img-9386.png",
+    src: "/cenas-lamentaveis/img-9386.jpg",
     alt: "Cena da expedição num corredor iluminado",
     ratio: 315 / 420,
   },
   {
-    src: "/cenas-lamentaveis/img-9363.png",
+    src: "/cenas-lamentaveis/img-9363.jpg",
     alt: "Cena noturna da expedição",
     ratio: 315 / 420,
   },
   {
-    src: "/cenas-lamentaveis/foto-1.png",
+    src: "/cenas-lamentaveis/foto-1.jpg",
     alt: "Viajante caracterizado com chifres de diabinho",
     ratio: 236 / 420,
   },

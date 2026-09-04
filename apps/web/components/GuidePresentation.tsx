@@ -10,7 +10,7 @@ export default function GuidePresentation() {
       <div className={styles.content}>
         <div className={`${styles.slot} ${styles.slotSm}`}>
           <PresentationCard
-            image="/travel-guide/Marcos-Delacumbre.png"
+            image="/travel-guide/Marcos-Delacumbre.jpg"
             imageAlt="Marcos DeLacumbre segurando réplicas de armas em um campo"
             titleLine1="Muito prazer, sou"
             highlightName="Marcos DeLacumbre"
@@ -23,7 +23,7 @@ export default function GuidePresentation() {
         </div>
         <div className={`${styles.slot} ${styles.slotMd}`}>
           <PresentationCard
-            image="/travel-guide/Marcos-Delacumbre.png"
+            image="/travel-guide/Marcos-Delacumbre.jpg"
             imageAlt="Marcos DeLacumbre segurando réplicas de armas em um campo"
             titleLine1="Muito prazer, sou"
             highlightName="Marcos DeLacumbre"
@@ -36,7 +36,7 @@ export default function GuidePresentation() {
         </div>
         <div className={`${styles.slot} ${styles.slotLg}`}>
           <PresentationCard
-            image="/travel-guide/Marcos-Delacumbre.png"
+            image="/travel-guide/Marcos-Delacumbre.jpg"
             imageAlt="Marcos DeLacumbre segurando réplicas de armas em um campo"
             titleLine1="Muito prazer, sou"
             highlightName="Marcos DeLacumbre"
