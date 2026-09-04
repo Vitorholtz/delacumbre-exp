@@ -51,7 +51,13 @@ function Media({ item }: { item: GalleryMediaItem }) {
       playsInline
     />
   ) : (
-    <img src={item.src} alt={item.alt} className={styles.media} />
+    <img
+      src={item.src}
+      alt={item.alt}
+      className={styles.media}
+      loading="lazy"
+      decoding="async"
+    />
   );
 }
 

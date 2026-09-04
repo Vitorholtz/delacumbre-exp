@@ -54,7 +54,13 @@ export default function HowToCard({
         style={mediaColor ? { background: mediaColor } : undefined}
       >
         {image ? (
-          <img src={image} alt={imageAlt ?? ""} className={styles.image} />
+          <img
+            src={image}
+            alt={imageAlt ?? ""}
+            className={styles.image}
+            loading="lazy"
+            decoding="async"
+          />
         ) : null}
       </div>
     </div>

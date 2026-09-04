@@ -30,7 +30,13 @@ export default function ExpeditionImageCard({
   return (
     <div className={classes}>
       <div className={styles.imageWrap}>
-        <img src={image} alt={imageAlt} className={styles.image} />
+        <img
+          src={image}
+          alt={imageAlt}
+          className={styles.image}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <div className={styles.locationWrap}>
         <LocationCard

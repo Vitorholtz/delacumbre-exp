@@ -58,7 +58,13 @@ export default function GalleryThumb({
           preload="metadata"
         />
       ) : (
-        <img src={src} alt="" className={styles.media} />
+        <img
+          src={src}
+          alt=""
+          className={styles.media}
+          loading="lazy"
+          decoding="async"
+        />
       )}
       <span className={styles.overlay} aria-hidden="true" />
       {type === "video" ? (

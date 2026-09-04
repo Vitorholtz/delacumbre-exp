@@ -53,7 +53,13 @@ export default function CheckoutCard({
   return (
     <div className={classes}>
       <div className={styles.hero}>
-        <img src={image} alt={imageAlt} className={styles.heroImage} />
+        <img
+          src={image}
+          alt={imageAlt}
+          className={styles.heroImage}
+          loading="lazy"
+          decoding="async"
+        />
         <div className={styles.heroVignette} aria-hidden="true" />
       </div>
 

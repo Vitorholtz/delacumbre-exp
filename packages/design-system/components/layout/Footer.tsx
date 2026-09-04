@@ -77,6 +77,8 @@ export default function Footer({
                 src={profileImage}
                 alt={profileImageAlt}
                 className={styles.picture}
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p className={`${styles.handle} text-body-lg`}>{handle}</p>
@@ -112,6 +114,8 @@ export default function Footer({
               src={footerArtworkDesktop}
               alt=""
               className={styles.artworkImage}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         )}
@@ -138,6 +142,8 @@ export default function Footer({
               src={footerArtworkMobile}
               alt=""
               className={styles.artworkImage}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         )}
