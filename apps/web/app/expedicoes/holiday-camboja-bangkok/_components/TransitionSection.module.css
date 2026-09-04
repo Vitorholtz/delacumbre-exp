@@ -3,24 +3,11 @@
 }
 
 .wrapper {
-  width: 100%;
-  padding-inline: var(--space-6); /* 24px — SM mobile */
+  composes: container from global;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-6); /* 24px — LG, node 1259:239 */
-}
-
-@media (min-width: 768px) {
-  .wrapper {
-    padding-inline: var(--space-12); /* 48px — SM tablet */
-  }
-}
-
-@media (min-width: 810px) {
-  .wrapper {
-    padding-inline: var(--space-8); /* 32px — MD e LG */
-  }
 }
 
 /* Sem protótipo dedicado pra SM/MD (só a referência LG, 220px) — escala

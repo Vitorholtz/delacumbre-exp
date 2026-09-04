@@ -18,6 +18,9 @@ import TextBlockSection from "./_components/TextBlockSection";
 import TransitionSection from "./_components/TransitionSection";
 import TravelInfoSection from "./_components/TravelInfoSection";
 
+const EXPEDITION_HREF = "/expedicoes/holiday-camboja-bangkok";
+const EXPEDITION_NAME = "Holiday in Camboja & Bangkok";
+
 const INCLUDED_COLUMNS: [string[], string[]] = [
   [
     "Seguro saúde",
@@ -86,8 +89,17 @@ export default function HolidayCambojaBangkok() {
       <PricingSection />
       <ContactForm />
       <ClosingStoriesSection />
-      <CollectiblesSection />
-      <UltimaChamada />
+      <CollectiblesSection
+        expeditionName={EXPEDITION_NAME}
+        vacancies="5/10 vagas"
+      />
+      <UltimaChamada
+        expeditionHref={EXPEDITION_HREF}
+        expeditionName={EXPEDITION_NAME}
+        stampSrc="/ultima-chamada/selo-expedicao.png"
+        stampAlt="Selo da Expedição Holiday in Camboja & Bangkok — Ásia, Abril, 2027"
+        pdfHref="#"
+      />
       <SiteFooter />
     </main>
   );

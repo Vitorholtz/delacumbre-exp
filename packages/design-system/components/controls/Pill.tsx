@@ -1,7 +1,8 @@
 import Icon from "../primitives/Icon";
+import { labelTextClassBySize, type SelectableControlSize } from "./selectableControlSize";
 import styles from "./Pill.module.css";
 
-type PillSize = "lg" | "md" | "sm";
+type PillSize = SelectableControlSize;
 
 type PillProps = {
   label: string;
@@ -15,12 +16,6 @@ const iconSizeBySize: Record<PillSize, 20 | 24 | 28> = {
   lg: 28,
   md: 24,
   sm: 20,
-};
-
-const labelTextClassBySize: Record<PillSize, string> = {
-  lg: "text-body-md",
-  md: "text-body-sm",
-  sm: "text-caption",
 };
 
 export default function Pill({

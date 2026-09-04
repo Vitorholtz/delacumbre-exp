@@ -91,41 +91,15 @@
 }
 
 .wrapper {
-  width: 100%;
-  padding-inline: var(--space-6); /* 24px — SM mobile */
-}
-
-@media (min-width: 768px) {
-  .wrapper {
-    padding-inline: var(--space-12); /* 48px — SM tablet */
-  }
-}
-
-@media (min-width: 810px) {
-  .wrapper {
-    padding-inline: var(--space-8); /* 32px — MD e LG */
-  }
+  composes: container from global;
 }
 
 .content {
-  width: 100%;
-  margin-inline: auto;
+  composes: container-inner from global;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-10); /* 40px */
-}
-
-@media (min-width: 810px) {
-  .content {
-    max-width: 1200px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .content {
-    max-width: 1520px;
-  }
 }
 
 .description {

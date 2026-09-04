@@ -189,27 +189,13 @@
 }
 
 /* Conteúdo — mesmo par wrapper/content reproduzido no resto do projeto
-   (docs/BREAKPOINTS.md). */
+   (docs/BREAKPOINTS.md), via composes do utilitário do design system. */
 .wrapper {
-  width: 100%;
-  padding-inline: var(--space-6); /* 24px — SM mobile */
-}
-
-@media (min-width: 768px) {
-  .wrapper {
-    padding-inline: var(--space-12); /* 48px — SM tablet */
-  }
-}
-
-@media (min-width: 810px) {
-  .wrapper {
-    padding-inline: var(--space-8); /* 32px — MD e LG */
-  }
+  composes: container from global;
 }
 
 .content {
-  width: 100%;
-  margin-inline: auto;
+  composes: container-inner from global;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -218,14 +204,7 @@
 
 @media (min-width: 810px) {
   .content {
-    max-width: 1200px;
     gap: 96px; /* fora da escala de espaçamento — MD e LG, ver .imageLocationWrapper */
-  }
-}
-
-@media (min-width: 1536px) {
-  .content {
-    max-width: 1520px;
   }
 }
 

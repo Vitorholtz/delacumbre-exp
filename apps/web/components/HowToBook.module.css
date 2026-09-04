@@ -19,9 +19,8 @@
 }
 
 .inner {
-  width: 100%;
+  composes: container from global;
   padding-block: var(--space-16); /* 64px — respiro no fallback estático */
-  padding-inline: var(--space-6); /* 24px — SM mobile */
 }
 
 .pinned .inner {
@@ -31,11 +30,11 @@
 }
 
 .content {
+  composes: container-inner from global;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-10); /* 40px */
-  width: 100%;
 }
 
 .pinned .content {
@@ -104,22 +103,7 @@
 }
 
 
-@media (min-width: 768px) {
-  .inner {
-    padding-inline: var(--space-12); /* 48px — SM tablet */
-  }
-}
-
 @media (min-width: 810px) {
-  .inner {
-    padding-inline: var(--space-8); /* 32px — MD e LG */
-  }
-
-  .content {
-    max-width: 75rem; /* 1200px */
-    margin-inline: auto;
-  }
-
   .heading {
     font-size: var(--text-display-lg);
     line-height: var(--leading-display-lg);
@@ -179,10 +163,6 @@
 }
 
 @media (min-width: 1536px) {
-  .content {
-    max-width: 95rem; /* 1520px */
-  }
-
   .description {
     font-size: var(--text-body-lg);
     line-height: var(--leading-body-lg);

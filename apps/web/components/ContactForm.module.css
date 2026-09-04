@@ -1,15 +1,14 @@
 .wrapper {
-  width: 100%;
-  padding-inline: var(--space-6); /* 24px — SM mobile */
+  composes: container from global;
   padding-block: var(--space-16); /* 64px — respiro, seção não tem isso no protótipo estático do Figma */
 }
 
 .content {
+  composes: container-inner from global;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-10); /* 40px */
-  width: 100%;
 }
 
 .title {
@@ -74,23 +73,11 @@
   color: var(--color-hunyadi-yellow);
 }
 
-@media (min-width: 768px) {
-  .wrapper {
-    padding-inline: var(--space-12); /* 48px — SM tablet */
-  }
-}
-
 @media (min-width: 810px) {
-  .wrapper {
-    padding-inline: var(--space-8); /* 32px — MD e LG */
-  }
-
   .content {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    max-width: 75rem; /* 1200px */
-    margin-inline: auto;
   }
 
   .title {
@@ -140,10 +127,6 @@
 }
 
 @media (min-width: 1536px) {
-  .content {
-    max-width: 95rem; /* 1520px */
-  }
-
   .title {
     max-width: 490px;
   }

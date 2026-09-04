@@ -55,8 +55,8 @@
      *entre* itens) fica sem espaço nenhum. Aplicado nas duas metades pra
      manter as duas com a mesma largura (senão o -50% do translateX não
      cairia exatamente na emenda, e o loop perderia a costura). */
-  gap: 64px; /* SM */
-  margin-right: 64px; /* SM */
+  gap: 64px; /* SM — fora da escala de espaçamento, ver comentário acima */
+  margin-right: 64px; /* SM — fora da escala de espaçamento, ver comentário acima */
 }
 
 .titlePhrase {
@@ -167,8 +167,8 @@
   }
 
   .titleTrackHalf {
-    gap: 108px; /* MD e LG */
-    margin-right: 108px; /* MD e LG */
+    gap: 108px; /* MD e LG — fora da escala de espaçamento, ver comentário acima */
+    margin-right: 108px; /* MD e LG — fora da escala de espaçamento, ver comentário acima */
   }
 
   .titleTrack {

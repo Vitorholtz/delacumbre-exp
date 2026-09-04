@@ -1,14 +1,13 @@
 .wrapper {
-  width: 100%;
-  padding-inline: var(--space-6); /* 24px — SM mobile */
+  composes: container from global;
 }
 
 .content {
+  composes: container-inner from global;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-10); /* 40px — SM */
-  width: 100%;
 }
 
 .stamp {
@@ -59,21 +58,9 @@
   flex: 1 0 0;
 }
 
-@media (min-width: 768px) {
-  .wrapper {
-    padding-inline: var(--space-12); /* 48px — SM tablet */
-  }
-}
-
 @media (min-width: 810px) {
-  .wrapper {
-    padding-inline: var(--space-8); /* 32px — MD e LG */
-  }
-
   .content {
     gap: var(--space-14); /* 56px — MD */
-    max-width: 75rem; /* 1200px */
-    margin-inline: auto;
   }
 
   .text {
@@ -93,7 +80,6 @@
 @media (min-width: 1536px) {
   .content {
     gap: var(--space-10); /* 40px — LG */
-    max-width: 95rem; /* 1520px */
   }
 
   .stamp {
