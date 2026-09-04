@@ -1,0 +1,259 @@
+.section {
+  width: 100%;
+}
+
+/* wrapper/content — mesmo par documentado em docs/BREAKPOINTS.md */
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 96px; /* fora da escala de espaçamento — SM/MD/LG, nodes 1352:1420/1270:1258/1280:670 */
+}
+
+@media (min-width: 810px) {
+  .content {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 1520px;
+  }
+}
+
+.heading {
+  composes: text-heading-lg from global; /* 36px — SM */
+  color: var(--color-white);
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 810px) {
+  .heading {
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+.highlight {
+  color: var(--color-hunyadi-yellow);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 3 cards de preço — 3 variantes (sm/md/lg) trocadas por display por     */
+/* breakpoint, mesmo padrão de ChecklistSection/ItinerarySection nesta     */
+/* página (PricingCard expõe tamanho explícito, sem media query interna,  */
+/* docs/BREAKPOINTS.md).                                                  */
+/* ---------------------------------------------------------------------- */
+
+.row {
+  width: 100%;
+}
+
+.rowSm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6); /* 24px */
+  max-width: 540px; /* fora da escala de espaçamento — SM */
+  margin-inline: auto;
+}
+
+.rowMd,
+.rowLg {
+  display: none;
+}
+
+/* Exceção ao breakpoint técnico padrão (810px) — ver docs/BREAKPOINTS.md.
+   Os 3 cards MD não têm largura fixa aqui (.rowMd .cardFill sobrescreve pra
+   flex:1 0 0 sem piso), mas a largura "confortável" de cada um é 384px
+   (PricingCard.module.css .md) — 3×384 + 2 gaps de 24px + padding lateral
+   de 64px = 1264px. Abaixo disso os cards encolhem além do previsto e os
+   títulos quebram/apertam (mesmo racional do LightContentSection/
+   TextBlockSection/HowToBook). Fica empilhado (rowSm) até 1264px. */
+@media (min-width: 1264px) {
+  .rowSm {
+    display: none;
+  }
+
+  .rowMd {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-6); /* 24px */
+  }
+}
+
+@media (min-width: 1536px) {
+  .rowMd {
+    display: none;
+  }
+
+  .rowLg {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-6); /* 24px */
+  }
+}
+
+/* Largura dos cards — em SM cada um ocupa 100% (empilhado, node
+   1352:1423/24/25: "w-full" no próprio Pricing-card). Em MD/LG os 3 cards
+   preenchem a fileira em partes iguais (node 1269:1257/1284:1475:
+   "flex-[1_0_0]" no próprio Pricing-card) — por isso o `flex`/`width` aqui
+   sobrescreve o tamanho fixo de PricingCard.module.css (.sm/.md/.lg). Essa
+   sobrescrita usa um seletor descendente (.rowMd .cardFill, 2 classes) de
+   propósito: como width/flex têm a mesma especificidade de .lg/.md/.sm (1
+   classe cada), sem esse reforço o resultado dependeria da ordem de import
+   dos dois CSS Modules — frágil. */
+.cardStacked {
+  width: 100%;
+}
+
+/* O 3º card (Parcelamento direto, com bloco extra "Como funciona") é o
+   mais alto e fica com altura natural (align-self:flex-start) — os outros
+   2 esticam pra acompanhar (align-self:stretch), com o
+   justify-content:space-between de PricingCard.card colando o botão
+   embaixo quando esticado. */
+.rowMd .cardFill,
+.rowLg .cardFill {
+  flex: 1 0 0;
+  width: auto;
+  align-self: stretch;
+}
+
+.rowMd .cardFillAuto,
+.rowLg .cardFillAuto {
+  flex: 1 0 0;
+  width: auto;
+  align-self: flex-start;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Bloco "IMPORTANTE"                                                     */
+/* ---------------------------------------------------------------------- */
+
+.warningList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-10); /* 40px — SM, node 1352:1426 */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .warningList {
+    gap: var(--space-14); /* 56px — MD e LG, nodes 1191:2365/1280:676 */
+  }
+}
+
+.warningHeading {
+  composes: text-heading-lg from global; /* 36px — SM */
+  color: var(--color-white);
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 810px) {
+  .warningHeading {
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+/* Coluna estreita só pro texto de aviso, mais estreita que o resto da
+   seção — mesma lógica de max-width + centralização automática de
+   docs/BREAKPOINTS.md, calculada a partir do padding extra que o Figma usa
+   aqui (386px em LG/1520px, 204px em MD/1200px) em vez do padding fixo
+   replicado ao pé da letra (que não escalaria fora das resoluções de
+   referência). */
+.warningItems {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-8); /* 32px */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .warningItems {
+    max-width: 792px; /* MD — node 1191:2368: 1200 - 2*204 */
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 1536px) {
+  .warningItems {
+    max-width: 748px; /* LG — node 1280:678: 1520 - 2*386 */
+  }
+}
+
+.warningItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2); /* 8px */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .warningItem {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.warningIcon {
+  flex-shrink: 0;
+  width: 24px; /* SM — nodes 1352:1430/1352:1435 */
+  height: 24px;
+}
+
+@media (min-width: 810px) {
+  .warningIcon {
+    width: 28px; /* MD e LG — nodes 1191:2399/1280:680 */
+    height: 28px;
+  }
+}
+
+.warningText {
+  composes: text-body-sm from global; /* 16px — SM */
+  color: var(--color-licorice-super-light);
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 810px) {
+  .warningText {
+    flex: 1 0 0;
+    font-size: var(--text-body-md); /* 18px — MD */
+    line-height: var(--leading-body-md);
+  }
+}
+
+@media (min-width: 1536px) {
+  .warningText {
+    font-size: var(--text-body-lg); /* 22px — LG */
+    line-height: var(--leading-body-lg);
+  }
+}

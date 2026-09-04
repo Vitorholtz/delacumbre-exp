@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 export const kanit = Kanit({
   variable: "--font-kanit",
   subsets: ["latin"],
-  weight: ["300", "500"],
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 

@@ -207,6 +207,43 @@ sendo CSS `min()`/`max()`/`calc()` puro dentro de cada tier — o único uso
 de breakpoint aqui é pra trocar qual piso está em vigor, igual a qualquer
 outro ajuste por tier no projeto.
 
+**Blocos texto+imagem/card com coluna fixa — vira `row` em 1264px, não
+810px.** Padrão recorrente: uma coluna de texto fluida (`flex: 1 0 0`,
+max-width 486px MD) ao lado de uma coluna de imagem ou card com **largura
+fixa** (588px MD — não fluida). Entre 810px e 1264px o container já assume
+`max-width: 1200px`, mas descontando o padding lateral (32px×2), a coluna
+fixa de 588px não sobra espaço pra conviver com a de texto sem espremê-la.
+1264px = 1200px (max-width do container, valendo desde 810px) + 64px de
+padding — o ponto em que a largura fixa finalmente cabe com folga. Sem
+protótipo dedicado pra essa faixa intermediária (mesmo racional do
+Hero/Carousel abaixo), esses blocos reaproveitam o layout empilhado da
+referência SM até 1264px em vez de forçar o `row` do MD cedo demais.
+Onde a imagem tem aspect-ratio dependente da largura (`.imageBox_inline`
+etc.), o breakpoint da proporção acompanha a mesma exceção, pra não assumir
+a proporção widescreen do MD enquanto ainda está empilhada em largura
+total. Componentes que seguem esse padrão hoje:
+
+- `LightContentSection` (`.textAndImageBlock`) —
+  `apps/web/app/expedicoes/holiday-camboja-bangkok/_components/`.
+- `TextBlockSection` (`.content`/`.textColumn`/`.imageColumn`) — mesma
+  pasta.
+- `HowToBook` (`.content`/`.textCol`/`.stack_md`, card `HowToCard` size
+  `md`) — `apps/web/components/`, usado também na home
+  (`apps/web/app/page.tsx`).
+
+O mesmo problema também aparece numa variação sem coluna fixa:
+`PricingSection` (`.rowSm`/`.rowMd`) tem 3 `PricingCard` lado a lado com
+`flex: 1 0 0` sem piso — nenhuma largura é tecnicamente fixa, mas a largura
+"confortável" de cada card MD é 384px (`PricingCard.module.css` `.md`), e
+3×384px + 2 gaps de 24px + padding lateral de 64px também somam 1264px.
+Abaixo disso os cards encolhem além do previsto e os títulos quebram/
+apertam — mesma exceção, mesmo breakpoint, mecanismo um pouco diferente
+(flex sem piso em vez de largura fixa).
+
+Ao criar um bloco novo desse mesmo formato (texto fluido + coluna com
+largura fixa), aplique 1264px como o breakpoint de `row` por padrão, em vez
+de repetir 810px e reintroduzir o mesmo squeeze.
+
 ## Objetivo
 
 Essa estratégia existe para ser simples, consistente, previsível, fácil

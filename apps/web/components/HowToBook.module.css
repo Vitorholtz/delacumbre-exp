@@ -116,11 +116,33 @@
   }
 
   .content {
+    max-width: 75rem; /* 1200px */
+    margin-inline: auto;
+  }
+
+  .heading {
+    font-size: var(--text-display-lg);
+    line-height: var(--leading-display-lg);
+  }
+
+  .description {
+    font-size: var(--text-body-md);
+    line-height: var(--leading-body-md);
+  }
+}
+
+/* Exceção ao breakpoint técnico padrão (810px) — ver docs/BREAKPOINTS.md.
+   O HowToCard(md) do stack tem largura fixa (588px), não fluida; entre
+   810px e 1264px não sobra espaço pra ele conviver ao lado do .textCol
+   (max-width 486px) sem espremer o texto — mesmo racional do
+   LightContentSection/TextBlockSection. Fica no stack empilhado (sm) até
+   1264px, mesmo já com o max-width de 1200px do .content valendo desde
+   810px. */
+@media (min-width: 1264px) {
+  .content {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    max-width: 75rem; /* 1200px */
-    margin-inline: auto;
   }
 
   .textCol {
@@ -132,16 +154,6 @@
   .heading,
   .description {
     width: auto;
-  }
-
-  .heading {
-    font-size: var(--text-display-lg);
-    line-height: var(--leading-display-lg);
-  }
-
-  .description {
-    font-size: var(--text-body-md);
-    line-height: var(--leading-body-md);
   }
 
   .stack_sm,

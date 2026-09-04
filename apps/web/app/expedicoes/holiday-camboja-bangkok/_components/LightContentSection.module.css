@@ -91,6 +91,7 @@
    no resto do projeto (Hero, IntroSection, TravelInfoSection). */
 .heading {
   composes: text-heading-lg from global; /* 36px — SM */
+  font-family: var(--font-display-aged);
   color: var(--color-licorice);
   margin: 0;
   width: 100%;
@@ -109,6 +110,7 @@
 
 .paragraph {
   composes: text-body-sm from global; /* 16px — SM */
+  font-weight: 400; /* teste de legibilidade — peso intermediário entre --weight-body-light (300) e --weight-body-medium (500); sem token próprio ainda, ver packages/design-system/lib/fonts.ts */
   color: var(--color-licorice);
   margin: 0;
   width: 100%;
@@ -137,7 +139,15 @@
   width: 100%;
 }
 
-@media (min-width: 810px) {
+/* Exceção ao breakpoint técnico padrão (810px) — ver docs/BREAKPOINTS.md.
+   A coluna de imagem tem largura fixa (588px), não fluida; entre 810px e
+   1264px não sobra espaço pra ela conviver com a coluna de texto (max-width
+   486px) sem espremer o texto. 1264px = 486 (texto) + 32 (gap) + 588
+   (imagem) + 64 (padding lateral 32px×2 do .wrapper) já com o max-width de
+   1200px do .content valendo a partir de 810px. Sem protótipo dedicado pra
+   essa faixa (mesmo racional do Hero/Carousel), então ela reaproveita o
+   layout empilhado da referência SM em vez de espremer o MD cedo demais. */
+@media (min-width: 1264px) {
   .textAndImageBlock {
     flex-direction: row;
     align-items: center;
@@ -154,7 +164,7 @@
   width: 100%;
 }
 
-@media (min-width: 810px) {
+@media (min-width: 1264px) {
   .textColumnInline {
     flex: 1 0 0;
     max-width: 486px; /* MD — node 1259:243 */
@@ -174,7 +184,7 @@
   width: 100%;
 }
 
-@media (min-width: 810px) {
+@media (min-width: 1264px) {
   .imageColumnInline {
     width: 588px; /* MD — node 1337:2410 */
   }
@@ -213,7 +223,10 @@
   aspect-ratio: 342 / 360; /* SM — node 1352:1132 */
 }
 
-@media (min-width: 810px) {
+/* Acompanha a mesma exceção de .textAndImageBlock acima — a proporção
+   widescreen só faz sentido quando a coluna de imagem de fato encolhe pra
+   588px fixos; antes disso (empilhada) ela mantém a proporção retrato do SM. */
+@media (min-width: 1264px) {
   .imageBox_inline {
     aspect-ratio: 588 / 560; /* MD — node 1337:2410 */
   }

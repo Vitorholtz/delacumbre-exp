@@ -44,16 +44,27 @@
 @media (min-width: 810px) {
   .content {
     max-width: 1200px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-8); /* piso mínimo entre as duas colunas */
   }
 }
 
 @media (min-width: 1536px) {
   .content {
     max-width: 1520px;
+  }
+}
+
+/* Exceção ao breakpoint técnico padrão (810px) — ver docs/BREAKPOINTS.md.
+   A coluna de imagem tem largura fixa (588px), não fluida; entre 810px e
+   1264px não sobra espaço pra ela conviver com a coluna de texto (max-width
+   486px) sem espremer o texto. 1264px = max-width de 1200px do .content já
+   valendo (a partir de 810px) + padding lateral (32px×2). Mesmo racional do
+   LightContentSection. */
+@media (min-width: 1264px) {
+  .content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8); /* piso mínimo entre as duas colunas */
   }
 }
 
@@ -65,7 +76,7 @@
   width: 100%;
 }
 
-@media (min-width: 810px) {
+@media (min-width: 1264px) {
   .textColumn {
     flex: 1 0 0;
     max-width: 486px; /* MD — node 1259:318 */
@@ -124,7 +135,7 @@
   width: 100%;
 }
 
-@media (min-width: 810px) {
+@media (min-width: 1264px) {
   .imageColumn {
     width: 588px; /* MD — node 1337:2628 */
   }
@@ -156,7 +167,9 @@
   margin-bottom: -68px; /* fora da escala de espaçamento — todos os breakpoints, node 1352:1150 */
 }
 
-@media (min-width: 810px) {
+/* Acompanha a mesma exceção de .content acima — a proporção widescreen só
+   faz sentido quando a imagem de fato encolhe pra 588px fixos. */
+@media (min-width: 1264px) {
   .imageBox {
     aspect-ratio: 588 / 560; /* MD — node 1337:2628 */
   }

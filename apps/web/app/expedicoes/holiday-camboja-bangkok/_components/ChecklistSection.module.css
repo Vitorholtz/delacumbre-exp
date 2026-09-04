@@ -1,0 +1,124 @@
+.section {
+  width: 100%;
+}
+
+/* wrapper/content — mesmo par documentado em docs/BREAKPOINTS.md */
+.wrapper {
+  width: 100%;
+  padding-inline: var(--space-6); /* 24px — SM mobile */
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-inline: var(--space-12); /* 48px — SM tablet */
+  }
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    padding-inline: var(--space-8); /* 32px — MD e LG */
+  }
+}
+
+.content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px — SM, nodes 1388:3152/1388:3193 */
+}
+
+@media (min-width: 810px) {
+  .content {
+    max-width: 1200px;
+    gap: var(--space-14); /* 56px — MD e LG, nodes 1191:1303/1388:2960 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .content {
+    max-width: 1520px;
+  }
+}
+
+.heading {
+  composes: text-heading-lg from global; /* 36px — SM */
+  color: var(--color-white);
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .heading {
+    font-size: var(--text-display-lg); /* 56px — MD e LG */
+    line-height: var(--leading-display-lg);
+  }
+}
+
+.highlightPositive {
+  color: var(--color-hunyadi-yellow);
+}
+
+.highlightNegative {
+  color: var(--color-russet);
+}
+
+/* Wrapper das duas colunas — 3 variantes (sm/md/lg) trocadas por
+   display:none/flex por breakpoint, mesmo padrão de LocationCard/arrows
+   já usado nas outras seções desta página (IntroSection, TextBlockSection).
+   Em SM os dois List-container ficam empilhados como uma lista só (mesmo
+   gap de 16px entre item e entre grupo, node 1388:3154); em MD/LG viram
+   2 colunas lado a lado. */
+.listWrapper {
+  width: 100%;
+  gap: var(--space-4); /* 16px */
+}
+
+.listWrapperSm {
+  display: flex;
+  flex-direction: column;
+}
+
+.listWrapperMd,
+.listWrapperLg {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .listWrapperSm {
+    display: none;
+  }
+
+  .listWrapperMd {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-6); /* 24px — column-gap */
+  }
+}
+
+@media (min-width: 1536px) {
+  .listWrapperMd {
+    display: none;
+  }
+
+  .listWrapperLg {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-6); /* 24px — column-gap */
+  }
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4); /* 16px */
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .listContainer {
+    flex: 1 0 0;
+  }
+}

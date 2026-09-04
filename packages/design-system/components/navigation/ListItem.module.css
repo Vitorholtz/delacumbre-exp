@@ -22,8 +22,12 @@
   padding: 0.125rem; /* 2px */
 }
 
-.icon {
+.icon.positive {
   color: var(--color-hunyadi-yellow);
+}
+
+.icon.negative {
+  color: var(--color-russet);
 }
 
 .label {
