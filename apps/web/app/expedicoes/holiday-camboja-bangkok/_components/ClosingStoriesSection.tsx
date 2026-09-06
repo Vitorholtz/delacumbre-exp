@@ -86,12 +86,8 @@ export default function ClosingStoriesSection() {
             </div>
           </div>
 
-          {/* TODO: asset também veio quebrado do Figma (mesmo problema do
-              shooting range acima) — falta a foto real da bênção do monge.
-              Caminho já reservado em public/expedicoes/holiday-camboja-bangkok/
-              closing/monk-blessing.jpg, adicionar o arquivo assim que existir. */}
           <FullImageBlock
-            src="/expedicoes/holiday-camboja-bangkok/closing/monk-blessing.jpg"
+            src="/expedicoes/holiday-camboja-bangkok/closing/monk.jpg"
             alt="Monge fazendo uma bênção sobre um viajante, cercado de imagens sagradas"
             name="Bênção do monge"
             country="Bangkok • Tailândia"

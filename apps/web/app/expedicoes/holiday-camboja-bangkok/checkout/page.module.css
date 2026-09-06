@@ -1,0 +1,172 @@
+.wrapper {
+  composes: container from global;
+}
+
+.inner {
+  composes: container-inner from global;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-12); /* 48px — SM, node 1425:2787 */
+  padding-block: var(--space-8); /* 32px — SM, node 1425:2783 (py) */
+}
+
+@media (min-width: 810px) {
+  .inner {
+    gap: 80px; /* fora da escala de espaçamento — MD/LG, nodes 1425:2171/2607 (gap) */
+    padding-block: var(--space-14); /* 56px — MD/LG, nodes 1425:2171/2607 (py) */
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6); /* 24px — SM, node 1425:2784 */
+  width: 100%;
+}
+
+/* Exceção de 1264px (não 810px) pro form+card virarem linha — ver
+   docs/BREAKPOINTS.md e o mesmo racional já aplicado em
+   PricingSection.module.css: Form-wrapper e CheckoutCard são flex:1 0 0
+   sem piso mínimo dentro de um pai justify-content:space-between (sem gap
+   literal — o espaço entre as colunas é sobra do space-between, não um
+   token). O parágrafo do cabeçalho segue a mesma régua porque sua largura
+   já nasce igual à da coluna do card (nodes 1425:2608/2531/2784). */
+@media (min-width: 1264px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+.headerText {
+  composes: text-body-sm from global; /* 16px — SM */
+  color: var(--color-licorice-super-light);
+  width: 100%;
+  margin: 0;
+}
+
+@media (min-width: 810px) {
+  .headerText {
+    font-size: var(--text-body-md); /* 18px — MD e LG */
+    line-height: var(--leading-body-md);
+  }
+}
+
+@media (min-width: 1264px) {
+  .headerText {
+    flex: 1 0 0;
+    width: auto;
+    max-width: 486px; /* MD — node 1425:2533 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .headerText {
+    max-width: 620px; /* LG — node 1425:2610 */
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-12); /* 48px — SM, node 1425:2787 */
+  width: 100%;
+}
+
+@media (min-width: 1264px) {
+  .content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px — consistente nos 3 frames */
+  width: 100%;
+}
+
+@media (min-width: 1264px) {
+  .formWrapper {
+    flex: 1 0 0;
+    width: auto;
+    max-width: 588px; /* MD — node 1425:2105 */
+  }
+}
+
+@media (min-width: 1536px) {
+  .formWrapper {
+    max-width: 748px; /* LG — node 1425:2612 */
+  }
+}
+
+.heading {
+  composes: text-heading-lg from global; /* 36px/40px — igual nos 3 frames */
+  color: var(--color-white);
+  width: 100%;
+  margin: 0;
+}
+
+/* CheckoutCard trocado por tamanho (sm/md/lg) nos breakpoints técnicos
+   padrão — mesmo padrão de GuidePresentation.module.css .slotSm/.slotMd/
+   .slotLg — independente da exceção de 1264px acima, que só decide
+   linha-vs-coluna do layout ao redor. */
+.cardSlot {
+  display: none;
+  width: 100%;
+}
+
+.cardSlotSm {
+  display: flex;
+}
+
+@media (min-width: 810px) {
+  .cardSlotSm {
+    display: none;
+  }
+
+  .cardSlotMd {
+    display: flex;
+  }
+}
+
+@media (min-width: 1536px) {
+  .cardSlotMd {
+    display: none;
+  }
+
+  .cardSlotLg {
+    display: flex;
+  }
+}
+
+@media (min-width: 1264px) {
+  .cardSlot {
+    width: auto;
+  }
+}
+
+/* CheckoutCard.module.css dá largura fixa por tamanho (.sm/.md/.lg) — o
+   Figma pede w-full enquanto o conteúdo está empilhado (node 1425:2891),
+   não a largura fixa centralizada. Seletor de 2 classes (mesma técnica de
+   PricingSection.module.css .rowMd .cardFill) pra vencer a especificidade
+   de .sm/.md/.lg sem depender de ordem de import entre os dois módulos.
+   Único uso de max-width (em vez do padrão mobile-first min-width) do
+   arquivo: a regra precisa desaparecer inteira a partir de 1264px, não só
+   trocar de valor — "width: auto" ainda venceria o .md/.lg do
+   CheckoutCard.module.css (mesma especificidade de 2 classes) e encolheria
+   o card pro conteúdo em vez de devolver os 486px/620px fixos. */
+@media (max-width: 1263px) {
+  .cardSlot .cardFull {
+    width: 100%;
+  }
+}

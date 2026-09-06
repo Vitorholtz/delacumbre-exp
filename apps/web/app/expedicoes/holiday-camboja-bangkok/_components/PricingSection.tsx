@@ -1,53 +1,9 @@
 import Image from "next/image";
 import PricingCard from "@delacumbre/design-system/components/cards/PricingCard";
+import { PRICING_OPTIONS } from "./PricingSection.data";
 import styles from "./PricingSection.module.css";
 
-type PricingCardData = Omit<
-  Parameters<typeof PricingCard>[0],
-  "size" | "className"
->;
-
-const CARDS: PricingCardData[] = [
-  {
-    title: "À vista (10% OFF)",
-    pricePrefix: "R$",
-    priceValue: "7190",
-    priceSuffix: "no PIX",
-    secondaryAmount: { prefix: "US$", value: "800" },
-    secondaryCaption: "pagos em Bangkok",
-    includedItems: ["Economia de R$800"],
-  },
-  {
-    title: "Cartão de crédito",
-    installmentLabel: "12x de",
-    pricePrefix: "R$",
-    priceValue: "665",
-    priceSuffix: "sem juros",
-    totalAmounts: [
-      { prefix: "R$", value: "7990 " },
-      { prefix: "US$", value: "800" },
-    ],
-    totalCaption: "pagos em Bangkok",
-    includedItems: [
-      "Sem entrada",
-      "Parcelamento sem juros",
-      "Mais praticidade",
-    ],
-  },
-  {
-    title: "Parcelamento direto (5% OFF)",
-    pricePrefix: "R$",
-    priceValue: "7590",
-    priceSuffix: "em partes",
-    secondaryAmount: { prefix: "US$", value: "800" },
-    secondaryCaption: "pagos em Bangkok",
-    howToItems: [
-      "Entrada de R$ 4.590",
-      "Saldo de R$ 3.000 parcelado via PIX",
-    ],
-    includedItems: ["Ideal para quem prefere evitar o cartão."],
-  },
-];
+const EXPEDITION_HREF = "/expedicoes/holiday-camboja-bangkok";
 
 function PricingRow({
   size,
@@ -60,8 +16,8 @@ function PricingRow({
 
   return (
     <div className={className}>
-      {CARDS.map((card, index) => {
-        const isLast = index === CARDS.length - 1;
+      {PRICING_OPTIONS.map((option, index) => {
+        const isLast = index === PRICING_OPTIONS.length - 1;
         const cardClassName = isStacked
           ? styles.cardStacked
           : isLast
@@ -70,10 +26,11 @@ function PricingRow({
 
         return (
           <PricingCard
-            key={card.title}
-            {...card}
+            key={option.id}
+            {...option}
             size={size}
             className={cardClassName}
+            buttonHref={`${EXPEDITION_HREF}/checkout?pagamento=${option.id}`}
           />
         );
       })}

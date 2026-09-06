@@ -1,0 +1,62 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-10); /* 40px */
+  width: 100%;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6); /* 24px */
+  width: 100%;
+}
+
+.inputsRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6); /* 24px */
+  width: 100%;
+}
+
+.field {
+  width: 100%;
+}
+
+/* Escopado a `.form` (em vez de `.submitDesktop`/`.submitCompact` soltas)
+   de propósito: o Button já define `display: inline-flex` na própria
+   classe raiz (mesma especificidade de seletor único), e qual das duas
+   vence dependeria da ordem de concatenação dos dois CSS Modules no bundle
+   — não confiável. Com o pai no seletor, a especificidade fica maior e
+   sempre vence, independente da ordem (mesmo motivo do IntroSection.module.css). */
+.form .submitDesktop {
+  display: none;
+}
+
+.form .submitCompact {
+  width: 100%;
+}
+
+/* Linha de 2 campos: empilhada abaixo de 810px, lado a lado a partir daí —
+   mesmo padrão de ContactForm.module.css .inputsRow (não é o formato
+   "coluna fixa" da exceção de 1264px em docs/BREAKPOINTS.md, é só uma
+   dupla de campos fluidos). */
+@media (min-width: 810px) {
+  .inputsRow {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .field {
+    flex: 1 0 0;
+  }
+
+  .form .submitDesktop {
+    display: flex;
+  }
+
+  .form .submitCompact {
+    display: none;
+  }
+}
