@@ -7,6 +7,7 @@ import {
 } from "@delacumbre/design-system/lib/fonts";
 import SmoothScroll from "@/components/SmoothScroll";
 import GrainOverlay from "@/components/GrainOverlay";
+import LoadingScreen from "@/components/LoadingScreen";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <SmoothScroll />
         <GrainOverlay />
+        <LoadingScreen />
         {children}
       </body>
     </html>

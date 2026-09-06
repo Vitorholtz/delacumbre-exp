@@ -1,0 +1,106 @@
+/* Cobre a tela inteira até tudo (imagens, fontes, scripts) carregar — ver
+   node 1827:3220 do Figma. Sem breakpoints dedicados: é uma composição
+   circular centralizada, então escala fluida (clamp/%) cobre SM/MD/LG
+   sem precisar de 3 variantes. */
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: 500; /* acima do Menu (200) — abaixo do GrainOverlay (999), que cobre tudo sempre */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-10); /* 40px */
+  background: var(--color-licorice);
+  overscroll-behavior: contain;
+  /* Mesmo efeito de aparição do Menu (ver Menu.module.css): sai de um leve
+     desfoque até ficar nítido, em vez de só um fade simples. */
+  opacity: 0;
+  filter: blur(16px);
+  transition:
+    opacity 0.5s ease-out,
+    filter 0.5s ease-out;
+}
+
+.entered {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-out;
+}
+
+.stamp {
+  position: relative;
+  width: clamp(220px, 45vw, 320px);
+  aspect-ratio: 1;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-white-20);
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: spin-ccw 18s linear infinite;
+}
+
+@keyframes spin-ccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.ringText {
+  font-family: var(--font-display-aged);
+  font-size: 43px; /* fora da escala de tipografia (SVG decorativo) — viewBox em escala 1:1 com o Figma (selo 489px) */
+  letter-spacing: 0.05em;
+}
+
+.ringTextMuted {
+  fill: var(--color-dune);
+}
+
+.ringTextHighlight {
+  fill: var(--color-hunyadi-yellow);
+}
+
+.mascotWrap {
+  /* Fica parado enquanto o anel gira ao redor — por isso é uma camada
+     separada (ver LoadingScreen.tsx) em vez de fazer parte do mesmo SVG
+     do texto. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 49%;
+  aspect-ratio: 1;
+}
+
+.mascot {
+  object-fit: contain;
+}
+
+.label {
+  composes: text-body-md from global;
+  color: var(--color-licorice-super-light);
+  margin: 0;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen {
+    transition: none;
+  }
+
+  .ring {
+    animation: none;
+  }
+}
