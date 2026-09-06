@@ -136,20 +136,31 @@
   }
 }
 
-.sizeSm {
+/* Escopado a `.start`/`.end` (em vez de `.sizeSm`/`.sizeMd` soltas) de
+   propósito: FloatingButton e MenuButton já definem `display: inline-flex`
+   na própria classe raiz (mesma especificidade de seletor único), e qual
+   das duas vence dependeria da ordem de concatenação dos dois CSS Modules
+   no bundle — não confiável. Com o pai no seletor, a especificidade fica
+   maior e sempre vence, independente da ordem (mesmo motivo do
+   IntroSection.module.css). */
+.start .sizeSm,
+.end .sizeSm {
   display: inline-flex;
 }
 
-.sizeMd {
+.start .sizeMd,
+.end .sizeMd {
   display: none;
 }
 
 @media (min-width: 810px) {
-  .sizeSm {
+  .start .sizeSm,
+  .end .sizeSm {
     display: none;
   }
 
-  .sizeMd {
+  .start .sizeMd,
+  .end .sizeMd {
     display: inline-flex;
   }
 }

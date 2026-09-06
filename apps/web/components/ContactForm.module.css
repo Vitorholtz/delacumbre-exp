@@ -59,11 +59,17 @@
   width: 100%;
 }
 
-.submitDesktop {
+/* Escopado a `.form` (em vez de `.submitDesktop`/`.submitCompact` soltas)
+   de propósito: o Button já define `display: inline-flex` na própria
+   classe raiz (mesma especificidade de seletor único), e qual das duas
+   vence dependeria da ordem de concatenação dos dois CSS Modules no bundle
+   — não confiável. Com o pai no seletor, a especificidade fica maior e
+   sempre vence, independente da ordem (mesmo motivo do IntroSection.module.css). */
+.form .submitDesktop {
   display: none;
 }
 
-.submitCompact {
+.form .submitCompact {
   width: 100%;
 }
 
@@ -116,12 +122,12 @@
     flex: 1 0 0;
   }
 
-  .submitDesktop {
+  .form .submitDesktop {
     display: flex;
     width: 280px;
   }
 
-  .submitCompact {
+  .form .submitCompact {
     display: none;
   }
 }

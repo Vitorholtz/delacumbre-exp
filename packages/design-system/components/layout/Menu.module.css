@@ -255,7 +255,13 @@
   width: 100%;
 }
 
-.socialLink {
+/* Escopado a `.socialLinks` (em vez de `.socialLink` solta) de propósito: o
+   Hyperlink já define `color: var(--color-hunyadi-yellow)` na própria
+   classe raiz (mesma especificidade de seletor único), e qual das duas
+   vence dependeria da ordem de concatenação dos dois CSS Modules no bundle
+   — não confiável. Com o pai no seletor, a especificidade fica maior e
+   sempre vence, independente da ordem (mesmo motivo do IntroSection.module.css). */
+.socialLinks .socialLink {
   color: var(--color-white);
 }
 

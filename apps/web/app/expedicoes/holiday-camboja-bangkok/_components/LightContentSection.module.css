@@ -253,20 +253,26 @@
   }
 }
 
-.locationSm {
+/* Escopado a `.locationRow` (em vez de `.locationSm`/`.locationMd` soltas)
+   de propósito: o LocationCard já define `display: inline-flex` na própria
+   classe raiz (mesma especificidade de seletor único), e qual das duas
+   vence dependeria da ordem de concatenação dos dois CSS Modules no bundle
+   — não confiável. Com o pai no seletor, a especificidade fica maior e
+   sempre vence, independente da ordem (mesmo motivo do IntroSection.module.css). */
+.locationRow .locationSm {
   display: block;
 }
 
-.locationMd {
+.locationRow .locationMd {
   display: none;
 }
 
 @media (min-width: 810px) {
-  .locationSm {
+  .locationRow .locationSm {
     display: none;
   }
 
-  .locationMd {
+  .locationRow .locationMd {
     display: block;
   }
 }

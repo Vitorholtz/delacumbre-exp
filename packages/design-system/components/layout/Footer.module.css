@@ -143,6 +143,7 @@
 }
 
 .md .links {
+  flex-wrap: wrap;
   gap: var(--space-16); /* 64px */
   justify-content: flex-end;
 }
@@ -153,7 +154,13 @@
   justify-content: center;
 }
 
-.socialLink {
+/* Escopado a `.links` (em vez de `.socialLink` solta) de propósito: o
+   Hyperlink já define `color: var(--color-hunyadi-yellow)` na própria
+   classe raiz (mesma especificidade de seletor único), e qual das duas
+   vence dependeria da ordem de concatenação dos dois CSS Modules no bundle
+   — não confiável. Com o pai no seletor, a especificidade fica maior e
+   sempre vence, independente da ordem (mesmo motivo do IntroSection.module.css). */
+.links .socialLink {
   color: var(--color-white);
 }
 
@@ -212,6 +219,9 @@
   overflow: clip;
 }
 
-.developerLink {
+/* Mesmo motivo do .socialLink acima: escopado a `.copyrights` pra vencer
+   com segurança o `color: var(--color-hunyadi-yellow)` da própria classe
+   raiz do Hyperlink. */
+.copyrights .developerLink {
   color: inherit;
 }

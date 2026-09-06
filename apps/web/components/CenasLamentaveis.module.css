@@ -144,13 +144,19 @@
 
 /* CTA — reaproveita o Button do design system nos dois tamanhos, trocando
    por CSS (mesmo padrão do Hero), sem prop de tamanho responsiva no próprio
-   Button. */
+   Button. Escopado a `.wrapper` (em vez de `.ctaDesktop`/`.ctaCompact`
+   soltas) de propósito: o Button já define `display: inline-flex` na
+   própria classe raiz (mesma especificidade de seletor único), e qual das
+   duas vence dependeria da ordem de concatenação dos dois CSS Modules no
+   bundle — não confiável. Com o pai no seletor, a especificidade fica
+   maior e sempre vence, independente da ordem (mesmo motivo do
+   IntroSection.module.css). */
 
-.ctaDesktop {
+.wrapper .ctaDesktop {
   display: none;
 }
 
-.ctaCompact {
+.wrapper .ctaCompact {
   display: inline-flex;
 }
 
@@ -187,11 +193,11 @@
     width: 320px; /* MD e LG */
   }
 
-  .ctaDesktop {
+  .wrapper .ctaDesktop {
     display: inline-flex;
   }
 
-  .ctaCompact {
+  .wrapper .ctaCompact {
     display: none;
   }
 }
