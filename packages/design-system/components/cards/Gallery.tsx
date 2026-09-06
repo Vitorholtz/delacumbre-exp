@@ -49,6 +49,8 @@ export default function Gallery({ items, className }: GalleryProps) {
             src={item.src}
             alt={item.alt}
             onClick={openAt(index)}
+            className={styles.item}
+            style={{ aspectRatio: item.ratio ?? 1 }}
           />
         ))}
       </div>

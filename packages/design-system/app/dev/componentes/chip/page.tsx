@@ -37,8 +37,8 @@ export default function ChipPage() {
       <section className={styles.section}>
         <h2 className="text-heading-md">Mini pill</h2>
         <div className={styles.row}>
-          <Chip label="Camboja & Bangkok 2026" miniPill />
-          <Chip label="Camboja & Bangkok 2026" miniPill selected />
+          <Chip label="Camboja & Bangkok 2026" miniPillLabel="Em breve" />
+          <Chip label="Camboja & Bangkok 2026" miniPillLabel="Novo" selected />
         </div>
       </section>
 
@@ -59,7 +59,7 @@ export default function ChipPage() {
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import Chip from "@/components/controls/Chip";\n\n<Chip label="Camboja & Bangkok 2026" icon="hiking" />\n<Chip label="Camboja & Bangkok 2026" selected onClick={...} />\n<Chip label="Camboja & Bangkok 2026" showIcon={false} miniPill />`}
+          {`import Chip from "@/components/controls/Chip";\n\n<Chip label="Camboja & Bangkok 2026" icon="hiking" />\n<Chip label="Camboja & Bangkok 2026" selected onClick={...} />\n<Chip label="Camboja & Bangkok 2026" showIcon={false} miniPillLabel="Novo" />`}
         </pre>
       </section>
     </main>

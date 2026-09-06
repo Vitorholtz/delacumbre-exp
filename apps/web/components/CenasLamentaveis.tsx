@@ -130,11 +130,10 @@ export default function CenasLamentaveis() {
         </div>
       </div>
 
-      {/* Abre a galeria de imagens — componente ainda não existe, ver tarefa futura */}
       <Button
         variant="primary"
         size="lg"
-        href="#"
+        href="/galeria"
         className={styles.ctaDesktop}
       >
         Quero imagens!
@@ -142,7 +141,7 @@ export default function CenasLamentaveis() {
       <Button
         variant="primary"
         size="md"
-        href="#"
+        href="/galeria"
         className={styles.ctaCompact}
       >
         Quero imagens!

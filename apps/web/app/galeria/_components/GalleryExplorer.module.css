@@ -1,0 +1,131 @@
+.chipRow {
+  composes: container from global;
+}
+
+.chipRowInner {
+  composes: container-inner from global;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4); /* 16px — igual nos 3 frames */
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chipRowInner::-webkit-scrollbar {
+  display: none;
+}
+
+.chipRowInner > * {
+  flex-shrink: 0;
+}
+
+@media (min-width: 810px) {
+  .chipRowInner {
+    justify-content: center;
+  }
+}
+
+/* Gallery-container tem uma exceção ao `.container` padrão: em SM o
+   padding lateral cai pra 4px (em vez dos 24px/48px de container.css) pra
+   as fotos ocuparem quase a tela toda — nodes 1397:1970/1976. Reproduzido
+   à mão (em vez de `composes: container`) porque a única diferença real é
+   esse padding, e sobrepor `padding-inline` de duas classes CSS-module
+   soltas dependeria de ordem de import (mesmo risco já documentado em
+   Header.module.css). */
+.galleryContainer {
+  width: 100%;
+  padding-inline: var(--space-1); /* 4px — SM */
+}
+
+@media (min-width: 810px) {
+  .galleryContainer {
+    padding-inline: var(--space-8); /* 32px — MD/LG, igual ao .container padrão */
+  }
+}
+
+.galleryContainerInner {
+  composes: container-inner from global;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4); /* 16px — igual nos 3 frames */
+  width: 100%;
+}
+
+.topHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  padding-inline: var(--space-2); /* 8px — SM, node 1397:1971 */
+}
+
+@media (min-width: 810px) {
+  .topHeading {
+    padding-inline: var(--space-4); /* 16px — MD/LG, nodes 1395:1797/1397:1884 */
+  }
+}
+
+.filtersList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4); /* 16px */
+}
+
+/* ListItem/Hyperlink já definem display na própria classe raiz (mesma
+   especificidade de seletor único) — escopado ao pai, igual ao padrão de
+   Header.module.css .start .sizeSm/.sizeMd, pra sempre vencer independente
+   da ordem de import entre os CSS Modules. */
+.filtersList .statSizeSm,
+.topHeading > .statSizeSm {
+  display: inline-flex;
+}
+
+.filtersList .statSizeLg,
+.topHeading > .statSizeLg {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .filtersList .statSizeSm,
+  .topHeading > .statSizeSm {
+    display: none;
+  }
+
+  .filtersList .statSizeLg,
+  .topHeading > .statSizeLg {
+    display: inline-flex;
+  }
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4); /* 16px */
+  width: 100%;
+  padding: var(--space-16) var(--space-6); /* 64px 24px */
+  text-align: center;
+  background: var(--color-licorice-light);
+  border-radius: var(--radius-md);
+}
+
+.emptyIcon {
+  color: var(--color-white-50);
+}
+
+.emptyTitle {
+  composes: text-heading-sm from global;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.emptyText {
+  composes: text-body-sm from global;
+  color: var(--color-licorice-super-light);
+  max-width: 32rem; /* 512px */
+  margin: 0;
+}

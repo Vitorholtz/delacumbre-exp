@@ -7,7 +7,8 @@ type ChipProps = {
   icon?: string;
   showIcon?: boolean;
   selected?: boolean;
-  miniPill?: boolean;
+  /** Texto do mini pill de destaque (ex: "Em breve", "Novo"). Ausente = sem mini pill. */
+  miniPillLabel?: string;
   className?: string;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className">;
 
@@ -16,7 +17,7 @@ export default function Chip({
   icon = "hiking",
   showIcon = true,
   selected = false,
-  miniPill = false,
+  miniPillLabel,
   className,
   ...rest
 }: ChipProps) {
@@ -33,8 +34,10 @@ export default function Chip({
     <button type="button" className={classes} aria-pressed={selected} {...rest}>
       {showIcon && <Icon name={icon} className={styles.icon} />}
       <span className={`${styles.label} text-body-sm`}>{label}</span>
-      {miniPill && (
-        <span className={`${styles.miniPill} text-caption-xs`}>Em breve</span>
+      {miniPillLabel && (
+        <span className={`${styles.miniPill} text-caption-xs`}>
+          {miniPillLabel}
+        </span>
       )}
     </button>
   );

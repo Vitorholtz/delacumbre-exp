@@ -2,9 +2,46 @@
   width: 100%;
 }
 
+/* Masonry via CSS multi-column (não CSS Grid) de propósito: cada item
+   define sua própria altura pelo aspect-ratio real da mídia (ver
+   GalleryMediaItem.ratio), e `columns` empilha verticalmente dentro de
+   cada coluna sem precisar calcular spans de linha manualmente — o efeito
+   vertical/horizontal/quadrado pedido nasce disso de graça. */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11.25rem, 1fr));
-  gap: var(--space-4); /* 16px */
+  columns: 3;
+  column-gap: var(--space-1); /* 4px — SM, node 1397:1976 */
   width: 100%;
+}
+
+@media (min-width: 810px) {
+  .grid {
+    column-gap: var(--space-2); /* 8px — MD/LG, nodes 1395:1802/1397:1889 */
+    background: var(--color-licorice-light); /* MD/LG, nodes 1395:1802/1397:1889 */
+    padding: var(--space-2); /* 8px — MD/LG (Figma pede 16px, reduzido a pedido) */
+    border-radius: var(--radius-md); /* 16px — MD/LG */
+  }
+}
+
+.item {
+  display: block;
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: var(--space-1); /* 4px — SM */
+}
+
+@media (min-width: 810px) {
+  .item {
+    margin-bottom: var(--space-2); /* 8px — MD/LG */
+  }
+}
+
+/* Seletor de 2 classes (mesma técnica de PricingSection.module.css
+   .rowMd .cardFill) pra vencer a especificidade de `.thumb` do
+   GalleryThumb.module.css sem depender de ordem de import — só o raio
+   muda em SM (4px vs 8px), o overflow:hidden que faz o corte valer já
+   vem do próprio `.thumb`. */
+@media (max-width: 809px) {
+  .grid .item {
+    border-radius: 4px; /* fora da escala de raio — SM, node 1397:1976 */
+  }
 }

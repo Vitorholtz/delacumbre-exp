@@ -10,6 +10,8 @@ export type GalleryMediaItem = {
   type: "image" | "video";
   src: string;
   alt: string;
+  /** Largura/altura real da mídia — controla a proporção do item no masonry (padrão 1, quadrado). */
+  ratio?: number;
 };
 
 type GallerySliderProps = {

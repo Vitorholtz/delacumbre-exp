@@ -1,0 +1,66 @@
+/* Header do site é `position: fixed` (Header.module.css), então não
+   empurra o conteúdo abaixo dele — esse padding-top reproduz à mão o
+   respiro que o Figma desenha com o header em fluxo normal (altura do
+   header + 48px de gap, nodes 1397:1861/1395:1774/1397:1948). */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12); /* 48px — igual nos 3 frames */
+  width: 100%;
+  padding-top: 128px; /* fora da escala — header fixo (~80px em SM) + 48px de respiro */
+}
+
+@media (min-width: 810px) {
+  .page {
+    padding-top: 168px; /* fora da escala — header fixo (120px em MD/LG) + 48px de respiro */
+  }
+}
+
+.titleSection {
+  composes: container from global;
+}
+
+.titleSectionInner {
+  composes: container-inner from global;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8); /* 32px — igual nos 3 frames */
+  text-align: center;
+}
+
+.title {
+  composes: text-heading-lg from global; /* 36px/40px — SM/MD, nodes 1397:1962/1395:1788 */
+  color: var(--color-white);
+  max-width: 49.5rem; /* 792px */
+  margin: 0;
+}
+
+@media (min-width: 1536px) {
+  .title {
+    font-size: var(--text-heading-xl); /* 44px — LG, node 1397:1875 */
+    line-height: var(--leading-heading-xl);
+  }
+}
+
+.description {
+  composes: text-body-sm from global; /* 16px — SM */
+  color: var(--color-licorice-super-light);
+  max-width: 49.5rem; /* 792px */
+  margin: 0;
+}
+
+@media (min-width: 810px) {
+  .description {
+    font-size: var(--text-body-md); /* 18px — MD */
+    line-height: var(--leading-body-md);
+  }
+}
+
+@media (min-width: 1536px) {
+  .description {
+    font-size: var(--text-body-lg); /* 22px — LG */
+    line-height: var(--leading-body-lg);
+  }
+}
