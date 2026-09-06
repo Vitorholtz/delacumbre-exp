@@ -7,38 +7,30 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-12); /* 48px — SM, node 1425:2787 */
+  gap: var(--space-12); /* 48px — igual nos 3 frames, nodes 1425:2787/2171/2607 */
   padding-block: var(--space-8); /* 32px — SM, node 1425:2783 (py) */
 }
 
 @media (min-width: 810px) {
   .inner {
-    gap: 80px; /* fora da escala de espaçamento — MD/LG, nodes 1425:2171/2607 (gap) */
     padding-block: var(--space-14); /* 56px — MD/LG, nodes 1425:2171/2607 (py) */
   }
 }
 
+/* Título + botão de fechar lado a lado em qualquer largura (nodes
+   1425:2784/2531/1816:3132) — items-start no SM porque o título quebra em
+   2 linhas nesse tier (heading-lg de 36px numa coluna estreita) e o botão
+   deve alinhar com a primeira linha, não com o bloco inteiro. */
 .header {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-6); /* 24px — SM, node 1425:2784 */
+  justify-content: space-between;
   width: 100%;
 }
 
-/* Exceção de 1264px (não 810px) pro form+card virarem linha — ver
-   docs/BREAKPOINTS.md e o mesmo racional já aplicado em
-   PricingSection.module.css: Form-wrapper e CheckoutCard são flex:1 0 0
-   sem piso mínimo dentro de um pai justify-content:space-between (sem gap
-   literal — o espaço entre as colunas é sobra do space-between, não um
-   token). O parágrafo do cabeçalho segue a mesma régua porque sua largura
-   já nasce igual à da coluna do card (nodes 1425:2608/2531/2784). */
-@media (min-width: 1264px) {
+@media (min-width: 810px) {
   .header {
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: 0;
   }
 }
 
@@ -53,20 +45,6 @@
   .headerText {
     font-size: var(--text-body-md); /* 18px — MD e LG */
     line-height: var(--leading-body-md);
-  }
-}
-
-@media (min-width: 1264px) {
-  .headerText {
-    flex: 1 0 0;
-    width: auto;
-    max-width: 486px; /* MD — node 1425:2533 */
-  }
-}
-
-@media (min-width: 1536px) {
-  .headerText {
-    max-width: 620px; /* LG — node 1425:2610 */
   }
 }
 
@@ -112,7 +90,6 @@
 .heading {
   composes: text-heading-lg from global; /* 36px/40px — igual nos 3 frames */
   color: var(--color-white);
-  width: 100%;
   margin: 0;
 }
 

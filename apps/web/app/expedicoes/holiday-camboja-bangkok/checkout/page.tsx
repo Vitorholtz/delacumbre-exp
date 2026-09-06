@@ -26,20 +26,16 @@ export default async function CheckoutPage({
       <div className={styles.wrapper}>
         <div className={styles.inner}>
           <header className={styles.header}>
-            <FloatingButton
-              icon="arrow_back"
-              label="Voltar para preços"
-              href={PRICING_HREF}
-            />
-            <p className={styles.headerText}>
-              Confira os detalhes da sua expedição e informe seus dados para
-              que o líder entre em contato.
-            </p>
+            <p className={styles.heading}>Confirmar reserva</p>
+            <FloatingButton icon="close" label="Fechar" href={PRICING_HREF} />
           </header>
 
           <div className={styles.content}>
             <div className={styles.formWrapper}>
-              <p className={styles.heading}>Confirmar reserva</p>
+              <p className={styles.headerText}>
+                Confira os detalhes da sua expedição e informe seus dados
+                para que o líder entre em contato.
+              </p>
               <CheckoutForm />
             </div>
 
