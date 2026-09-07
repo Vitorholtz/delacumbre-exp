@@ -74,10 +74,8 @@ export default function Hero() {
         loop
         muted
         playsInline
-        // Só o essencial pra decidir o autoplay — o vídeo é decorativo e
-        // não deveria puxar o carregamento da página inteira por conta
-        // dele (ver LoadingScreen.tsx, que por isso mesmo não espera
-        // vídeos, só fontes + imagens não-lazy).
+        // Só o essencial pra decidir o autoplay — vídeo decorativo não
+        // precisa baixar o arquivo inteiro de cara.
         preload="metadata"
         aria-hidden="true"
       />
