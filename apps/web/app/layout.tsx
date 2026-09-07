@@ -5,7 +5,7 @@ import {
   kanit,
   materialSymbolsSharp,
 } from "@delacumbre/design-system/lib/fonts";
-import SmoothScroll from "@/components/SmoothScroll";
+import ScrollToTopOnNavigate from "@/components/ScrollToTopOnNavigate";
 import GrainOverlay from "@/components/GrainOverlay";
 import "./globals.css";
 
@@ -21,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${kanit.variable} ${berringer.variable} ${berringerAged.variable} ${materialSymbolsSharp.variable}`}
     >
       <body>
-        <SmoothScroll />
+        <ScrollToTopOnNavigate />
         <GrainOverlay />
         {children}
       </body>
