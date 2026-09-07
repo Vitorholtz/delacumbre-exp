@@ -7,6 +7,17 @@ import styles from "./LoadingScreen.module.css";
 const SAFETY_TIMEOUT_MS = 6000; // trava de segurança — nunca prende o usuário além disso, mesmo se algum recurso não terminar
 const MIN_VISIBLE_MS = 900; // evita um "flash" quando tudo já está em cache (load quase instantâneo)
 const FADE_OUT_MS = 400; // tem que bater com a transition de .hidden no CSS
+const PHRASE_INTERVAL_MS = 2600;
+
+// Só decorativo (ver aria-hidden no <p>) — o status real já é anunciado uma
+// única vez pelo aria-label do container, então essas variações não
+// precisam (e não deveriam) ser lidas em voz alta a cada troca.
+const PHRASES = [
+  "Carregando sua experiência",
+  "Preparando a expedição",
+  "Ajustando a rota",
+  "Arrumando a bagagem",
+];
 
 function whenImageLoaded(img: HTMLImageElement) {
   if (img.complete) return Promise.resolve();
@@ -35,18 +46,17 @@ function whenEverythingReady() {
 
 export default function LoadingScreen() {
   const ringPathId = useId();
-  const [entered, setEntered] = useState(false);
   const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [phraseIndex, setPhraseIndex] = useState(0);
 
   useEffect(() => {
-    // Mesma técnica do Menu (ver Menu.tsx): monta já no estado "de fora"
-    // (blur + opacity 0) e só na próxima animation frame liga o estado
-    // "entered", pra garantir que o navegador pinte o estado inicial antes
-    // de disparar a transition — senão o CSS não tem "de onde" animar.
-    const raf = requestAnimationFrame(() => setEntered(true));
-    return () => cancelAnimationFrame(raf);
-  }, []);
+    if (ready) return;
+    const interval = setInterval(() => {
+      setPhraseIndex((i) => (i + 1) % PHRASES.length);
+    }, PHRASE_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [ready]);
 
   useEffect(() => {
     const start = Date.now();
@@ -79,7 +89,7 @@ export default function LoadingScreen() {
 
   return (
     <div
-      className={`${styles.screen} ${entered ? styles.entered : ""} ${ready ? styles.hidden : ""}`}
+      className={`${styles.screen} ${ready ? styles.hidden : ""}`}
       role="status"
       aria-live="polite"
       aria-label="Carregando sua experiência"
@@ -121,11 +131,22 @@ export default function LoadingScreen() {
             fill
             sizes="160px"
             className={styles.mascot}
+            // Sem isso o Next trata como lazy: não gera <link rel="preload">
+            // e fica fora do filtro `eagerImages` de whenEverythingReady()
+            // (ver abaixo) — a tela de loading passava a "ready" sem
+            // esperar o próprio mascote carregar.
+            priority
           />
         </div>
       </div>
 
-      <p className={styles.label}>Carregando sua experiência</p>
+      {/* aria-hidden: o status já foi anunciado uma vez pelo aria-label do
+          container acima — sem isso, cada troca de frase reacionaria o
+          aria-live="polite" e ficaria lendo "carregando" a cada poucos
+          segundos. */}
+      <p className={styles.label} aria-hidden="true" key={phraseIndex}>
+        {PHRASES[phraseIndex]}
+      </p>
     </div>
   );
 }
