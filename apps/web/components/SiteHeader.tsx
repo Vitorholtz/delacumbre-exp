@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Header from "@delacumbre/design-system/components/layout/Header";
 import Menu from "@delacumbre/design-system/components/layout/Menu";
+import FixedPortal from "@/components/FixedPortal";
 
 const navLinks = [
   { label: "Destinos", href: "#destinos" },
@@ -36,7 +37,7 @@ export default function SiteHeader() {
   }, []);
 
   return (
-    <>
+    <FixedPortal>
       <Header
         scrolled={pastHero}
         logoVisibility="onScroll"
@@ -59,6 +60,6 @@ export default function SiteHeader() {
           logo={{ src: "/hero/delacumbre-logo.svg", alt: "Delacumbre EXP" }}
         />
       )}
-    </>
+    </FixedPortal>
   );
 }

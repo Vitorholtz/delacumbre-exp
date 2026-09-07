@@ -1,28 +1,35 @@
 "use client";
 
-import { useEffect } from "react";
-import Lenis from "lenis";
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function SmoothScroll() {
+  const smootherRef = useRef<ScrollSmoother | null>(null);
+  const pathname = usePathname();
+
   useEffect(() => {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
     if (reduceMotion) return;
 
-    const lenis = new Lenis();
-
-    let frameId: number;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frameId = requestAnimationFrame(raf);
-    };
-    frameId = requestAnimationFrame(raf);
+    const smoother = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1.2,
+      effects: false,
+    });
+    smootherRef.current = smoother;
 
     // Intercepta cliques em links âncora (botões "Ver expedições", nav do
-    // Hero etc.) antes do <Link> do Next.js processar o clique — capture:
-    // true garante que isso roda primeiro, evitando o salto nativo
-    // brigando com a animação do Lenis.
+    // Hero etc.) pra rolar suavemente via ScrollSmoother — sem isso o
+    // navegador ainda pula pra âncora (o scroll nativo continua ativo por
+    // baixo), só que instantâneo, sem o easing.
     const handleAnchorClick = (event: MouseEvent) => {
       const anchor = (event.target as HTMLElement).closest("a");
       if (!anchor) return;
@@ -32,23 +39,30 @@ export default function SmoothScroll() {
       if (!document.getElementById(href.slice(1))) return;
 
       event.preventDefault();
-      // force: true porque overlays em tela cheia (ex: Menu do design
-      // system) marcam sua raiz com data-lenis-prevent, o que faz o Lenis
-      // ignorar os eventos por conta própria — sem precisar de
-      // lenis.stop()/start() (que cancelaria essa própria chamada via
-      // reset interno, já que "start" reseta qualquer scrollTo em curso).
-      lenis.scrollTo(href, { force: true });
+      smoother.scrollTo(href, true, "top top");
     };
     document.addEventListener("click", handleAnchorClick, { capture: true });
 
     return () => {
-      cancelAnimationFrame(frameId);
       document.removeEventListener("click", handleAnchorClick, {
         capture: true,
       });
-      lenis.destroy();
+      smoother.kill();
+      smootherRef.current = null;
     };
   }, []);
+
+  // O <Link> do Next só re-scrolla pro topo se decidir que o topo da nova
+  // página "não está visível" na posição de scroll atual (ver docs de
+  // <Link scroll>) — entre páginas de alturas bem diferentes essa
+  // heurística erra e a navegação chega no meio da página nova. Por isso
+  // forçamos o topo a cada troca de rota — exceto quando a URL aponta pra
+  // uma âncora específica (deep link tipo /pagina#secao).
+  useEffect(() => {
+    if (window.location.hash) return;
+    window.scrollTo(0, 0);
+    smootherRef.current?.scrollTo(0, false);
+  }, [pathname]);
 
   return null;
 }
