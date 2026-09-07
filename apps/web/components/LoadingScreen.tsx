@@ -7,17 +7,6 @@ import styles from "./LoadingScreen.module.css";
 const SAFETY_TIMEOUT_MS = 6000; // trava de segurança — nunca prende o usuário além disso, mesmo se algum recurso não terminar
 const MIN_VISIBLE_MS = 900; // evita um "flash" quando tudo já está em cache (load quase instantâneo)
 const FADE_OUT_MS = 400; // tem que bater com a transition de .hidden no CSS
-const PHRASE_INTERVAL_MS = 2600;
-
-// Só decorativo (ver aria-hidden no <p>) — o status real já é anunciado uma
-// única vez pelo aria-label do container, então essas variações não
-// precisam (e não deveriam) ser lidas em voz alta a cada troca.
-const PHRASES = [
-  "Carregando sua experiência",
-  "Preparando a expedição",
-  "Ajustando a rota",
-  "Arrumando a bagagem",
-];
 
 function whenImageLoaded(img: HTMLImageElement) {
   if (img.complete) return Promise.resolve();
@@ -48,15 +37,6 @@ export default function LoadingScreen() {
   const ringPathId = useId();
   const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [phraseIndex, setPhraseIndex] = useState(0);
-
-  useEffect(() => {
-    if (ready) return;
-    const interval = setInterval(() => {
-      setPhraseIndex((i) => (i + 1) % PHRASES.length);
-    }, PHRASE_INTERVAL_MS);
-    return () => clearInterval(interval);
-  }, [ready]);
 
   useEffect(() => {
     const start = Date.now();
@@ -139,14 +119,6 @@ export default function LoadingScreen() {
           />
         </div>
       </div>
-
-      {/* aria-hidden: o status já foi anunciado uma vez pelo aria-label do
-          container acima — sem isso, cada troca de frase reacionaria o
-          aria-live="polite" e ficaria lendo "carregando" a cada poucos
-          segundos. */}
-      <p className={styles.label} aria-hidden="true" key={phraseIndex}>
-        {PHRASES[phraseIndex]}
-      </p>
     </div>
   );
 }
