@@ -10,11 +10,14 @@ type FullImageBlockProps = {
   country: string;
 };
 
+// Largura real de .imageBox_full — ver ClosingStoriesSection.module.css.
+const FULL_IMAGE_SIZES = "(min-width: 1536px) 1520px, (min-width: 810px) 1200px, 100vw";
+
 function FullImageBlock({ src, alt, name, country }: FullImageBlockProps) {
   return (
     <div className={styles.imageBlock}>
       <div className={`${styles.imageBox} ${styles.imageBox_full}`}>
-        <Image src={src} alt={alt} fill className={styles.image} />
+        <Image src={src} alt={alt} fill sizes={FULL_IMAGE_SIZES} className={styles.image} />
       </div>
       <div className={styles.locationRow}>
         <LocationCard name={name} country={country} size="sm" className={styles.locationSm} />
@@ -65,6 +68,8 @@ export default function ClosingStoriesSection() {
                     src="/expedicoes/holiday-camboja-bangkok/closing/rajadamnern-stadium-crowd.jpg"
                     alt="Grupo comemorando em frente ao ringue do Rajadamnern Stadium, em Bangkok"
                     fill
+                    // Largura real de .imageBox_inline — ver ClosingStoriesSection.module.css.
+                    sizes="(min-width: 1536px) 748px, (min-width: 1264px) 588px, 100vw"
                     className={styles.image}
                   />
                 </div>

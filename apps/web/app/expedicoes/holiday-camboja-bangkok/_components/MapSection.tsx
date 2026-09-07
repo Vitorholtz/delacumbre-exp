@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import Icon from "@delacumbre/design-system/components/primitives/Icon";
 import Pill from "@delacumbre/design-system/components/controls/Pill";
 import styles from "./MapSection.module.css";
 
@@ -19,6 +23,8 @@ const MAP_EMBED_SRC =
   "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1541791.3792298888!2d102.43592811485101!3d13.806075715954952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x310787bfd4dc3743%3A0xe4b7bfe089f41253!2sCamboja!3m2!1d12.565679!2d104.990963!4m5!1s0x311d6032280d61f3%3A0x10100b25de24820!2sBangkok%2C%20Tail%C3%A2ndia!3m2!1d13.7563309!2d100.5017651!5e0!3m2!1spt-BR!2sbr!4v1788387431301!5m2!1spt-BR!2sbr";
 
 export default function MapSection() {
+  const [mapLoaded, setMapLoaded] = useState(false);
+
   return (
     <section className={styles.section}>
       <div className={styles.wrapper}>
@@ -40,14 +46,31 @@ export default function MapSection() {
 
           <div className={styles.mapContainer}>
             <div className={styles.mapFrameWrap}>
-              <iframe
-                className={styles.mapFrame}
-                src={MAP_EMBED_SRC}
-                title="Mapa da rota entre Bangkok, na Tailândia, e Phnom Penh, no Camboja"
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-              />
+              {mapLoaded ? (
+                <iframe
+                  className={styles.mapFrame}
+                  src={MAP_EMBED_SRC}
+                  title="Mapa da rota entre Bangkok, na Tailândia, e Phnom Penh, no Camboja"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              ) : (
+                // O SDK que o embed do Google Maps carrega dentro do iframe é
+                // pesado (vários chunks de JS, WebGL/canvas) e travava o
+                // scroll da página quando disparava via loading="lazy" — a
+                // execução pesada chegava alguns segundos depois do iframe
+                // entrar em viewport, exatamente quando o usuário já tinha
+                // rolado bem mais pra baixo. Só monta o iframe de fato
+                // quando a pessoa pede.
+                <button
+                  type="button"
+                  className={styles.mapPlaceholder}
+                  onClick={() => setMapLoaded(true)}
+                >
+                  <Icon name="map" size={40} className={styles.mapPlaceholderIcon} />
+                  <span className="text-heading-sm">Ver mapa da rota</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

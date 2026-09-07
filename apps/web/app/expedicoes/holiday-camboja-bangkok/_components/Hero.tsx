@@ -12,6 +12,7 @@ export default function Hero() {
             alt=""
             fill
             priority
+            sizes="100vw"
             className={styles.bg}
             aria-hidden="true"
           />

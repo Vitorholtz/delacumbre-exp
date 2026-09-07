@@ -23,6 +23,8 @@ export default function TextBlockSection() {
                   src={content.image.src}
                   alt={content.image.alt}
                   fill
+                  // Larguras reais de .imageColumn — ver TextBlockSection.module.css.
+                  sizes="(min-width: 1536px) 748px, (min-width: 1264px) 588px, 100vw"
                   className={styles.image}
                 />
               </div>

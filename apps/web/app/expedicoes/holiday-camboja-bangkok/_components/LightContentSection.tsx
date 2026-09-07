@@ -13,11 +13,26 @@ type ImageWithLocationProps = {
   variant: "inline" | "full";
 };
 
+// Larguras reais de .imageBox_inline/.imageBox_full — ver
+// LightContentSection.module.css. Sem isso o Next não sabe qual candidato
+// do srcset pedir e cai no maior disponível, baixando uma imagem bem maior
+// que o necessário (gerava um respiro visível ao rolar até essas seções).
+const SIZES_BY_VARIANT: Record<ImageWithLocationProps["variant"], string> = {
+  inline: "(min-width: 1536px) 748px, (min-width: 1264px) 588px, 100vw",
+  full: "(min-width: 1536px) 1520px, (min-width: 810px) 1200px, 100vw",
+};
+
 function ImageWithLocation({ src, alt, name, country, variant }: ImageWithLocationProps) {
   return (
     <div className={styles.imageBlock}>
       <div className={`${styles.imageBox} ${styles[`imageBox_${variant}`]}`}>
-        <Image src={src} alt={alt} fill className={styles.image} />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={SIZES_BY_VARIANT[variant]}
+          className={styles.image}
+        />
       </div>
       <div className={styles.locationRow}>
         <LocationCard name={name} country={country} size="sm" className={styles.locationSm} />
@@ -35,6 +50,7 @@ export default function LightContentSection() {
           src="/expedicoes/holiday-camboja-bangkok/light-content/torn-edge.svg"
           alt=""
           fill
+          sizes="100vw"
           className={styles.tornEdgeImage}
         />
       </div>
@@ -102,6 +118,7 @@ export default function LightContentSection() {
           src="/expedicoes/holiday-camboja-bangkok/light-content/torn-edge.svg"
           alt=""
           fill
+          sizes="100vw"
           className={styles.tornEdgeImage}
         />
       </div>

@@ -92,6 +92,7 @@ export default function TravelInfoSection() {
             src="/expedicoes/holiday-camboja-bangkok/travel-info/angkor-thom.jpg"
             alt="Fileira de estátuas de pedra na entrada de Angkor Thom, no Camboja"
             fill
+            sizes="100vw"
             className={styles.image}
           />
         </div>

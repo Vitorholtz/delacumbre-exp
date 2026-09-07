@@ -110,6 +110,9 @@ export default function IntroSection() {
                   alt={slide.alt}
                   fill
                   priority={index === 0}
+                  // Largura real de .imageWrap (100% até o max-width do
+                  // container) — ver IntroSection.module.css.
+                  sizes="(min-width: 1536px) 1520px, (min-width: 810px) 1200px, 100vw"
                   className={styles.image}
                 />
                 <div className={styles.scrim} aria-hidden="true" />
