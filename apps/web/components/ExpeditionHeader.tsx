@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Header from "@delacumbre/design-system/components/layout/Header";
 import Menu from "@delacumbre/design-system/components/layout/Menu";
-import FixedPortal from "@/components/FixedPortal";
 
 const navLinks = [
   { label: "Destinos", href: "/#destinos" },
@@ -25,7 +24,7 @@ export default function ExpeditionHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <FixedPortal>
+    <>
       <Header
         backButton={{ label: "Voltar", href: "/" }}
         logo={{ src: "/hero/delacumbre-logo.svg", alt: "Delacumbre EXP" }}
@@ -47,6 +46,6 @@ export default function ExpeditionHeader() {
           logo={{ src: "/hero/delacumbre-logo.svg", alt: "Delacumbre EXP" }}
         />
       )}
-    </FixedPortal>
+    </>
   );
 }

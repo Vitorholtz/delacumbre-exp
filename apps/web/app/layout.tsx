@@ -23,15 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <SmoothScroll />
         <GrainOverlay />
-        {/* Alvo do portal do FixedPortal — fica fora do #smooth-content de
-            propósito: o ScrollSmoother anima esse wrapper com CSS transform,
-            e transform no ancestral vira o container de referência de
-            position:fixed, quebrando header/menu. Fora dele, ficam fixos ao
-            viewport normalmente. */}
-        <div id="fixed-layer" />
-        <div id="smooth-wrapper">
-          <div id="smooth-content">{children}</div>
-        </div>
+        {children}
       </body>
     </html>
   );

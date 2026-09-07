@@ -115,6 +115,13 @@ export default function Menu({
       role="dialog"
       aria-modal="true"
       aria-label={label}
+      // Isenta esta subárvore da interceptação do Lenis (ver
+      // SmoothScroll.tsx) — como o menu cobre a tela inteira, isso já
+      // basta pra rolagem (wheel/touch) ficar nativa aqui dentro e nunca
+      // alcançar o fundo por trás. overscroll-behavior: contain (ver
+      // Menu.module.css) cuida do resto: impede que o scroll "vaze" pro
+      // fundo quando o menu atinge o limite do seu próprio scroll.
+      data-lenis-prevent
     >
       <div className={styles.header}>
         <p className={`${styles.watermark} text-heading-lg`}>{label}</p>
