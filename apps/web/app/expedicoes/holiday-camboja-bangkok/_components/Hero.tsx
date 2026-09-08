@@ -43,7 +43,7 @@ export default function Hero() {
             <Button
               variant="primary"
               size="lg"
-              href="#reservar"
+              href="#precos"
               className={styles.ctaButton}
             >
               Reservar
@@ -51,17 +51,17 @@ export default function Hero() {
             <Button
               variant="secondary"
               size="lg"
-              href="#sobre"
+              href="#roteiro"
               className={styles.ctaButton}
             >
-              Saber mais
+              Roteiro
             </Button>
           </div>
           <div className={`${styles.buttons} ${styles.buttonsCompact}`}>
             <Button
               variant="primary"
               size="md"
-              href="#reservar"
+              href="#precos"
               className={styles.ctaButtonCompact}
             >
               Reservar
@@ -69,10 +69,10 @@ export default function Hero() {
             <Button
               variant="secondary"
               size="md"
-              href="#sobre"
+              href="#roteiro"
               className={styles.ctaButtonCompact}
             >
-              Saber mais
+              Roteiro
             </Button>
           </div>
         </div>

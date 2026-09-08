@@ -156,7 +156,7 @@ export default function TravelInfoSection() {
             <Button
               variant="primary"
               size="lg"
-              href="#reservar"
+              href="#precos"
               className={styles.ctaButton}
             >
               Reservar
@@ -164,7 +164,7 @@ export default function TravelInfoSection() {
             <Button
               variant="secondary"
               size="lg"
-              href="#sobre"
+              href="#sobre-nos"
               className={styles.ctaButton}
             >
               Saber mais
@@ -174,7 +174,7 @@ export default function TravelInfoSection() {
             <Button
               variant="primary"
               size="md"
-              href="#reservar"
+              href="#precos"
               className={styles.ctaButtonCompact}
             >
               Reservar
@@ -182,7 +182,7 @@ export default function TravelInfoSection() {
             <Button
               variant="secondary"
               size="md"
-              href="#sobre"
+              href="#sobre-nos"
               className={styles.ctaButtonCompact}
             >
               Saber mais

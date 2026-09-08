@@ -127,7 +127,7 @@ export default function ItinerarySection() {
   const lastRowIndex = rows.length - 1;
 
   return (
-    <section className={styles.section}>
+    <section id="roteiro" className={styles.section}>
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <p className={styles.heading}>Roteiro</p>

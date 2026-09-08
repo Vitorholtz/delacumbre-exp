@@ -61,8 +61,8 @@ export const lightContentSectionContent = {
       "uma boa viagem; vão perguntar o que aconteceu com você lá dentro. " +
       "Bora?",
     primaryCtaLabel: "Reservar",
-    primaryCtaHref: "#reservar",
+    primaryCtaHref: "#precos",
     secondaryCtaLabel: "Saber mais",
-    secondaryCtaHref: "#sobre",
+    secondaryCtaHref: "#sobre-nos",
   },
 };
