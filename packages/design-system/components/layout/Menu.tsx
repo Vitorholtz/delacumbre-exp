@@ -33,7 +33,7 @@ type MenuLogo = {
 
 type MenuProps = {
   onClose: () => void;
-  /** Rótulo decorativo no canto superior esquerdo (padrão "Menu"). */
+  /** Nome acessível do dialog (padrão "Menu") — não é mais renderizado visualmente. */
   label?: string;
   closeLabel?: string;
   links: MenuNavLink[];
@@ -116,27 +116,30 @@ export default function Menu({
       aria-modal="true"
       aria-label={label}
     >
-      <div className={styles.header}>
-        <p className={`${styles.watermark} text-heading-lg`}>{label}</p>
-        <FloatingButton
-          ref={closeButtonSmRef}
-          icon="close"
-          label={closeLabel}
-          onClick={requestClose}
-          size="sm"
-          className={styles.sizeSm}
-        />
-        <FloatingButton
-          ref={closeButtonMdRef}
-          icon="close"
-          label={closeLabel}
-          onClick={requestClose}
-          size="md"
-          className={styles.sizeMd}
-        />
-      </div>
+      <div className={styles.top}>
+        <div className={styles.header}>
+          <div className={styles.start} />
+          <img src={logo.src} alt={logo.alt} className={styles.headerLogo} />
+          <div className={styles.end}>
+            <FloatingButton
+              ref={closeButtonSmRef}
+              icon="close"
+              label={closeLabel}
+              onClick={requestClose}
+              size="sm"
+              className={styles.sizeSm}
+            />
+            <FloatingButton
+              ref={closeButtonMdRef}
+              icon="close"
+              label={closeLabel}
+              onClick={requestClose}
+              size="md"
+              className={styles.sizeMd}
+            />
+          </div>
+        </div>
 
-      <div className={styles.middle}>
         {languages && languages.length > 0 && (
           <div className={styles.languages}>
             {languages.map((lang) => (
@@ -151,21 +154,21 @@ export default function Menu({
             ))}
           </div>
         )}
-
-        <nav className={styles.nav} aria-label="Navegação principal">
-          {links.map((link, index) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={styles.navItem}
-              style={{ transitionDelay: `${index * 60}ms` }}
-              onClick={requestClose}
-            >
-              <NavLinkLabel>{`/${link.label}`}</NavLinkLabel>
-            </Link>
-          ))}
-        </nav>
       </div>
+
+      <nav className={styles.nav} aria-label="Navegação principal">
+        {links.map((link, index) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={styles.navItem}
+            style={{ transitionDelay: `${index * 60}ms` }}
+            onClick={requestClose}
+          >
+            <NavLinkLabel>{`/${link.label}`}</NavLinkLabel>
+          </Link>
+        ))}
+      </nav>
 
       <div className={styles.footer}>
         <nav className={styles.socialLinks} aria-label="Redes sociais">
@@ -174,14 +177,13 @@ export default function Menu({
               key={social.label}
               href={social.href}
               showIcon={false}
-              size="md"
+              size="sm"
               className={styles.socialLink}
             >
               {social.label}
             </Hyperlink>
           ))}
         </nav>
-        <img src={logo.src} alt={logo.alt} className={styles.logo} />
       </div>
     </div>
   );
