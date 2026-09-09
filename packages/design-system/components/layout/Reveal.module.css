@@ -1,0 +1,77 @@
+/* Caixa da aparição. Existe só pra carregar o efeito, então não pode mudar
+   a largura que a seção teria como filha direta do container — sem o
+   width, um pai com `align-items: center` (ex: `.page` da galeria)
+   encolheria a caixa até o conteúdo. */
+.box {
+  width: 100%;
+}
+
+/* Estado inicial: a seção começa um pouco acima do lugar e desfocada, e
+   desce pro lugar enquanto o desfoque se dissolve. É o mesmo vocabulário de
+   fade + blur já usado no Menu e no logo do Header (blur de 16px), aqui com
+   deslocamento vertical e uma curva mais longa — a mesma
+   cubic-bezier(0.22, 1, 0.36, 1) do IntroSection, que desacelera bem no
+   fim e dá o movimento fluído.
+
+   Sem `will-change` de propósito: uma página tem mais de dez seções
+   esperando a vez, e anunciar as três propriedades em todas elas de uma vez
+   promoveria uma camada de composição por seção. O navegador já promove
+   sozinho o que está de fato em transição. */
+.reveal {
+  opacity: 0;
+  transform: translate3d(
+    0,
+    calc(-1 * var(--space-16)),
+    0
+  ); /* 64px acima do lugar */
+  filter: blur(16px);
+}
+
+/* A transição mora aqui, no estado final, não no inicial — de propósito. O
+   navegador lê a transição do estado de destino, então:
+
+   - entrando (ganha `.visible`): o destino tem transição, a seção anima;
+   - resetando (perde `.visible`, porque o usuário subiu a página e ela
+     voltou pra baixo da viewport): o destino é só `.reveal`, sem transição,
+     e a volta pro estado inicial é instantânea.
+
+   Se a transição estivesse em `.reveal`, o reset animaria de trás pra
+   frente — 1,1s de fade-out e blur logo abaixo da dobra, à toa, e visível
+   se o usuário pegasse a rabeira.
+
+   O atraso de 0,15s é curto de propósito: serve pra separar o "a seção
+   entrou em vista" do "a seção começou a aparecer", pra o olho pegar o
+   movimento desde o início em vez de já encontrar a animação no meio. Mais
+   que isso passa a ler como travamento, não como intenção. Quem manda o
+   efeito ser visível de verdade é o gatilho tardio (ver TRIGGER_INSET em
+   Reveal.tsx), não o atraso. */
+.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+  transition:
+    opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+    filter 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+/* Terminada a aparição, `useReveal` para de devolver estas classes até a
+   seção sair de vista por baixo de novo: enquanto está visível, é um
+   elemento comum, sem filter nem transform. Isso não é só economia — as
+   duas propriedades criam containing block, e enquanto estivessem ativas
+   quebrariam qualquer `position: fixed` que nascesse dentro da seção
+   (Modal, GallerySlider).
+
+   O `@media` abaixo é a rede de segurança em CSS; quem pediu menos
+   movimento já entra direto no estado final pelo próprio hook. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .visible {
+    transition: none;
+  }
+}

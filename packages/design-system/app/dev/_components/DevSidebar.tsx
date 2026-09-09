@@ -73,6 +73,7 @@ const navSections: NavSection[] = [
       { label: "Menu", href: "/dev/componentes/menu" },
       { label: "Modal", href: "/dev/componentes/modal" },
       { label: "Footer", href: "/dev/componentes/footer" },
+      { label: "Aparição no scroll", href: "/dev/componentes/aparicao" },
     ],
   },
 ];
