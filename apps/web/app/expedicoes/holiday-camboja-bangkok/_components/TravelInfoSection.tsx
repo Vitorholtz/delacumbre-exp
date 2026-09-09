@@ -1,7 +1,8 @@
-import Image from "next/image";
 import Button from "@delacumbre/design-system/components/primitives/Button";
+import Reveal from "@delacumbre/design-system/components/layout/Reveal";
 import LocationCard from "@delacumbre/design-system/components/cards/LocationCard";
 import ThingsToDoCard from "@delacumbre/design-system/components/cards/ThingsToDoCard";
+import RisingImage from "./RisingImage";
 import styles from "./TravelInfoSection.module.css";
 
 type Highlight = {
@@ -86,108 +87,114 @@ const CARD_SIZES = ["sm", "md", "lg"] as const;
 export default function TravelInfoSection() {
   return (
     <section className={styles.section}>
-      <div className={styles.imageLocationWrapper}>
-        <div className={styles.imageBox}>
-          <Image
-            src="/expedicoes/holiday-camboja-bangkok/travel-info/angkor-thom.jpg"
-            alt="Fileira de estátuas de pedra na entrada de Angkor Thom, no Camboja"
-            fill
+      <Reveal>
+        <div className={styles.imageLocationWrapper}>
+          <RisingImage
+            src="/expedicoes/holiday-camboja-bangkok/travel-info/turma.webp"
+            alt="A turma da expedição reunida em frente ao Angkor Wat, no Camboja, ao pôr do sol"
             sizes="100vw"
-            className={styles.image}
+            className={styles.imageBox}
+            imageClassName={styles.image}
           />
-        </div>
 
-        <div className={styles.ticker} aria-hidden="true">
-          <div className={styles.tickerTrack}>
-            <TickerHalf />
-            <TickerHalf />
+          <div className={styles.ticker} aria-hidden="true">
+            <div className={styles.tickerTrack}>
+              <TickerHalf />
+              <TickerHalf />
+            </div>
+          </div>
+          <p className="visually-hidden">{TICKER_TEXT}</p>
+
+          <div className={styles.locationRow}>
+            <LocationCard
+              name="Angkor Wat"
+              country="Camboja"
+              size="sm"
+              className={styles.locationSm}
+            />
+            <LocationCard
+              name="Angkor Wat"
+              country="Camboja"
+              size="md"
+              className={styles.locationMd}
+            />
           </div>
         </div>
-        <p className="visually-hidden">{TICKER_TEXT}</p>
-
-        <div className={styles.locationRow}>
-          <LocationCard
-            name="Angkor Wat"
-            country="Camboja"
-            size="sm"
-            className={styles.locationSm}
-          />
-          <LocationCard
-            name="Angkor Wat"
-            country="Camboja"
-            size="md"
-            className={styles.locationMd}
-          />
-        </div>
-      </div>
+      </Reveal>
 
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          <div className={styles.textRow}>
-            <p className={styles.heading}>Extremos que cabem num só roteiro</p>
-            <p className={styles.description}>
-              Entre um escorpião frito e um Buda de mil anos, entre o
-              estampido de um AK-47 e a areia branca de uma praia vazia —
-              treze dias que colocam devoção e desordem lado a lado, sem
-              pedir licença pra nenhuma das duas.
-            </p>
-          </div>
-
-          {CARD_SIZES.map((size) => (
-            <div
-              key={size}
-              className={`${styles.cardsGrid} ${styles[`cardsGrid_${size}`]}`}
-            >
-              {HIGHLIGHTS.map((item) => (
-                <ThingsToDoCard
-                  key={`${size}-${item.title}`}
-                  image={item.image}
-                  imageAlt={item.imageAlt}
-                  title={item.title}
-                  highlight={item.highlight}
-                  size={size}
-                  className={styles.card}
-                />
-              ))}
+          <Reveal>
+            <div className={styles.textRow}>
+              <p className={styles.heading}>Extremos que cabem num só roteiro</p>
+              <p className={styles.description}>
+                Entre um escorpião frito e um Buda de mil anos, entre o
+                estampido de um AK-47 e a areia branca de uma praia vazia —
+                treze dias que colocam devoção e desordem lado a lado, sem
+                pedir licença pra nenhuma das duas.
+              </p>
             </div>
-          ))}
+          </Reveal>
 
-          <div className={`${styles.buttons} ${styles.buttonsDesktop}`}>
-            <Button
-              variant="primary"
-              size="lg"
-              href="#precos"
-              className={styles.ctaButton}
-            >
-              Reservar
-            </Button>
-            <Button
-              variant="secondary"
-              size="lg"
-              href="#sobre-nos"
-              className={styles.ctaButton}
-            >
-              Saber mais
-            </Button>
-          </div>
-          <div className={`${styles.buttons} ${styles.buttonsCompact}`}>
-            <Button
-              variant="primary"
-              size="md"
-              href="#precos"
-              className={styles.ctaButtonCompact}
-            >
-              Reservar
-            </Button>
-            <Button
-              variant="secondary"
-              size="md"
-              href="#sobre-nos"
-              className={styles.ctaButtonCompact}
-            >
-              Saber mais
-            </Button>
-          </div>
+          <Reveal>
+            {CARD_SIZES.map((size) => (
+              <div
+                key={size}
+                className={`${styles.cardsGrid} ${styles[`cardsGrid_${size}`]}`}
+              >
+                {HIGHLIGHTS.map((item) => (
+                  <ThingsToDoCard
+                    key={`${size}-${item.title}`}
+                    image={item.image}
+                    imageAlt={item.imageAlt}
+                    title={item.title}
+                    highlight={item.highlight}
+                    size={size}
+                    className={styles.card}
+                  />
+                ))}
+              </div>
+            ))}
+          </Reveal>
+
+          <Reveal>
+            <div className={`${styles.buttons} ${styles.buttonsDesktop}`}>
+              <Button
+                variant="primary"
+                size="lg"
+                href="#precos"
+                className={styles.ctaButton}
+              >
+                Reservar
+              </Button>
+              <Button
+                variant="secondary"
+                size="lg"
+                href="#sobre-nos"
+                className={styles.ctaButton}
+              >
+                Saber mais
+              </Button>
+            </div>
+            <div className={`${styles.buttons} ${styles.buttonsCompact}`}>
+              <Button
+                variant="primary"
+                size="md"
+                href="#precos"
+                className={styles.ctaButtonCompact}
+              >
+                Reservar
+              </Button>
+              <Button
+                variant="secondary"
+                size="md"
+                href="#sobre-nos"
+                className={styles.ctaButtonCompact}
+              >
+                Saber mais
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

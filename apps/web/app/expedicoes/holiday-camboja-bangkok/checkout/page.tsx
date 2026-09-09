@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Reveal from "@delacumbre/design-system/components/layout/Reveal";
 import FloatingButton from "@delacumbre/design-system/components/primitives/FloatingButton";
 import CheckoutCard from "@delacumbre/design-system/components/cards/CheckoutCard";
 import { PRICING_OPTIONS } from "../_components/PricingSection.data";
@@ -25,69 +26,78 @@ export default async function CheckoutPage({
     <main>
       <div className={styles.wrapper}>
         <div className={styles.inner}>
-          <header className={styles.header}>
-            <p className={styles.heading}>Confirmar reserva</p>
-            <FloatingButton icon="close" label="Fechar" href={PRICING_HREF} />
-          </header>
+          {/* Aqui o Reveal não é aparição por scroll: a página inteira cabe
+              na primeira dobra, então o observer dispara já na montagem e o
+              efeito vira a transição de entrada da rota. Os dois blocos são
+              escalonados porque, entrando em vista no mesmo instante, sem
+              isso apareceriam juntos — um flash só, em vez de transição. */}
+          <Reveal>
+            <header className={styles.header}>
+              <p className={styles.heading}>Confirmar reserva</p>
+              <FloatingButton icon="close" label="Fechar" href={PRICING_HREF} />
+            </header>
+          </Reveal>
 
-          <div className={styles.content}>
-            <div className={styles.formWrapper}>
-              <p className={styles.headerText}>
-                Confira os detalhes da sua expedição e informe seus dados
-                para que o líder entre em contato.
-              </p>
-              <CheckoutForm />
-            </div>
+          <Reveal staggerMs={150}>
+            <div className={styles.content}>
+              <div className={styles.formWrapper}>
+                <p className={styles.headerText}>
+                  Confira os detalhes da sua expedição e informe seus dados para
+                  que o líder entre em contato.
+                </p>
+                <CheckoutForm />
+              </div>
 
-            <div className={`${styles.cardSlot} ${styles.cardSlotSm}`}>
-              <CheckoutCard
-                className={styles.cardFull}
-                image={CARD_IMAGE}
-                imageAlt={CARD_IMAGE_ALT}
-                expeditionName={EXPEDITION_NAME}
-                dateRange="10 a 22 de abril de 2027"
-                destination="Camboja & Bangkok"
-                paymentMethod={option.checkout.paymentMethod}
-                changeHref={PRICING_HREF}
-                installmentText={option.checkout.installmentText}
-                installmentHighlight={option.checkout.installmentHighlight}
-                totalText={option.checkout.totalText}
-                size="sm"
-              />
+              <div className={`${styles.cardSlot} ${styles.cardSlotSm}`}>
+                <CheckoutCard
+                  className={styles.cardFull}
+                  image={CARD_IMAGE}
+                  imageAlt={CARD_IMAGE_ALT}
+                  expeditionName={EXPEDITION_NAME}
+                  dateRange="10 a 22 de abril de 2027"
+                  destination="Camboja & Bangkok"
+                  paymentMethod={option.checkout.paymentMethod}
+                  changeHref={PRICING_HREF}
+                  installmentText={option.checkout.installmentText}
+                  installmentHighlight={option.checkout.installmentHighlight}
+                  totalText={option.checkout.totalText}
+                  size="sm"
+                />
+              </div>
+              <div className={`${styles.cardSlot} ${styles.cardSlotMd}`}>
+                <CheckoutCard
+                  className={styles.cardFull}
+                  image={CARD_IMAGE}
+                  imageAlt={CARD_IMAGE_ALT}
+                  expeditionName={EXPEDITION_NAME}
+                  dateRange="10 a 22 de abril de 2027"
+                  destination="Camboja & Bangkok"
+                  paymentMethod={option.checkout.paymentMethod}
+                  changeHref={PRICING_HREF}
+                  installmentText={option.checkout.installmentText}
+                  installmentHighlight={option.checkout.installmentHighlight}
+                  totalText={option.checkout.totalText}
+                  size="md"
+                />
+              </div>
+              <div className={`${styles.cardSlot} ${styles.cardSlotLg}`}>
+                <CheckoutCard
+                  className={styles.cardFull}
+                  image={CARD_IMAGE}
+                  imageAlt={CARD_IMAGE_ALT}
+                  expeditionName={EXPEDITION_NAME}
+                  dateRange="10 a 22 de abril de 2027"
+                  destination="Camboja & Bangkok"
+                  paymentMethod={option.checkout.paymentMethod}
+                  changeHref={PRICING_HREF}
+                  installmentText={option.checkout.installmentText}
+                  installmentHighlight={option.checkout.installmentHighlight}
+                  totalText={option.checkout.totalText}
+                  size="lg"
+                />
+              </div>
             </div>
-            <div className={`${styles.cardSlot} ${styles.cardSlotMd}`}>
-              <CheckoutCard
-                className={styles.cardFull}
-                image={CARD_IMAGE}
-                imageAlt={CARD_IMAGE_ALT}
-                expeditionName={EXPEDITION_NAME}
-                dateRange="10 a 22 de abril de 2027"
-                destination="Camboja & Bangkok"
-                paymentMethod={option.checkout.paymentMethod}
-                changeHref={PRICING_HREF}
-                installmentText={option.checkout.installmentText}
-                installmentHighlight={option.checkout.installmentHighlight}
-                totalText={option.checkout.totalText}
-                size="md"
-              />
-            </div>
-            <div className={`${styles.cardSlot} ${styles.cardSlotLg}`}>
-              <CheckoutCard
-                className={styles.cardFull}
-                image={CARD_IMAGE}
-                imageAlt={CARD_IMAGE_ALT}
-                expeditionName={EXPEDITION_NAME}
-                dateRange="10 a 22 de abril de 2027"
-                destination="Camboja & Bangkok"
-                paymentMethod={option.checkout.paymentMethod}
-                changeHref={PRICING_HREF}
-                installmentText={option.checkout.installmentText}
-                installmentHighlight={option.checkout.installmentHighlight}
-                totalText={option.checkout.totalText}
-                size="lg"
-              />
-            </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </main>

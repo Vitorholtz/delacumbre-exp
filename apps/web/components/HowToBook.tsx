@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import HowToCard from "@delacumbre/design-system/components/cards/HowToCard";
+import { useReveal } from "@delacumbre/design-system/components/layout/Reveal";
 import { usePrefersReducedMotion } from "@delacumbre/design-system/lib/motion";
 import styles from "./HowToBook.module.css";
 
@@ -57,6 +58,15 @@ export default function HowToBook() {
   // animar, em vez de cair no fluxo normal — o resto do site já depende de
   // JS de qualquer forma.
   const pinned = !usePrefersReducedMotion();
+
+  // Aparição por dentro, no palco de 100vh (`.inner`), em vez de uma caixa
+  // `Reveal` em volta da seção inteira como nas outras: o `.track` aqui tem
+  // 300vh e desfocar um elemento desse tamanho custa uma camada de
+  // composição gigante justo na seção que roda animação por scroll. Também
+  // mantém o `filter`/`transform` fora de qualquer ancestral do
+  // `position: sticky` abaixo.
+  const { ref: revealRef, className: revealClassName } =
+    useReveal<HTMLDivElement>();
 
   // Scroll da própria página (não um container à parte) — o track é alto
   // (N * 100vh) e o palco fica sticky por cima. Isso É a trava (a página
@@ -143,7 +153,12 @@ export default function HowToBook() {
         style={pinned ? { height: `${STEPS.length * 100}vh` } : undefined}
       >
         <div className={styles.sticky}>
-          <div className={styles.inner}>
+          <div
+            ref={revealRef}
+            className={[styles.inner, revealClassName]
+              .filter(Boolean)
+              .join(" ")}
+          >
             <div className={styles.content}>
               <div className={styles.textCol}>
                 <p className={styles.heading}>Como reservar?</p>

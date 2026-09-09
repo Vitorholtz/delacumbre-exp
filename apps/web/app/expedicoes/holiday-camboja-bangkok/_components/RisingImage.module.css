@@ -1,0 +1,26 @@
+.frame {
+  position: relative;
+  /* Clipa a sobra da camada. Proporção, margem e tudo mais que define o
+     tamanho do frame continuam vindo de quem consome — aqui só entra o que
+     o efeito exige. */
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  /* Sobra pra fora do frame nas duas pontas, do tamanho exato do curso da
+     subida, pra o topo e a base nunca ficarem descobertos. Porcentagem em
+     top/bottom resolve contra a altura do frame, então acompanha as três
+     proporções da imagem (1.24 SM / 1.89 MD / 2.18 LG) sem media query — é
+     o mesmo número que o JS usa (ver OVERSCAN_RATIO). */
+  inset: calc(-1 * var(--rise-overscan)) 0;
+  /* Um elemento só, que se move a cada quadro enquanto está em vista: é o
+     caso pra promover a camada. */
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    will-change: auto;
+  }
+}

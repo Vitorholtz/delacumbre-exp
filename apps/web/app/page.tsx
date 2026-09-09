@@ -1,3 +1,4 @@
+import Reveal from "@delacumbre/design-system/components/layout/Reveal";
 import SiteHeader from "@/components/SiteHeader";
 import Hero from "@/components/Hero";
 import Carousel from "@/components/Carousel";
@@ -18,23 +19,39 @@ export default function Home() {
     <main>
       <SiteHeader />
       <Hero />
-      <Carousel />
-      <GuidePresentation />
+      <Reveal>
+        <Carousel />
+      </Reveal>
+      <Reveal>
+        <GuidePresentation />
+      </Reveal>
+      {/* HowToBook cuida da própria aparição por dentro (useReveal) — o
+          track dele tem 300vh e não pode ser desfocado inteiro. */}
       <HowToBook />
-      <Faq />
-      <ContactForm />
-      <CenasLamentaveis />
-      <CollectiblesSection
-        expeditionName={FEATURED_EXPEDITION_NAME}
-        vacancies="5/10 vagas"
-      />
-      <UltimaChamada
-        expeditionHref={FEATURED_EXPEDITION_HREF}
-        expeditionName={FEATURED_EXPEDITION_NAME}
-        stampSrc="/ultima-chamada/selo-expedicao.png"
-        stampAlt="Selo da Expedição Holiday in Camboja & Bangkok — Ásia, Abril, 2027"
-        pdfHref="#"
-      />
+      <Reveal>
+        <Faq />
+      </Reveal>
+      <Reveal>
+        <ContactForm />
+      </Reveal>
+      <Reveal>
+        <CenasLamentaveis />
+      </Reveal>
+      <Reveal>
+        <CollectiblesSection
+          expeditionName={FEATURED_EXPEDITION_NAME}
+          vacancies="5/10 vagas"
+        />
+      </Reveal>
+      <Reveal>
+        <UltimaChamada
+          expeditionHref={FEATURED_EXPEDITION_HREF}
+          expeditionName={FEATURED_EXPEDITION_NAME}
+          stampSrc="/ultima-chamada/selo-expedicao.png"
+          stampAlt="Selo da Expedição Holiday in Camboja & Bangkok — Ásia, Abril, 2027"
+          pdfHref="#"
+        />
+      </Reveal>
       <SiteFooter />
     </main>
   );

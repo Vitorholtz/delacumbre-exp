@@ -1,0 +1,41 @@
+/* O track é o bloco de contenção do palco sticky: é a altura dele que
+   define por quanto tempo o palco fica travado. Como ele engloba o
+   conteúdo que sobe (bem mais alto que a viewport), o palco fica preso
+   até a cortina passar inteira por cima — que é justamente quando ele já
+   não está mais visível. */
+.track {
+  position: relative;
+  width: 100%;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Viewport cheia pra a cortina ter o que cobrir. `vh` e não `dvh` de
+     propósito: `dvh` muda quando a barra do navegador móvel recolhe, e um
+     elemento travado que muda de altura no meio do scroll salta. Mesmo
+     critério do palco do HowToBook. */
+  height: 100vh;
+}
+
+/* Sem isso a cortina passaria por baixo: `position: sticky` torna o palco
+   um elemento posicionado, e posicionados pintam acima do conteúdo de
+   fluxo normal, independentemente da ordem no DOM. */
+.rising {
+  position: relative;
+  z-index: 1;
+}
+
+/* Quem pede menos movimento recebe as duas seções em fluxo normal, uma
+   depois da outra. É só CSS, então não existe o salto de layout que um
+   toggle depois da hidratação causaria (o problema documentado no
+   HowToBook). */
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    position: static;
+    height: auto;
+  }
+}
