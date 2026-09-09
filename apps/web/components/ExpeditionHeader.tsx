@@ -27,7 +27,7 @@ export default function ExpeditionHeader() {
     <>
       <Header
         backButton={{ label: "Voltar", href: "/" }}
-        logo={{ src: "/hero/delacumbre-logo.svg", alt: "Delacumbre EXP" }}
+        logo={{ src: "/hero/delacumbre-logo.webp", alt: "Delacumbre EXP" }}
         menuLabel="Menu"
         onMenuClick={() => setMenuOpen(true)}
       />
@@ -43,7 +43,7 @@ export default function ExpeditionHeader() {
             { label: "Español", disabled: true },
           ]}
           socialLinks={socialLinks}
-          logo={{ src: "/hero/delacumbre-logo.svg", alt: "Delacumbre EXP" }}
+          logo={{ src: "/hero/delacumbre-logo.webp", alt: "Delacumbre EXP" }}
         />
       )}
     </>

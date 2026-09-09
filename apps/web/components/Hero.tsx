@@ -70,13 +70,16 @@ export default function Hero() {
       <video
         className={styles.video}
         src="/hero/hero-bg.mp4"
+        // Primeiro frame exato do vídeo: a dobra pinta na hora e não há
+        // salto visível quando o autoplay assume.
+        poster="/hero/hero-poster.webp"
         autoPlay
         loop
         muted
         playsInline
-        // Só o essencial pra decidir o autoplay — vídeo decorativo não
-        // precisa baixar o arquivo inteiro de cara.
-        preload="metadata"
+        // Com o poster no lugar, o vídeo não precisa disputar a rede no
+        // load — é decorativo e entra quando estiver pronto.
+        preload="none"
         aria-hidden="true"
       />
       <div className={styles.scrim} aria-hidden="true" />
@@ -101,10 +104,11 @@ export default function Hero() {
         <div className={styles.bottom}>
           <div className={styles.logoWrap}>
             <Image
-              src="/hero/delacumbre-logo.svg"
+              src="/hero/delacumbre-logo.webp"
               alt="Delacumbre EXP"
-              width={460}
-              height={162}
+              width={768}
+              height={271}
+              sizes="(min-width: 810px) 320px, 260px"
               className={styles.logo}
               priority
             />

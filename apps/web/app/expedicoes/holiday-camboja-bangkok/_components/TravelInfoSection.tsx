@@ -13,49 +13,49 @@ type Highlight = {
 
 const HIGHLIGHTS: Highlight[] = [
   {
-    image: "/ideograms/Scorpion.svg",
+    image: "/ideograms/Scorpion.webp",
     imageAlt: "Escorpião",
     title: "Comidas",
     highlight: "exóticas",
   },
   {
-    image: "/ideograms/Statue.svg",
+    image: "/ideograms/Statue.webp",
     imageAlt: "Estátua de Buda",
     title: "Choque",
     highlight: "cultural",
   },
   {
-    image: "/ideograms/Temple.svg",
+    image: "/ideograms/Temple.webp",
     imageAlt: "Templo",
     title: "Templos",
     highlight: "Milenares",
   },
   {
-    image: "/ideograms/AK.svg",
+    image: "/ideograms/AK.webp",
     imageAlt: "Fuzil",
     title: "Prática",
     highlight: "de tiro",
   },
   {
-    image: "/ideograms/Boxing.svg",
+    image: "/ideograms/Boxing.webp",
     imageAlt: "Luva de boxe",
     title: "Lutas",
     highlight: "e apostas",
   },
   {
-    image: "/ideograms/Elephant.svg",
+    image: "/ideograms/Elephant.webp",
     imageAlt: "Elefante",
     title: "Vida",
     highlight: "Selvagem",
   },
   {
-    image: "/ideograms/Beach.svg",
+    image: "/ideograms/Beach.webp",
     imageAlt: "Praia",
     title: "Praias",
     highlight: "paradisíacas",
   },
   {
-    image: "/ideograms/Torch.svg",
+    image: "/ideograms/Torch.webp",
     imageAlt: "Tocha",
     title: "A aventura",
     highlight: "da sua vida",

@@ -40,7 +40,7 @@ export default function SiteHeader() {
       <Header
         scrolled={pastHero}
         logoVisibility="onScroll"
-        logo={{ src: "/hero/delacumbre-logo.svg", alt: "Delacumbre EXP" }}
+        logo={{ src: "/hero/delacumbre-logo.webp", alt: "Delacumbre EXP" }}
         menuLabel="Menu"
         onMenuClick={() => setMenuOpen(true)}
       />
@@ -56,7 +56,7 @@ export default function SiteHeader() {
             { label: "Español", disabled: true },
           ]}
           socialLinks={socialLinks}
-          logo={{ src: "/hero/delacumbre-logo.svg", alt: "Delacumbre EXP" }}
+          logo={{ src: "/hero/delacumbre-logo.webp", alt: "Delacumbre EXP" }}
         />
       )}
     </>
