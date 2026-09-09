@@ -6,6 +6,7 @@ import Link from "next/link";
 import Button from "@delacumbre/design-system/components/primitives/Button";
 import FloatingButton from "@delacumbre/design-system/components/primitives/FloatingButton";
 import Pill from "@delacumbre/design-system/components/controls/Pill";
+import { usePrefersReducedMotion } from "@delacumbre/design-system/lib/motion";
 import styles from "./Carousel.module.css";
 
 type Expedition = {
@@ -82,35 +83,29 @@ export default function Carousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [descriptionIndex, setDescriptionIndex] = useState(0);
-  const [descriptionVisible, setDescriptionVisible] = useState(true);
-  const descriptionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
-    null,
-  );
+  // Índice que a descrição segura enquanto o fade acontece — ele fica pra
+  // trás do slide ativo durante os 250ms da troca.
+  const [fadingIndex, setFadingIndex] = useState(0);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  // Ambos derivados, em vez de sincronizados por efeito: enquanto o índice
+  // segurado não alcança o slide ativo, a descrição está no meio da troca —
+  // some, e volta junto com o texto novo. Sem animação não há atraso a
+  // segurar, então ela só acompanha o slide.
+  const descriptionIndex = prefersReducedMotion ? activeIndex : fadingIndex;
+  const descriptionVisible =
+    prefersReducedMotion || fadingIndex === activeIndex;
 
   useEffect(() => {
-    if (activeIndex === descriptionIndex) return;
+    if (prefersReducedMotion) return;
+    if (activeIndex === fadingIndex) return;
 
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduceMotion) {
-      setDescriptionIndex(activeIndex);
-      return;
-    }
-
-    setDescriptionVisible(false);
-    descriptionTimeoutRef.current = setTimeout(() => {
-      setDescriptionIndex(activeIndex);
-      setDescriptionVisible(true);
-    }, DESCRIPTION_TRANSITION_MS);
-
-    return () => {
-      if (descriptionTimeoutRef.current) {
-        clearTimeout(descriptionTimeoutRef.current);
-      }
-    };
-  }, [activeIndex, descriptionIndex]);
+    const timeout = setTimeout(
+      () => setFadingIndex(activeIndex),
+      DESCRIPTION_TRANSITION_MS,
+    );
+    return () => clearTimeout(timeout);
+  }, [activeIndex, fadingIndex, prefersReducedMotion]);
 
   useEffect(() => {
     const track = trackRef.current;

@@ -61,11 +61,12 @@
   width: 100%;
 }
 
-/* Card stack — fluxo normal empilhado (fallback) por padrão; vira grid com
-   os cards sobrepostos assim que o modo "pinned" liga via JS (classe
-   `_pinned` extra, mesma especificidade das regras de visibilidade abaixo —
-   nunca ".pinned .stack_x", que venceria o display:none dos outros tiers
-   nos breakpoints maiores por especificidade, não por ordem). */
+/* Card stack — grid com os cards sobrepostos é o padrão (o modo "pinned" já
+   vem do servidor); as regras sem `_pinned` são o fallback de fluxo normal,
+   usado quando o JS desliga a trava por prefers-reduced-motion. A classe
+   `_pinned` é extra, de mesma especificidade das regras de visibilidade
+   abaixo — nunca ".pinned .stack_x", que venceria o display:none dos outros
+   tiers nos breakpoints maiores por especificidade, não por ordem. */
 
 .stack_md,
 .stack_lg {

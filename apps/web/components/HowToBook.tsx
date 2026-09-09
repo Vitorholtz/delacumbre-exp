@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import HowToCard from "@delacumbre/design-system/components/cards/HowToCard";
+import { usePrefersReducedMotion } from "@delacumbre/design-system/lib/motion";
 import styles from "./HowToBook.module.css";
 
 type Step = {
@@ -48,17 +49,14 @@ function ease(t: number) {
 export default function HowToBook() {
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // A pilha só trava e sobrepõe via scroll quando o navegador roda JS e o
-  // usuário não pediu menos movimento — sem isso, os cards ficam em fluxo
-  // normal (ver .stack no CSS).
-  const [pinned, setPinned] = useState(false);
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (!reduceMotion) setPinned(true);
-  }, []);
+  // O servidor renderiza travado (snapshot `false` abaixo) e só quem pediu
+  // menos movimento cai no fluxo normal. O caminho inverso — ligar a trava
+  // depois da hidratação — dava um salto de layout em todo mundo: o track
+  // ganhava 300vh com a página já na tela, empurrando de uma vez tudo que
+  // vem abaixo daqui. Custo assumido: sem JS a pilha fica travada sem
+  // animar, em vez de cair no fluxo normal — o resto do site já depende de
+  // JS de qualquer forma.
+  const pinned = !usePrefersReducedMotion();
 
   // Scroll da própria página (não um container à parte) — o track é alto
   // (N * 100vh) e o palco fica sticky por cima. Isso É a trava (a página

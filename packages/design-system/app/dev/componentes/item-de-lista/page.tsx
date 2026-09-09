@@ -34,7 +34,7 @@ export default function ListItemPage() {
       <section className={styles.section}>
         <h2 className="text-heading-md">Tom</h2>
         <p className="text-body-sm">
-          Usado nas listas de "o que está incluso" / "o que não está incluso":
+          Usado nas listas de “o que está incluso” / “o que não está incluso”:
           ícone e cor mudam, texto continua igual.
         </p>
         <div className={styles.column}>
