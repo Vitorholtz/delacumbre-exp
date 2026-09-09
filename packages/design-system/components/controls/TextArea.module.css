@@ -44,6 +44,15 @@
   border-color: var(--color-scarlet-rush);
 }
 
+/* Foco vence erro: enquanto o campo está focado, mostra só o destaque de
+   foco, nunca os dois traços juntos — o erro volta a aparecer ao desfocar,
+   se o campo continuar inválido. */
+.input[aria-invalid="true"]:focus {
+  border-width: 1px;
+  border-color: var(--color-hunyadi-yellow);
+  box-shadow: 0 0 0 1px var(--color-hunyadi-yellow);
+}
+
 .input:disabled {
   opacity: 0.4;
   cursor: not-allowed;

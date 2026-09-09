@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { TouchEvent } from "react";
 import FloatingButton from "../primitives/FloatingButton";
-import { breakpoints } from "../../lib/breakpoints";
+import { useIsSm } from "../../lib/breakpoints";
 import styles from "./GallerySlider.module.css";
 
 export type GalleryMediaItem = {
@@ -26,20 +26,6 @@ type SlideDirection = "next" | "prev";
 const SLIDE_DURATION_MS = 350;
 const CLOSE_DURATION_MS = 250;
 const SWIPE_THRESHOLD_PX = 40;
-
-function useIsSm() {
-  const [isSm, setIsSm] = useState(false);
-
-  useEffect(() => {
-    const query = window.matchMedia(`(max-width: ${breakpoints.smToMd - 1}px)`);
-    const update = () => setIsSm(query.matches);
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
-
-  return isSm;
-}
 
 function Media({ item }: { item: GalleryMediaItem }) {
   return item.type === "video" ? (

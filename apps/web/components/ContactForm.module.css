@@ -73,12 +73,6 @@
   width: 100%;
 }
 
-.confirmation {
-  composes: text-body-sm from global;
-  min-height: 1.5em;
-  color: var(--color-hunyadi-yellow);
-}
-
 @media (min-width: 810px) {
   .content {
     flex-direction: row;
@@ -114,7 +108,7 @@
 
   .inputsRow {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-4); /* 16px */
   }
 

@@ -260,7 +260,7 @@
   align-items: center;
   width: 100%;
   flex-shrink: 0;
-  padding: var(--space-16) var(--space-6); /* 64px 24px — igual em SM/MD/LG */
+  padding: var(--space-8) var(--space-6); /* 32px 24px — SM */
   /* Contorno em degradê (transparente → white-20 → transparente) em vez de
      uma linha sólida — border-image em vez de border-color porque
      gradiente não é um valor válido de border-color. */
@@ -274,13 +274,25 @@
     1;
 }
 
+@media (min-width: 810px) {
+  .footer {
+    padding: var(--space-16) var(--space-6); /* 64px 24px — MD/LG */
+  }
+}
+
 .socialLinks {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: var(--space-10); /* 40px — igual em SM/MD/LG */
+  gap: var(--space-8); /* 32px — SM */
   width: 100%;
+}
+
+@media (min-width: 810px) {
+  .socialLinks {
+    gap: var(--space-10); /* 40px — MD/LG */
+  }
 }
 
 /* Escopado a `.socialLinks` (em vez de `.socialLink` solta) de propósito: o

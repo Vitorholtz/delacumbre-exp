@@ -53,10 +53,21 @@ export default function CheckboxPage() {
         </p>
       </section>
 
+      <section className={styles.section}>
+        <h2 className="text-heading-md">Erro</h2>
+        <div className={styles.column}>
+          <Checkbox
+            size="lg"
+            label="Autorizo o compartilhamento dos meus dados."
+            error="Preencha este campo."
+          />
+        </div>
+      </section>
+
       <section className={`${styles.section} ${styles.lastSection}`}>
         <h2 className="text-heading-md">Uso</h2>
         <pre className={styles.code}>
-          {`import Checkbox from "@/components/controls/Checkbox";\n\n<Checkbox label="Autorizo o compartilhamento dos meus dados." />\n<Checkbox aria-label="Selecionar item" />\n<Checkbox size="sm" label="Termos de uso" disabled />`}
+          {`import Checkbox from "@/components/controls/Checkbox";\n\n<Checkbox label="Autorizo o compartilhamento dos meus dados." />\n<Checkbox aria-label="Selecionar item" />\n<Checkbox size="sm" label="Termos de uso" disabled />\n<Checkbox label="Termos de uso" error="Preencha este campo." />`}
         </pre>
       </section>
     </main>

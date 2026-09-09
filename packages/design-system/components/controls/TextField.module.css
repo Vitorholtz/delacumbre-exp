@@ -21,15 +21,12 @@
   color: var(--color-white-50);
 }
 
-.input:focus {
-  outline: none;
-}
-
 .input:hover:not(:focus) {
   border-color: var(--color-white-50);
 }
 
 .input:focus {
+  outline: none;
   border-width: 1px;
   border-color: var(--color-hunyadi-yellow);
   box-shadow: 0 0 0 1px var(--color-hunyadi-yellow);
@@ -42,6 +39,15 @@
 .input[aria-invalid="true"] {
   border-width: 2px;
   border-color: var(--color-scarlet-rush);
+}
+
+/* Foco vence erro: enquanto o campo está focado, mostra só o destaque de
+   foco, nunca os dois traços juntos — o erro volta a aparecer ao desfocar,
+   se o campo continuar inválido. */
+.input[aria-invalid="true"]:focus {
+  border-width: 1px;
+  border-color: var(--color-hunyadi-yellow);
+  box-shadow: 0 0 0 1px var(--color-hunyadi-yellow);
 }
 
 .input:disabled {

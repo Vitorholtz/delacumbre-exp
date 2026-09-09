@@ -1,0 +1,162 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300; /* acima do Menu (200), que já fica acima do Header (100) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6); /* 24px — respiro pro card não colar na borda da tela */
+  background: var(--color-licorice-80);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    transition: none;
+  }
+}
+
+.dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(21.375rem, calc(100vw - 3rem)); /* 342px — SM */
+  padding: 10rem var(--space-8) var(--space-8); /* 160px 32px 32px — top exato do Figma, acomoda o selo que sobrepõe a borda */
+  gap: var(--space-6); /* 24px — SM */
+  border-radius: var(--radius-lg); /* 24px */
+  border: 1px solid var(--color-white-20);
+  background: var(--color-licorice);
+  transform: scale(0.96);
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.overlay.visible .dialog {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog {
+    transition: none;
+  }
+}
+
+@media (min-width: 810px) {
+  .dialog {
+    width: min(30rem, calc(100vw - 4rem)); /* 480px — MD/LG */
+    padding-top: 13.75rem; /* 220px — MD/LG */
+    gap: var(--space-8); /* 32px — MD/LG */
+  }
+}
+
+.title {
+  composes: text-heading-md from global; /* 28px/32px — SM */
+  color: var(--color-white);
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .title {
+    font-size: var(--text-heading-lg); /* 36px — MD/LG */
+    line-height: var(--leading-heading-lg); /* 40px — MD/LG */
+  }
+}
+
+.description {
+  composes: text-body-sm from global; /* 16px/24px — SM */
+  color: var(--color-licorice-super-light);
+  text-align: center;
+  width: 100%;
+}
+
+@media (min-width: 810px) {
+  .description {
+    font-size: var(--text-body-md); /* 18px — MD/LG */
+    line-height: var(--leading-body-md); /* 28px — MD/LG */
+  }
+}
+
+/* Escopado a `.dialog` (em vez de `.confirmDesktop`/`.confirmCompact` soltas)
+   de propósito: o Button já define `display: inline-flex` na própria classe
+   raiz (mesma especificidade de seletor único), e qual das duas vence
+   dependeria da ordem de concatenação dos dois CSS Modules no bundle — não
+   confiável. Com o pai no seletor, a especificidade fica maior e sempre
+   vence, independente da ordem (mesmo motivo do ContactForm.module.css). */
+.dialog .confirmDesktop {
+  display: none;
+}
+
+.dialog .confirmCompact {
+  width: 12rem; /* 192px — SM */
+}
+
+@media (min-width: 810px) {
+  .dialog .confirmDesktop {
+    display: inline-flex;
+    width: 17.5rem; /* 280px — MD/LG */
+  }
+
+  .dialog .confirmCompact {
+    display: none;
+  }
+}
+
+/* Selo giratório — sobrepõe a borda superior do card (ver .dialog padding-top
+   acima). A própria imagem já inclui o círculo de fundo e a borda (ver Stamp
+   no Figma), então aqui só posiciona e dimensiona. PNG em vez de SVG: a
+   textura "desgastada" do selo é feita de centenas de manchas vetoriais
+   minúsculas — comprimir o SVG (precisão dos paths) borra essa textura;
+   rasterizado a 3x o tamanho de exibição (780px) fica nítido e ainda leve.
+   Posição (.stampWrap) e rotação (.stamp) ficam em elementos separados
+   porque as duas usam `transform` — animar rotação no mesmo elemento que já
+   centraliza via translateX(-50%) faria uma pisar na outra a cada frame. */
+
+.stampWrap {
+  position: absolute;
+  top: -3.75rem; /* -60px — SM, offset exato do Figma */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12.25rem; /* 196px — SM */
+  height: 12.25rem;
+}
+
+@media (min-width: 810px) {
+  .stampWrap {
+    top: -4.5rem; /* -72px — MD/LG */
+    width: 16.25rem; /* 260px — MD/LG */
+    height: 16.25rem;
+  }
+}
+
+.stamp {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: stamp-spin 20s linear infinite;
+}
+
+@keyframes stamp-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg); /* anti-horário */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp {
+    animation: none;
+  }
+}

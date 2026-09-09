@@ -71,6 +71,7 @@ const navSections: NavSection[] = [
     items: [
       { label: "Header", href: "/dev/componentes/header" },
       { label: "Menu", href: "/dev/componentes/menu" },
+      { label: "Modal", href: "/dev/componentes/modal" },
       { label: "Footer", href: "/dev/componentes/footer" },
     ],
   },
