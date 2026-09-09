@@ -14,7 +14,12 @@ export default function ScrollToTopOnNavigate() {
 
   useEffect(() => {
     if (window.location.hash) return;
-    window.scrollTo(0, 0);
+    // `behavior: "instant"` explícito: globals.css aplica `scroll-behavior:
+    // smooth` no <html> pras âncoras internas, e sem isso esta ida ao topo
+    // herdaria a suavidade e viraria uma rolagem animada da página inteira a
+    // cada troca de rota. O `data-scroll-behavior` do layout cobre a rolagem
+    // que o próprio Next faz; esta aqui é nossa, e precisa se declarar.
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname]);
 
   return null;

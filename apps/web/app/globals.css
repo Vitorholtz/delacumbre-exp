@@ -12,6 +12,18 @@ html {
   max-width: 100vw;
   overflow-x: hidden;
   scrollbar-color: var(--color-white-50) var(--color-licorice); /* Firefox */
+  /* Rolagem suave nas âncoras internas (#destinos, #precos, #roteiro...).
+     A partir do Next 16 isto NÃO é mais anulado sozinho durante a troca de
+     rota — o que faria uma navegação entre páginas virar um scroll animado
+     de página inteira. Quem devolve esse comportamento é o
+     `data-scroll-behavior="smooth"` no <html> (ver app/layout.tsx). */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 html::-webkit-scrollbar {
@@ -52,6 +64,25 @@ main {
 @media (min-width: 810px) {
   main {
     gap: 360px; /* fora da escala de espaçamento — distância padrão entre seções do site, MD e LG */
+  }
+}
+
+/* Alvos das âncoras internas. O Header é `position: fixed`, então sem esta
+   margem a seção para debaixo dele e o topo do conteúdo fica escondido. A
+   altura usada é a do header no estado compacto (o que vale depois de
+   qualquer rolagem, que é sempre o caso ao chegar por uma âncora), medida
+   no navegador: 90px em SM, 122px em MD/LG. Escopado a `section[id]` de
+   propósito: todas as âncoras do site estão em `<section>`, e assim ids
+   internos (campos de formulário com useId, por exemplo) ficam de fora. */
+main section[id] {
+  scroll-margin-top: calc(
+    90px + var(--space-6)
+  ); /* header SM + 24px de respiro */
+}
+
+@media (min-width: 810px) {
+  main section[id] {
+    scroll-margin-top: calc(122px + var(--space-6)); /* header MD/LG + 24px */
   }
 }
 
