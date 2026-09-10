@@ -306,6 +306,25 @@
 
 /* CTA — reaproveita o Button do design system nos dois tamanhos, trocando
    por CSS (mesmo padrão do Hero). */
+/* Cards e botões dividem uma caixa de aparição (aparecem juntos, são o
+   mesmo passo da leitura). Como a caixa ocupa a largura toda, ela precisa
+   recentralizar o que está dentro: `.buttons` tem max-width de 588px e, sem
+   isso, encostaria na borda esquerda em vez de herdar o `align-items:
+   center` do `.content`, que agora só alcança a caixa. O gap repete o do
+   `.content` pra a distância entre a grade e os botões não mudar. */
+.cardsAndButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16); /* 64px — SM, mesmo respiro do .content */
+}
+
+@media (min-width: 810px) {
+  .cardsAndButtons {
+    gap: 96px; /* fora da escala de espaçamento — MD e LG, igual ao .content */
+  }
+}
+
 .buttons {
   display: flex;
   align-items: center;

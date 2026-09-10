@@ -136,7 +136,7 @@ export default function TravelInfoSection() {
             </div>
           </Reveal>
 
-          <Reveal>
+          <Reveal className={styles.cardsAndButtons}>
             {CARD_SIZES.map((size) => (
               <div
                 key={size}
@@ -155,9 +155,7 @@ export default function TravelInfoSection() {
                 ))}
               </div>
             ))}
-          </Reveal>
 
-          <Reveal>
             <div className={`${styles.buttons} ${styles.buttonsDesktop}`}>
               <Button
                 variant="primary"
