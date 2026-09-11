@@ -63,7 +63,7 @@ main {
 
 @media (min-width: 810px) {
   main {
-    gap: 360px; /* fora da escala de espaçamento — distância padrão entre seções do site, MD e LG */
+    gap: 260px; /* fora da escala de espaçamento — distância padrão entre seções do site, MD e LG */
   }
 }
 

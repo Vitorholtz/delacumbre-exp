@@ -8,6 +8,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-6); /* 24px — LG, node 1259:239 */
+  padding-bottom: 200px; /* fora da escala de espaçamento — respiro antes da cortina subir */
 }
 
 /* Sem protótipo dedicado pra SM/MD (só a referência LG, 220px) — escala

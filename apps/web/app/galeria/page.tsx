@@ -29,9 +29,7 @@ export default function GaleriaPage() {
           </div>
         </Reveal>
 
-        <Reveal>
-          <GalleryExplorer expeditions={GALLERY_EXPEDITIONS} />
-        </Reveal>
+        <GalleryExplorer expeditions={GALLERY_EXPEDITIONS} />
       </div>
       <SiteFooter />
     </main>

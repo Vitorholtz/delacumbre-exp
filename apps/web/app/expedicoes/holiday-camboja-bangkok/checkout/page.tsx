@@ -40,14 +40,6 @@ export default async function CheckoutPage({
 
           <Reveal staggerMs={150}>
             <div className={styles.content}>
-              <div className={styles.formWrapper}>
-                <p className={styles.headerText}>
-                  Confira os detalhes da sua expedição e informe seus dados para
-                  que o líder entre em contato.
-                </p>
-                <CheckoutForm />
-              </div>
-
               <div className={`${styles.cardSlot} ${styles.cardSlotSm}`}>
                 <CheckoutCard
                   className={styles.cardFull}
@@ -95,6 +87,14 @@ export default async function CheckoutPage({
                   totalText={option.checkout.totalText}
                   size="lg"
                 />
+              </div>
+
+              <div className={styles.formWrapper}>
+                <p className={styles.headerText}>
+                  Confira os detalhes da sua expedição e informe seus dados para
+                  que o líder entre em contato.
+                </p>
+                <CheckoutForm />
               </div>
             </div>
           </Reveal>
