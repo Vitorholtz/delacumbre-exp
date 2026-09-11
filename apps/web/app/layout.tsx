@@ -6,6 +6,7 @@ import {
   materialSymbolsSharp,
 } from "@delacumbre/design-system/lib/fonts";
 import ScrollToTopOnNavigate from "@/components/ScrollToTopOnNavigate";
+import SmoothScroll from "@/components/SmoothScroll";
 import GrainOverlay from "@/components/GrainOverlay";
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body>
         <ScrollToTopOnNavigate />
+        <SmoothScroll />
         <GrainOverlay />
         {children}
       </body>

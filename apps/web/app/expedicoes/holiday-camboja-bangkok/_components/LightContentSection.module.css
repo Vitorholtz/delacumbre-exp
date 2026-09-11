@@ -90,7 +90,6 @@
 
 .paragraph {
   composes: text-body-sm from global; /* 16px — SM */
-  font-weight: 400; /* teste de legibilidade — peso intermediário entre --weight-body-light (300) e --weight-body-medium (500); sem token próprio ainda, ver packages/design-system/lib/fonts.ts */
   color: var(--color-licorice);
   margin: 0;
   width: 100%;
