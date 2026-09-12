@@ -8,6 +8,7 @@ import {
 import ScrollToTopOnNavigate from "@/components/ScrollToTopOnNavigate";
 import SmoothScroll from "@/components/SmoothScroll";
 import GrainOverlay from "@/components/GrainOverlay";
+import BackToTopButton from "@/components/BackToTopButton";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SmoothScroll />
         <GrainOverlay />
         {children}
+        <BackToTopButton />
       </body>
     </html>
   );

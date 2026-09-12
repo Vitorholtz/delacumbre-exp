@@ -1,0 +1,52 @@
+.wrapper {
+  position: fixed;
+  right: var(--space-6); /* 24px — alinhado ao botão de menu em SM */
+  bottom: var(--space-6);
+  z-index: 150; /* acima do Header (100), abaixo do Menu (200) */
+  opacity: 0;
+  transform: translateY(0.75rem);
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.4s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (min-width: 810px) {
+  .wrapper {
+    right: var(--space-14); /* 56px — alinhado ao botão de menu em MD/LG */
+    bottom: var(--space-14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrapper {
+    transition: none;
+  }
+}
+
+/* Mesmo padrão de par responsivo do Header (ver Header.module.css) — o
+   FloatingButton já define `display: inline-flex` na própria classe raiz,
+   então o seletor precisa do pai pra vencer com segurança. */
+.wrapper .sizeSm {
+  display: inline-flex;
+}
+
+.wrapper .sizeMd {
+  display: none;
+}
+
+@media (min-width: 810px) {
+  .wrapper .sizeSm {
+    display: none;
+  }
+
+  .wrapper .sizeMd {
+    display: inline-flex;
+  }
+}
