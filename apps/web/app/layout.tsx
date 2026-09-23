@@ -1,4 +1,12 @@
 import type { Metadata } from "next";
+// Precisa ser o PRIMEIRO import de CSS do app: no build de produção a ordem
+// das folhas segue a ordem de import, e os utilitários globais (.text-*,
+// .container...) têm a mesma especificidade das classes dos CSS Modules que
+// os compõem/sobrescrevem. Importado depois dos componentes, o globals.css
+// caía num chunk carregado por último e desfazia os ajustes por breakpoint
+// dos módulos (ex: títulos presos no tamanho SM em MD/LG) — só em produção,
+// já que o `next dev` injeta o CSS em outra ordem.
+import "./globals.css";
 import {
   berringer,
   berringerAged,
@@ -9,7 +17,6 @@ import ScrollToTopOnNavigate from "@/components/ScrollToTopOnNavigate";
 import SmoothScroll from "@/components/SmoothScroll";
 import GrainOverlay from "@/components/GrainOverlay";
 import BackToTopButton from "@/components/BackToTopButton";
-import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Delacumbre EXP",
