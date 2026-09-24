@@ -37,6 +37,9 @@ export const kanit = Kanit({
 //   python -m fontTools.subset "Berringer Aged.ttf" --flavor=woff2 \
 //     --output-file=BerringerAged.woff2 --layout-features="kern,liga,ccmp" \
 //     --unicodes="U+0020-007E,U+00A0-00FF,U+2010-2015,U+2018-201D,U+2026"
+// A Aged ainda passa por um segundo passo obrigatório, depois do subset:
+//   python simplify-aged.py BerringerAged.woff2 BerringerAged.woff2
+// (ver o porquê no próprio script e no comentário da `berringerAged` abaixo).
 export const berringer = localFont({
   src: "../fonts/BerringerRegular.woff2",
   variable: "--font-berringer",
@@ -46,10 +49,16 @@ export const berringer = localFont({
 });
 
 // Berringer Aged (variante desgastada, usada no título "Cenas lamentáveis").
-// A textura desgastada está nos próprios outlines, então mesmo subsetada ela
-// é ~24x maior que a Regular. Fica fora do preload porque os 5 usos são
-// títulos decorativos abaixo da dobra: com `display: swap` o texto aparece
-// na fallback e troca quando a fonte chega, sem disputar a rede no load.
+// A textura desgastada está nos próprios outlines: no original, ~90x mais
+// segmentos de path por letra que a Regular, e rasterizar isso em tamanho
+// grande congelava o scroll por 1-2s quando a seção entrava em vista. Por
+// isso o .woff2 servido é uma versão simplificada (fonts/simplify-aged.py),
+// com ~32% dos segmentos — visualmente equivalente nos tamanhos em uso, e
+// ~6x maior que a Regular em vez de ~24x.
+//
+// Fica fora do preload porque os 5 usos são títulos decorativos abaixo da
+// dobra: com `display: swap` o texto aparece na fallback e troca quando a
+// fonte chega, sem disputar a rede no load.
 export const berringerAged = localFont({
   src: "../fonts/BerringerAged.woff2",
   variable: "--font-berringer-aged",
