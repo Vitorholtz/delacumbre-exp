@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { usePrefersReducedMotion } from "@delacumbre/design-system/lib/motion";
 
 // Quanto menor, mais "líquida" fica a rolagem (mais quadros até alcançar o
@@ -48,6 +49,12 @@ function hasScrollableAncestor(target: EventTarget | null) {
  *  `prefers-reduced-motion`. */
 export default function SmoothScroll() {
   const prefersReducedMotion = usePrefersReducedMotion();
+  // Dependência do efeito só pra reiniciá-lo a cada troca de rota: o cleanup
+  // cancela uma animação ainda em curso. Sem isso, clicar num link enquanto
+  // a inércia da roda ainda rolava fazia a página nova abrir no topo (via
+  // ScrollToTopOnNavigate) e logo em seguida ser arrastada até o alvo de
+  // scroll da página anterior.
+  const pathname = usePathname();
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -93,7 +100,7 @@ export default function SmoothScroll() {
       window.removeEventListener("wheel", onWheel);
       cancelAnimationFrame(frame);
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, pathname]);
 
   return null;
 }
